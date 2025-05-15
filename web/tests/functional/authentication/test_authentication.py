@@ -107,10 +107,12 @@ class DictAuth(unittest.TestCase):
         # Create a new personal token.
         description = "description"
         name = "name"
+        expiration = 7
         personal_token = authd_auth_client.newPersonalAccessToken(
-            name, description)
+            name, description, expiration)
         token = personal_token.token
         self.assertEqual(personal_token.description, description)
+        self.assertEqual(personal_token.expiration, expiration)
 
         # Check whether the new token has been added.
         personal_tokens = authd_auth_client.getPersonalAccessTokens()
@@ -118,6 +120,7 @@ class DictAuth(unittest.TestCase):
         self.assertEqual(personal_tokens[0].token, "")
         self.assertEqual(personal_tokens[0].name, name)
         self.assertEqual(personal_tokens[0].description, description)
+        self.assertEqual(personal_tokens[0].expiration, expiration)
 
         auth_client = env.setup_auth_client(self._test_workspace,
                                             session_token=self.session_token)

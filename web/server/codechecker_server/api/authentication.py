@@ -728,8 +728,14 @@ class ThriftAuthHandler:
             return result
 
     @timeit
-    def newPersonalAccessToken(self, name, description):
+    def newPersonalAccessToken(self, name, description, expiration=365):
+        print(f"srv name={name}")
+        print(f"srv description={description}")
+        print(f"srv expiration={expiration}")
         self.__require_privilaged_access()
+        if expiration not in range(1, 366):
+            expiration = 365
+
         with DBSession(self.__config_db) as session:
             auth_session = session.query(Session) \
                 .filter(Session.token == self.__auth_session.token) \
@@ -755,7 +761,7 @@ class ThriftAuthHandler:
             name = name.strip()
             access_token = PersonalAccessTokenDB(
                 user, name, token, description,
-                auth_session.groups)
+                auth_session.groups, expiration)
 
             session.add(access_token)
 
