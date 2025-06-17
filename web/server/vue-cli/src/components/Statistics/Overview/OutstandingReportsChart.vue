@@ -1,8 +1,8 @@
 <script>
 import _ from "lodash";
 import {
-  endOfMonth, endOfToday, endOfWeek, endOfYear, format, subDays, subMonths,
-  subWeeks, subYears
+  endOfDay, endOfMonth, endOfToday, endOfWeek, endOfYear, format, subDays,
+  subMonths, subWeeks, subYears
 } from "date-fns";
 import { Line, mixins } from "vue-chartjs";
 import ChartDataLabels from "chartjs-plugin-datalabels";
@@ -137,24 +137,24 @@ export default {
       if (this.resolution === "days") {
         const today = endOfToday();
         this.dates = [ ...new Array(interval).keys() ].map(i =>
-          subDays(today, i));
+          endOfDay(subDays(today, i)));
       }
       else if (this.resolution === "weeks") {
         const endOfCurrentWeek = endOfWeek(new Date(), { weekStartsOn: 1 });
         this.dates = [ ...new Array(interval).keys() ].map(i =>
-          subWeeks(endOfCurrentWeek, i));
+          endOfWeek(subWeeks(endOfCurrentWeek, i)));
       }
       else if (this.resolution === "months") {
         const endOfCurrentMonth = endOfMonth(new Date());
         this.dates = [ ...new Array(interval).keys() ].map(i =>
-          subMonths(endOfCurrentMonth, i));
+          endOfMonth(subMonths(endOfCurrentMonth, i)));
 
         dateFormat = "yyyy. MMM";
       }
       else if (this.resolution === "years") {
         const endOfCurrentYear = endOfYear(new Date());
         this.dates = [ ...new Array(interval).keys() ].map(i =>
-          subYears(endOfCurrentYear, i));
+          endOfYear(subYears(endOfCurrentYear, i)));
 
         dateFormat = "yyyy";
       }
