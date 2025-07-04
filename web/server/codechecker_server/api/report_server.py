@@ -2389,6 +2389,7 @@ class ThriftRequestHandler:
                 .update(
                     {"fixed_at": review_status.date},
                     synchronize_session=False)
+            LOG.info("== == == == == update fixed_at param at report_server@2392 == == == == ==")
         else:
             reports = session \
                 .query(Report) \
@@ -2457,6 +2458,7 @@ class ThriftRequestHandler:
                         session.query(Report).filter(
                             Report.id == report_id).update(
                                 {"fixed_at": datetime.now()})
+                        LOG.info("== == == == == update fixed_at param in changeReviewStatus fn == == == == ==")
                 elif report.detection_status in [
                     "unresolved", "new", "reopened"]\
                     and report.review_status in [

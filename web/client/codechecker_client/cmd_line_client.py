@@ -557,6 +557,7 @@ def parse_report_filter_offline(args):
             int(str_to_timestamp(args.detected_at))
 
     if 'fixed_at' in args:
+        LOG.info(f"== == == == == {fixed_at} == == == == ==")
         report_filter.fixDate = int(str_to_timestamp(args.fixed_at))
 
     if 'detected_before' in args or 'detected_after' in args:
