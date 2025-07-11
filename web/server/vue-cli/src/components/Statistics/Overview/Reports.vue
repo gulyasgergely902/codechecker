@@ -19,21 +19,21 @@
                 Shows the number of reports which were active in the last
                 <i>x</i> days.<br><br>
 
-                <b>False positive</b> and <b>Intentional</b> reports are not
-                considered outstanding.
+                Reports marked as <b>False positive</b> or <b>Intentional</b>
+                are not considered outstanding.
               </div>
               <div v-else>
                 Shows the number of reports which were solved in the last
-                <i>x</i> days.<br><br>
-
-                For now reports marked as <b>False positive</b> or
-                <b>Intentional</b> are not considered to be resolved by these
-                numbers. A report is marked as resolved only when it disspeared
-                from a storage.<br><br>
+                <i>x</i> days.
+                <br><br>
+                Reports marked as <b>False positive</b> or <b>Intentional</b>
+                are excluded from these resolution statistics. A report is
+                considered resolved only after it has been removed from storage.
+                <br><br>
               </div>
 
               <div>
-                The following filters don't affect these values:
+                The following filters does not affect these values:
                 <ul>
                   <li><b>Outstanding reports on a given date</b> filter.</li>
                   <li>All filters in the <b>COMPARE TO</b> section.</li>
@@ -52,7 +52,8 @@
               <router-link
                 :to="{
                   name: 'reports',
-                  query: {
+                  query: {  // Modify these to match the numbers. 
+                  // New reports matching but resolved ones are not.
                     ...$router.currentRoute.query,
                     ...{
                       'newcheck': undefined,
