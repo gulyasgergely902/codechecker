@@ -29,6 +29,14 @@
         <unique-stat-warning v-if="reportFilter.isUnique" />
       </v-col>
     </v-row>
+    <v-row>
+      <v-col>
+        <component-severity-statistics
+          :bus="bus"
+          :namespace="namespace"
+        />
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -36,6 +44,7 @@
 import { SeverityMixin, ToCSV } from "@/mixins";
 
 import { BaseStatistics, UniqueStatWarning } from "@/components/Statistics";
+import { ComponentSeverityStatistics } from "./ComponentSeverityStatistics";
 import {
   getSeverityStatistics
 } from "@/components/Statistics/StatisticsHelper";
@@ -45,7 +54,7 @@ import SeverityStatisticsTable from "./SeverityStatisticsTable";
 export default {
   name: "SeverityStatistics",
   components: {
-    SeverityStatisticsTable, UniqueStatWarning
+    SeverityStatisticsTable, UniqueStatWarning, ComponentSeverityStatistics
   },
   mixins: [ BaseStatistics, SeverityMixin, ToCSV ],
 
