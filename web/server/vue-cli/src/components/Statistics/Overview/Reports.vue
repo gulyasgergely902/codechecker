@@ -19,21 +19,21 @@
                 Shows the number of reports which were active in the last
                 <i>x</i> days.<br><br>
 
-                <b>False positive</b> and <b>Intentional</b> reports are not
-                considered outstanding.
+                Reports marked as <b>False positive</b> or <b>Intentional</b>
+                are not considered outstanding.
               </div>
               <div v-else>
                 Shows the number of reports which were solved in the last
-                <i>x</i> days.<br><br>
-
-                For now reports marked as <b>False positive</b> or
-                <b>Intentional</b> are not considered to be resolved by these
-                numbers. A report is marked as resolved only when it disspeared
-                from a storage.<br><br>
+                <i>x</i> days.
+                <br><br>
+                Reports marked as <b>False positive</b> or <b>Intentional</b>
+                are excluded from these resolution statistics. A report is
+                considered resolved only after it has been removed from storage.
+                <br><br>
               </div>
 
               <div>
-                The following filters don't affect these values:
+                The following filters does not affect these values:
                 <ul>
                   <li><b>Outstanding reports on a given date</b> filter.</li>
                   <li>All filters in the <b>COMPARE TO</b> section.</li>
@@ -57,16 +57,14 @@
                     ...{
                       'newcheck': undefined,
                       'compared-to-open-reports-date': undefined,
+                      'open-reports-date': dateTimeToStr(c.date[0]),
+                      'compared-to-open-reports-date': dateTimeToStr(c.date[1]),
                     },
                     ...(reportType.id === 'new' ? {
-                      'open-reports-date': dateTimeToStr(c.date[0]),
-                      'compared-to-open-reports-date':
-                        dateTimeToStr(c.date[1]),
                       'diff-type': 'New',
                       'review-status': ['Confirmed bug', 'Unreviewed']
                     } : {
-                      'fixed-after': dateTimeToStr(c.date[0]),
-                      'fixed-before': dateTimeToStr(c.date[1])
+                      'diff-type': 'Resolved',
                     })
                   }
                 }"
@@ -97,7 +95,6 @@
 <script>
 import {
   endOfToday,
-  endOfYesterday,
   startOfToday,
   startOfYesterday,
   subDays
@@ -128,22 +125,21 @@ export default {
     reportFilter: { type: Object, required: true },
   },
   data() {
-    const now = endOfToday();
-    const last7Days = subDays(now, 7);
-    const last31Days = subDays(now, 31);
+    const last7Days = subDays(endOfToday(), 7);
+    const last31Days = subDays(endOfToday(), 31);
 
     const cols = [
-      { label: "Today",  date: [ startOfToday(), now ] },
-      { label: "Yesterday", date: [ startOfYesterday(), endOfYesterday() ] },
-      { label: "Last 7 days", date: [ last7Days, now ] },
-      { label: "Last 31 days", date: [ last31Days, now ] }
+      { label: "Today",  date: [ startOfToday(), endOfToday() ] },
+      { label: "Yesterday", date: [ startOfYesterday(), endOfToday() ] },
+      { label: "Last 7 days", date: [ last7Days, endOfToday() ] },
+      { label: "Last 31 days", date: [ last31Days, endOfToday() ] }
     ];
 
     return {
       reportTypes: [
         {
           id: "new",
-          label: "Number of outstanding reports",
+          label: "Number of new outstanding reports since",
           color: "red",
           icon: "mdi-arrow-up",
           getValue: this.getNewReports,
@@ -151,7 +147,7 @@ export default {
         },
         {
           id: "resolved",
-          label: "Number of resolved reports",
+          label: "Number of resolved reports since",
           color: "green",
           icon: "mdi-arrow-down",
           getValue: this.getResolvedReports,
