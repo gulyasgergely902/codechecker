@@ -121,7 +121,7 @@ class Cppcheck(analyzer_base.SourceAnalyzer):
     def parse_analyzer_config(self):
         """
         Parses a set of a white listed compiler flags.
-        Cppcheck can only use a subset of the parametes
+        Cppcheck can only use a subset of the parameters
         found in compilation commands.
         These are:
         * -I: flag for specifing include directories
@@ -331,7 +331,7 @@ class Cppcheck(analyzer_base.SourceAnalyzer):
 
     def post_analyze(self, result_handler):
         """
-        Post process the reuslts after the analysis.
+        Post process the results after the analysis.
         Will copy the plist files created by cppcheck into the
         root of the reports folder.
         Renames the source plist files to *.plist.bak because

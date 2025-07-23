@@ -248,7 +248,7 @@ cppcheck --project=compile_command.json --plist-output=./cppcheck_reports
 # analyzer result of Cppcheck. It will generate a unique report identifier
 report-converter -t cppcheck -o ./codechecker_cppcheck_reports ./cppcheck_reports
 
-# Store the Cppcheck reports with CodeChecker.
+# Store the Cppcheck reports with CodeChecker. Use --url to specify a server address.
 CodeChecker store ./codechecker_cppcheck_reports -n cppcheck
 ```
 
