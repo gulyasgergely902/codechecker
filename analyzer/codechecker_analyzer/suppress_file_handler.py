@@ -126,8 +126,7 @@ def write_to_suppress_file(suppress_file, value, file_name, comment='',
                          status + '\n')
 
         return True
-
-    except Exception as ex:
-        LOG.error(str(ex))
-        LOG.error("Failed to write: %s", suppress_file)
+    except OSError as err:
+        LOG.error("Could not open suppress file: %s. Error: %s",
+                  suppress_file, str(err))
         return False

@@ -256,7 +256,7 @@ def handle_reproducer(source_analyzer, rh, zip_file, actions_map):
         other_files.update(
             source_analyzer.get_analyzer_mentioned_files(
                 rh.analyzer_stderr))
-    except Exception as ex:
+    except Exception as ex:  # pylint: disable=broad-exception-caught
         LOG.debug("Couldn't generate list of other files "
                   "from analyzer output:")
         LOG.debug(str(ex))
@@ -654,12 +654,10 @@ def check(check_data):
 
         return return_codes, False, reanalyzed, action.analyzer_type, \
             result_file, action.source
-
-    except Exception as e:
-        LOG.debug(str(e))
+    except OSError as err:
+        LOG.error("An error occured during check: %s", str(err))
         traceback.print_exc(file=sys.stdout)
-        return 1, False, reanalyzed, action.analyzer_type, None, \
-            action.source
+        return 1, False, reanalyzed, action.analyzer_type, None, action.source
 
 
 def skip_cpp(compile_actions, skip_handlers):

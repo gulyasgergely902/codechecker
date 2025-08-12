@@ -74,11 +74,10 @@ def perform_build_command(
 
             with open(original_env_file, 'rb') as env_file:
                 original_env = pickle.load(env_file, encoding='utf-8')
-
-    except Exception as ex:
-        LOG.warning(str(ex))
+    except OSError as err:
         LOG.warning('Failed to get saved original_env '
-                    'using a current copy for logging.')
+                    'using a current copy for logging.'
+                    'Error: %s', str(err))
         original_env = os.environ.copy()
 
     # Run user's commands in shell, and preload ldlogger.
@@ -150,10 +149,8 @@ def perform_build_command(
         else:
             LOG.info("Build failed.")
             sys.exit(ret_code)
-
-    except Exception as ex:
-        LOG.error("Calling original build command failed.")
-        LOG.error(str(ex))
+    except (OSError, ValueError) as err:
+        LOG.error("Executing build command failed: %s", str(err))
         sys.exit(1)
     finally:
         debug_file = log_env.get('CC_LOGGER_DEBUG_FILE')

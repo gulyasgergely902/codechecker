@@ -105,11 +105,10 @@ def get_original_env():
 
             with open(original_env_file, 'rb') as env_file:
                 original_env = pickle.load(env_file, encoding='utf-8')
-
-    except Exception as ex:
-        LOG.warning(str(ex))
-        LOG.warning('Failed to get saved original_env ')
+    except OSError as err:
+        LOG.warning('Failed to open env file: %s', str(err))
         original_env = None
+
     return original_env
 
 

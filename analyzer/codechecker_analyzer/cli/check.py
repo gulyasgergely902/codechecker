@@ -1014,7 +1014,7 @@ def main(args):
         parse_module.main(parse_args)
     except ImportError:
         LOG.error("Check failed: couldn't import a library.")
-    except Exception:
+    except Exception:  # pylint: disable=broad-exception-caught
         LOG.exception("Running check failed.")
         import traceback
         traceback.print_exc()

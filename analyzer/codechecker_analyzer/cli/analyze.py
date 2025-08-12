@@ -899,7 +899,7 @@ def is_analyzer_config_valid(
         else:
             try:
                 analyzer_cfg.value_type(cfg_arg.value)
-            except Exception as ex:
+            except Exception as ex:  # pylint: disable=broad-exception-caught
                 wrong_config_messages.append(
                     f"Invalid value to --analyzer-config: "
                     f"'{cfg_arg.analyzer}:{cfg_arg.option}={cfg_arg.value}'. "
@@ -1426,7 +1426,7 @@ def main(args):
         LOG.debug("Sending analyzer statistics started.")
         analyzer_statistics.collect(metadata, "analyze")
         LOG.debug("Sending analyzer statistics finished.")
-    except Exception:
+    except Exception:  # pylint: disable=broad-exception-caught
         LOG.debug("Failed to send analyzer statistics!")
 
     # Generally exit status is set by sys.exit() call in CodeChecker. However,

@@ -139,9 +139,8 @@ class SourceAnalyzer(metaclass=ABCMeta):
             res_handler.analyzer_stdout = stdout
             res_handler.analyzer_stderr = stderr
             return res_handler
-
-        except Exception as ex:
-            LOG.error(ex)
+        except (OSError, ValueError) as err:
+            LOG.error("Error running analyzer process: %s", str(err))
             res_handler.analyzer_returncode = 1
             return res_handler
 
