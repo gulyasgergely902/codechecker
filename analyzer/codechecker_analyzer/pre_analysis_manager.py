@@ -126,9 +126,8 @@ def pre_analyze(params):
             ctu_manager.map_functions(triple_arch, action, action.source,
                                       clangsa_config, ctu_func_map_cmd,
                                       ctu_temp_fnmap_folder)
-
-    except Exception as ex:
-        LOG.error("Pre-analysis failed for %s: %s", action.source, str(ex))
+    except OSError as err:
+        LOG.error("Pre-analysis failed for %s: %s", action.source, str(err))
         traceback.print_exc(file=sys.stdout)
 
     try:

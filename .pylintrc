@@ -472,7 +472,6 @@ disable=raw-checker-failed,
         duplicate-code,  # TODO: Could be eliminated
         cyclic-import,  # TODO: Could be fixed
         subprocess-popen-preexec-fn,  # TODO: Could be fixed
-        broad-exception-caught,  # TODO: could be valid
         no-member,  # TODO: Why is this emitted for multiprocess module?
         consider-using-with,  # TODO: Mainly for Popen, could be valid
         protected-access,  # TODO: Used in test code, but not elegant

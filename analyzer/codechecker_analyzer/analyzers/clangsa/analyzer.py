@@ -503,7 +503,7 @@ class ClangSA(analyzer_base.SourceAnalyzer):
 
             return analyzer_cmd
 
-        except Exception as ex:
+        except Exception as ex:  # pylint: disable=broad-exception-caught
             LOG.error(ex)
             return []
 
