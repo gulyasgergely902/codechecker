@@ -288,11 +288,12 @@ def apply_fixits(inputs, checker_names, file_paths, interactive, reports):
         context = analyzer_context.get_context()
         replacer_env = context.get_env_for_bin(
             analyzer_context.get_context().replacer_binary)
-        subprocess.Popen([
-            analyzer_context.get_context().replacer_binary,
-            *ignore_flag,
-            out_dir],
-            env=replacer_env).communicate()
+        with subprocess.Popen([
+                analyzer_context.get_context().replacer_binary,
+                *ignore_flag,
+                out_dir],
+                env=replacer_env) as proc:
+            proc.communicate()
 
     not_existing_files = set()
     existing_files = set()

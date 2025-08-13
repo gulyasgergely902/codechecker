@@ -105,38 +105,40 @@ class Infer(analyzer_base.SourceAnalyzer):
         Return the list of the supported checkers.
         """
         command = [cls.analyzer_binary(), "help", "--list-issue-types"]
-        desc = json.load(
+        with json.load(
             open(Path(__file__).parent / "descriptions.json",
-                 "r", encoding="utf-8"))
-        checker_list = []
-        try:
-            env = analyzer_context.get_context().get_env_for_bin(
-                cls.analyzer_binary())
-            env.update(TZ='UTC')
-            output = subprocess.check_output(command,
-                                             stderr=subprocess.DEVNULL,
-                                             env=env)
-            for entry in output.decode().split('\n'):
-                data = entry.strip().split(":")
-                if len(data) < 7:
-                    continue
+                 "r", encoding="utf-8")) as desc:
+            checker_list = []
+            try:
+                env = analyzer_context.get_context().get_env_for_bin(
+                    cls.analyzer_binary())
+                if not env:
+                    raise ValueError
+                env.update(TZ='UTC')
+                output = subprocess.check_output(command,
+                                                 stderr=subprocess.DEVNULL,
+                                                 env=env)
+                for entry in output.decode().split('\n'):
+                    data = entry.strip().split(":")
+                    if len(data) < 7:
+                        continue
 
-                entry_id = data[0].lower()
-                if entry_id in desc:
-                    description = desc[entry_id]
-                else:
-                    checker = data[6] if len(data) == 7 else data[5]
-                    description = f"used by '{checker}' checker"
+                    entry_id = data[0].lower()
+                    if entry_id in desc:
+                        description = desc[entry_id]
+                    else:
+                        checker = data[6] if len(data) == 7 else data[5]
+                        description = f"used by '{checker}' checker"
 
-                entry_id = entry_id.replace("_", "-")
-                checker_list.append((f"infer-{entry_id}",
-                                     description))
-            return checker_list
-        except (subprocess.CalledProcessError) as e:
-            LOG.error(e.stderr)
-        except (OSError) as e:
-            LOG.error(e.errno)
-        return []
+                    entry_id = entry_id.replace("_", "-")
+                    checker_list.append((f"infer-{entry_id}",
+                                        description))
+                return checker_list
+            except (subprocess.CalledProcessError) as e:
+                LOG.error(e.stderr)
+            except (OSError, ValueError) as err:
+                LOG.error("Error occured: %s", err)
+            return []
 
     @classmethod
     def get_analyzer_config(cls) -> List[analyzer_base.AnalyzerConfig]:

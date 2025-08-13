@@ -19,6 +19,7 @@ from codechecker_common.guidelines import Guidelines
 
 class TestGuidelines(unittest.TestCase):
     def setUp(self) -> None:
+        # pylint: disable-next=consider-using-with
         self.guidelines_dir = tempfile.TemporaryDirectory()
         self.initialize_guidelines_dir()
 

@@ -98,16 +98,16 @@ class TestAnalyze(unittest.TestCase):
                        "--analyzers", "clangsa", "-o", reports_dir]
 
         # Run analyze
-        process = subprocess.Popen(
-            analyze_cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            cwd=self.test_dir,
-            encoding="utf-8",
-            errors="ignore")
-        out, err = process.communicate()
-        print(out)
-        print(err)
+        with subprocess.Popen(
+                analyze_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                cwd=self.test_dir,
+                encoding="utf-8",
+                errors="ignore") as process:
+            out, err = process.communicate()
+            print(out)
+            print(err)
 
         errcode = process.returncode
         # This function checks incremental analysis. There are some test cases
@@ -182,14 +182,14 @@ class TestAnalyze(unittest.TestCase):
 
         # WHEN
         # Run analyze.
-        process = subprocess.Popen(
-            analyze_cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            cwd=self.test_dir,
-            encoding="utf-8",
-            errors="ignore")
-        process.communicate()
+        with subprocess.Popen(
+                analyze_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                cwd=self.test_dir,
+                encoding="utf-8",
+                errors="ignore") as process:
+            process.communicate()
 
         # THEN
         errcode = process.returncode
@@ -253,18 +253,18 @@ class TestAnalyze(unittest.TestCase):
                        "--analyzers", "clangsa", "--verbose", "debug",
                        "-o", reports_dir]
         # Run analyze.
-        process = subprocess.Popen(
-            analyze_cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            cwd=self.test_dir,
-            encoding="utf-8",
-            errors="ignore")
-        out, _ = process.communicate()
-        print(out)
-        self.assertTrue("-std=FAKE_STD" in out)
-        self.assertTrue("--target=FAKE_TARGET" in out)
-        self.assertTrue("-idirafter /FAKE_INCLUDE_DIR" in out)
+        with subprocess.Popen(
+                analyze_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                cwd=self.test_dir,
+                encoding="utf-8",
+                errors="ignore") as process:
+            out, _ = process.communicate()
+            print(out)
+            self.assertTrue("-std=FAKE_STD" in out)
+            self.assertTrue("--target=FAKE_TARGET" in out)
+            self.assertTrue("-idirafter /FAKE_INCLUDE_DIR" in out)
 
     def test_capture_analysis_output(self):
         """
@@ -288,18 +288,18 @@ class TestAnalyze(unittest.TestCase):
             json.dump(build_log, outfile)
 
         print(analyze_cmd)
-        process = subprocess.Popen(
-            analyze_cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            cwd=self.test_dir,
-            encoding="utf-8",
-            errors="ignore")
-        out, err = process.communicate()
-        print(out)
-        print(err)
-        errcode = process.returncode
-        self.assertEqual(errcode, 0)
+        with subprocess.Popen(
+                analyze_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                cwd=self.test_dir,
+                encoding="utf-8",
+                errors="ignore") as process:
+            out, err = process.communicate()
+            print(out)
+            print(err)
+            errcode = process.returncode
+            self.assertEqual(errcode, 0)
 
         # We expect the sucess stderr file in the success directory.
         success_files = os.listdir(success_dir)
@@ -332,14 +332,14 @@ class TestAnalyze(unittest.TestCase):
                        "-o", self.report_dir]
 
         print(analyze_cmd)
-        process = subprocess.Popen(
-            analyze_cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            cwd=self.test_dir,
-            encoding="utf-8",
-            errors="ignore")
-        out, err = process.communicate()
+        with subprocess.Popen(
+                analyze_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                cwd=self.test_dir,
+                encoding="utf-8",
+                errors="ignore") as process:
+            out, err = process.communicate()
 
         print(out)
         print(err)
@@ -400,14 +400,14 @@ class TestAnalyze(unittest.TestCase):
                        "-o", self.report_dir, "--generate-reproducer", "-c"]
 
         print(analyze_cmd)
-        process = subprocess.Popen(
-            analyze_cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            cwd=self.test_dir,
-            encoding="utf-8",
-            errors="ignore")
-        out, err = process.communicate()
+        with subprocess.Popen(
+                analyze_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                cwd=self.test_dir,
+                encoding="utf-8",
+                errors="ignore") as process:
+            out, err = process.communicate()
 
         print(out)
         print(err)
@@ -471,14 +471,14 @@ class TestAnalyze(unittest.TestCase):
             json.dump(build_log, outfile)
 
         print(analyze_cmd)
-        process = subprocess.Popen(
-            analyze_cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            cwd=self.test_dir,
-            encoding="utf-8",
-            errors="ignore")
-        process.communicate()
+        with subprocess.Popen(
+                analyze_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                cwd=self.test_dir,
+                encoding="utf-8",
+                errors="ignore") as process:
+            process.communicate()
 
         errcode = process.returncode
         self.assertEqual(errcode, 3)
@@ -549,14 +549,14 @@ class TestAnalyze(unittest.TestCase):
                        "--analyzers", "clangsa", "-o", report_dir]
         # CodeChecker is executed in a different
         # dir than the containing folder of simple.c.
-        process = subprocess.Popen(
-            analyze_cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            cwd=self.test_workspace,
-            encoding="utf-8",
-            errors="ignore")
-        process.communicate()
+        with subprocess.Popen(
+                analyze_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                cwd=self.test_workspace,
+                encoding="utf-8",
+                errors="ignore") as process:
+            process.communicate()
 
         errcode = process.returncode
         self.assertEqual(errcode, 0)
@@ -586,23 +586,23 @@ class TestAnalyze(unittest.TestCase):
                        "--analyzer-config", 'clang-tidy:HeaderFilterRegex=.*',
                        'clang-tidy:Checks=modernize-use-bool-literals']
 
-        process = subprocess.Popen(
-            analyze_cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            cwd=self.test_workspace,
-            encoding="utf-8",
-            errors="ignore")
-        process.communicate()
+        with subprocess.Popen(
+                analyze_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                cwd=self.test_workspace,
+                encoding="utf-8",
+                errors="ignore") as process:
+            process.communicate()
 
-        process = subprocess.Popen(
-            [self._codechecker_cmd, "parse", report_dir],
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            cwd=self.test_workspace,
-            encoding="utf-8",
-            errors="ignore")
-        out, _ = process.communicate()
+        with subprocess.Popen(
+                [self._codechecker_cmd, "parse", report_dir],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                cwd=self.test_workspace,
+                encoding="utf-8",
+                errors="ignore") as process:
+            out, _ = process.communicate()
 
         self.assertIn("division by zero", out)
         self.assertIn("modernize-avoid-bind", out)
@@ -610,23 +610,23 @@ class TestAnalyze(unittest.TestCase):
 
         analyze_cmd = [self._codechecker_cmd, "analyze", build_json,
                        "-o", report_dir, "--saargs", saargs_file]
-        process = subprocess.Popen(
-            analyze_cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            cwd=self.test_workspace,
-            encoding="utf-8",
-            errors="ignore")
-        process.communicate()
+        with subprocess.Popen(
+                analyze_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                cwd=self.test_workspace,
+                encoding="utf-8",
+                errors="ignore") as process:
+            process.communicate()
 
-        process = subprocess.Popen(
-            [self._codechecker_cmd, "parse", report_dir],
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            cwd=self.test_workspace,
-            encoding="utf-8",
-            errors="ignore")
-        out, _ = process.communicate()
+        with subprocess.Popen(
+                [self._codechecker_cmd, "parse", report_dir],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                cwd=self.test_workspace,
+                encoding="utf-8",
+                errors="ignore") as process:
+            out, _ = process.communicate()
 
         self.assertIn("Dereference of null pointer", out)
 
@@ -695,14 +695,14 @@ class TestAnalyze(unittest.TestCase):
                        "--analyzers", "clangsa", "-o", report_dir,
                        "--compile-uniqueing", "alpha"]
 
-        process = subprocess.Popen(
-            analyze_cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            cwd=self.test_workspace,
-            encoding="utf-8",
-            errors="ignore")
-        process.communicate()
+        with subprocess.Popen(
+                analyze_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                cwd=self.test_workspace,
+                encoding="utf-8",
+                errors="ignore") as process:
+            process.communicate()
 
         errcode = process.returncode
         self.assertEqual(errcode, 0)
@@ -714,14 +714,14 @@ class TestAnalyze(unittest.TestCase):
         analyze_cmd = [self._codechecker_cmd, "analyze", build_json,
                        "--analyzers", "clangsa", "-o", report_dir,
                        "--compile-uniqueing", ".*_b.*"]
-        process = subprocess.Popen(
-            analyze_cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            cwd=self.test_workspace,
-            encoding="utf-8",
-            errors="ignore")
-        process.communicate()
+        with subprocess.Popen(
+                analyze_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                cwd=self.test_workspace,
+                encoding="utf-8",
+                errors="ignore") as process:
+            process.communicate()
 
         errcode = process.returncode
         self.assertEqual(errcode, 0)
@@ -733,14 +733,14 @@ class TestAnalyze(unittest.TestCase):
         analyze_cmd = [self._codechecker_cmd, "analyze", build_json,
                        "--analyzers", "clangsa", "-o", report_dir,
                        "--compile-uniqueing", ".*simple.*"]
-        process = subprocess.Popen(
-            analyze_cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            cwd=self.test_workspace,
-            encoding="utf-8",
-            errors="ignore")
-        process.communicate()
+        with subprocess.Popen(
+                analyze_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                cwd=self.test_workspace,
+                encoding="utf-8",
+                errors="ignore") as process:
+            process.communicate()
 
         errcode = process.returncode
         # Since .*simple.* matches 2 files, thus we get an error
@@ -751,14 +751,14 @@ class TestAnalyze(unittest.TestCase):
                        "--analyzers", "clangsa", "-o", report_dir,
                        "--compile-uniqueing", "strict", "--verbose", "debug"]
 
-        process = subprocess.Popen(
-            analyze_cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            cwd=self.test_workspace,
-            encoding="utf-8",
-            errors="ignore")
-        process.communicate()
+        with subprocess.Popen(
+                analyze_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                cwd=self.test_workspace,
+                encoding="utf-8",
+                errors="ignore") as process:
+            process.communicate()
 
         # In strict mode the analysis must fail
         # if there are more than one build
@@ -771,14 +771,14 @@ class TestAnalyze(unittest.TestCase):
         analyze_cmd = [self._codechecker_cmd, "analyze", build_json,
                        "--analyzers", "clangsa", "-o", report_dir,
                        "--compile-uniqueing", "none"]
-        process = subprocess.Popen(
-            analyze_cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            cwd=self.test_workspace,
-            encoding="utf-8",
-            errors="ignore")
-        process.communicate()
+        with subprocess.Popen(
+                analyze_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                cwd=self.test_workspace,
+                encoding="utf-8",
+                errors="ignore") as process:
+            process.communicate()
 
         errcode = process.returncode
         self.assertEqual(errcode, 0)
@@ -790,14 +790,14 @@ class TestAnalyze(unittest.TestCase):
         analyze_cmd = codechecker_subcommand + extra_args
 
         print(shlex.join(analyze_cmd))
-        process = subprocess.Popen(
-            analyze_cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            cwd=self.test_dir,
-            encoding="utf-8",
-            errors="ignore")
-        out, err = process.communicate()
+        with subprocess.Popen(
+                analyze_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                cwd=self.test_dir,
+                encoding="utf-8",
+                errors="ignore") as process:
+            out, err = process.communicate()
         return out, err, process.returncode
 
     def __run_with_invalid_enabled_checker_name_common(self,
@@ -824,13 +824,13 @@ class TestAnalyze(unittest.TestCase):
         codechecker_subcommand = [self._codechecker_cmd, "check", "-l",
                                   self.__get_build_json()]
         return self.__run_with_invalid_enabled_checker_name_common(
-                codechecker_subcommand, extra_args)
+            codechecker_subcommand, extra_args)
 
     def __run_with_invalid_enabled_checker_name_analyze(self, extra_args):
         codechecker_subcommand = [self._codechecker_cmd, "analyze",
                                   self.__get_build_json()]
         return self.__run_with_invalid_enabled_checker_name_common(
-                codechecker_subcommand, extra_args)
+            codechecker_subcommand, extra_args)
 
     def test_invalid_enabled_checker_name(self):
         """Error out in case of an invalid enabled checker."""
@@ -898,14 +898,14 @@ class TestAnalyze(unittest.TestCase):
                   encoding="utf-8", errors="ignore") as outfile:
             json.dump(build_log, outfile)
 
-        process = subprocess.Popen(
-            analyze_cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            cwd=self.test_dir,
-            encoding="utf-8",
-            errors="ignore")
-        out, _ = process.communicate()
+        with subprocess.Popen(
+                analyze_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                cwd=self.test_dir,
+                encoding="utf-8",
+                errors="ignore") as process:
+            out, _ = process.communicate()
 
         self.assertNotIn("format specifies type 'int' but the argument has "
                          "type 'char *' [clang-diagnostic-format]", out)
@@ -924,13 +924,13 @@ class TestAnalyze(unittest.TestCase):
         codechecker_subcommand = [self._codechecker_cmd, "check", "-l",
                                   self.__get_build_json()]
         return self.__run_with_invalid_disabled_checker_name_common(
-                codechecker_subcommand, extra_args)
+            codechecker_subcommand, extra_args)
 
     def __run_with_invalid_disabled_checker_name_analyze(self, extra_args):
         codechecker_subcommand = [self._codechecker_cmd, "analyze",
                                   self.__get_build_json()]
         return self.__run_with_invalid_disabled_checker_name_common(
-                codechecker_subcommand, extra_args)
+            codechecker_subcommand, extra_args)
 
     def test_invalid_disabled_checker_name(self):
         """Error out in case of an invalid disabled checker."""
@@ -998,14 +998,14 @@ class TestAnalyze(unittest.TestCase):
             json.dump(build_log, outfile)
 
         print(analyze_cmd)
-        process = subprocess.Popen(
-            analyze_cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            cwd=self.test_dir,
-            encoding="utf-8",
-            errors="ignore")
-        out, _ = process.communicate()
+        with subprocess.Popen(
+                analyze_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                cwd=self.test_dir,
+                encoding="utf-8",
+                errors="ignore") as process:
+            out, _ = process.communicate()
 
         match = self.disabling_modeling_checker_regex.search(out)
         self.assertIsNone(match)
@@ -1034,14 +1034,14 @@ class TestAnalyze(unittest.TestCase):
             json.dump(build_log, outfile)
 
         print(analyze_cmd)
-        process = subprocess.Popen(
-            analyze_cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            cwd=self.test_dir,
-            encoding="utf-8",
-            errors="ignore")
-        out, _ = process.communicate()
+        with subprocess.Popen(
+                analyze_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                cwd=self.test_dir,
+                encoding="utf-8",
+                errors="ignore") as process:
+            out, _ = process.communicate()
 
         match = self.err_missing_checker_regex.search(out)
         self.assertIsNotNone(match)
@@ -1077,9 +1077,9 @@ class TestAnalyze(unittest.TestCase):
                   encoding="utf-8", errors="ignore") as outfile:
             json.dump(build_log, outfile)
 
+        # pylint: disable=consider-using-with
         out = subprocess.run(analyze_cmd,
                              cwd=self.test_dir,
-                             # env=self.env,
                              check=False,
                              stdout=subprocess.PIPE).stdout.decode()
 
@@ -1098,6 +1098,7 @@ class TestAnalyze(unittest.TestCase):
                   encoding="utf-8", errors="ignore") as outfile:
             json.dump(build_log, outfile)
 
+        # pylint: disable=consider-using-with
         out = subprocess.run(analyze_cmd,
                              cwd=self.test_dir,
                              # env=self.env,
@@ -1116,6 +1117,7 @@ class TestAnalyze(unittest.TestCase):
                   encoding="utf-8", errors="ignore") as outfile:
             json.dump(build_log, outfile)
 
+        # pylint: disable=consider-using-with
         out = subprocess.run(analyze_cmd,
                              cwd=self.test_dir,
                              # env=self.env,
@@ -1141,6 +1143,7 @@ class TestAnalyze(unittest.TestCase):
 
             analyze_cmd.extend(['--cppcheckargs', cppcheck_args.name])
 
+            # pylint: disable=consider-using-with
             out = subprocess.run(analyze_cmd,
                                  cwd=self.test_dir,
                                  # env=self.env,
@@ -1172,14 +1175,14 @@ class TestAnalyze(unittest.TestCase):
                   encoding="utf-8", errors="ignore") as outfile:
             json.dump(build_log, outfile)
 
-        process = subprocess.Popen(
-            analyze_cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            cwd=self.test_dir,
-            encoding="utf-8",
-            errors="ignore")
-        process.communicate()
+        with subprocess.Popen(
+                analyze_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                cwd=self.test_dir,
+                encoding="utf-8",
+                errors="ignore") as process:
+            process.communicate()
 
         errcode = process.returncode
         self.assertEqual(errcode, 0)
@@ -1189,13 +1192,13 @@ class TestAnalyze(unittest.TestCase):
         self.assertTrue(os.path.exists(makefile))
 
         # Run the generated Makefile and check the return code of it.
-        process = subprocess.Popen(["make"],
-                                   stdout=subprocess.PIPE,
-                                   stderr=subprocess.PIPE,
-                                   cwd=self.report_dir,
-                                   encoding="utf-8",
-                                   errors="ignore")
-        process.communicate()
+        with subprocess.Popen(["make"],
+                              stdout=subprocess.PIPE,
+                              stderr=subprocess.PIPE,
+                              cwd=self.report_dir,
+                              encoding="utf-8",
+                              errors="ignore") as process:
+            process.communicate()
 
         errcode = process.returncode
         self.assertEqual(errcode, 0)
@@ -1221,25 +1224,25 @@ class TestAnalyze(unittest.TestCase):
             analyze_cmd = [self._codechecker_cmd, "check", "-l", build_json,
                            "--analyzers", analyzer,
                            "--disable", "default"]
-            process = subprocess.Popen(
-                analyze_cmd,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
-                encoding="utf-8",
-                errors="ignore")
-            out, _ = process.communicate()
+            with subprocess.Popen(
+                    analyze_cmd,
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE,
+                    encoding="utf-8",
+                    errors="ignore") as process:
+                out, _ = process.communicate()
 
             self.assertIn(f"No checkers enabled for {analyzer}", out)
 
         analyze_cmd = [self._codechecker_cmd, "check", "-l", build_json,
                        "--disable-all"]
-        process = subprocess.Popen(
-            analyze_cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            encoding="utf-8",
-            errors="ignore")
-        out, _ = process.communicate()
+        with subprocess.Popen(
+                analyze_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                encoding="utf-8",
+                errors="ignore") as process:
+            out, _ = process.communicate()
 
         # Checkers of all 3 analyzers are disabled.
         self.assertEqual(out.count("No checkers enabled for"), 5)
@@ -1262,15 +1265,15 @@ class TestAnalyze(unittest.TestCase):
                        "clang-tidy:Checks=hicpp-use-nullptr"]
 
         print(analyze_cmd)
-        process = subprocess.Popen(
-            analyze_cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            cwd=self.test_dir,
-            encoding="utf-8",
-            errors="ignore")
-        out, _ = process.communicate()
-        print(out)
+        with subprocess.Popen(
+                analyze_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                cwd=self.test_dir,
+                encoding="utf-8",
+                errors="ignore") as process:
+            out, _ = process.communicate()
+            print(out)
 
         # It's printed as a found report and in the checker statistics.
         # Note: If this test case fails, its pretty sure that something totally
@@ -1287,14 +1290,14 @@ class TestAnalyze(unittest.TestCase):
                        "clang-tidy:hicpp-use-nullptr:NullMacros=MY_NULL"]
 
         print(analyze_cmd)
-        process = subprocess.Popen(
-            analyze_cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            cwd=self.test_dir,
-            encoding="utf-8",
-            errors="ignore")
-        out, _ = process.communicate()
+        with subprocess.Popen(
+                analyze_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                cwd=self.test_dir,
+                encoding="utf-8",
+                errors="ignore") as process:
+            out, _ = process.communicate()
 
         self.assertEqual(out.count('hicpp-use-nullptr'), 3)
 
@@ -1305,14 +1308,14 @@ class TestAnalyze(unittest.TestCase):
                        "=true"]
 
         print(analyze_cmd)
-        process = subprocess.Popen(
-            analyze_cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            cwd=self.test_dir,
-            encoding="utf-8",
-            errors="ignore")
-        out, _ = process.communicate()
+        with subprocess.Popen(
+                analyze_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                cwd=self.test_dir,
+                encoding="utf-8",
+                errors="ignore") as process:
+            out, _ = process.communicate()
         print(out)
         self.assertEqual(out.count('UninitializedObject'), 2)
 
@@ -1325,14 +1328,14 @@ class TestAnalyze(unittest.TestCase):
                        "clangsa:max-nodes=1"]
 
         print(analyze_cmd)
-        process = subprocess.Popen(
-            analyze_cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            cwd=self.test_dir,
-            encoding="utf-8",
-            errors="ignore")
-        out, _ = process.communicate()
+        with subprocess.Popen(
+                analyze_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                cwd=self.test_dir,
+                encoding="utf-8",
+                errors="ignore") as process:
+            out, _ = process.communicate()
 
         print(out)
         self.assertEqual(out.count('UninitializedObject'), 0)
@@ -1348,15 +1351,14 @@ class TestAnalyze(unittest.TestCase):
             outfile.write("Corrupted JSON file!")
 
         print(analyze_cmd)
-        process = subprocess.Popen(
-            analyze_cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            cwd=self.test_dir,
-            encoding="utf-8",
-            errors="ignore")
-
-        process.communicate()
+        with subprocess.Popen(
+                analyze_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                cwd=self.test_dir,
+                encoding="utf-8",
+                errors="ignore") as process:
+            process.communicate()
 
         self.assertEqual(process.returncode, 1)
 
@@ -1365,14 +1367,14 @@ class TestAnalyze(unittest.TestCase):
         cmd = [self._codechecker_cmd, "check", "-l", self.__get_build_json(),
                '--enable', 'clang-diagnostic-error']
 
-        process = subprocess.Popen(
-            cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            cwd=self.test_dir,
-            encoding="utf-8",
-            errors="ignore")
-        out, _ = process.communicate()
+        with subprocess.Popen(
+                cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                cwd=self.test_dir,
+                encoding="utf-8",
+                errors="ignore") as process:
+            out, _ = process.communicate()
 
         self.assertNotIn("error", out)
 
@@ -1417,14 +1419,14 @@ class TestAnalyze(unittest.TestCase):
             "-o", report_dir,
             "--clean"]
 
-        process = subprocess.Popen(
-            analyze_cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            cwd=test_dir,
-            encoding="utf-8",
-            errors="ignore")
-        process.communicate()
+        with subprocess.Popen(
+                analyze_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                cwd=test_dir,
+                encoding="utf-8",
+                errors="ignore") as process:
+            process.communicate()
 
         errcode = process.returncode
         self.assertEqual(errcode, 0)

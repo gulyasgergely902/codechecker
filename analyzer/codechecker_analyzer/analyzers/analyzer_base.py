@@ -193,21 +193,21 @@ class SourceAnalyzer(metaclass=ABCMeta):
         LOG.debug('\nENV:\n')
         LOG.debug(env)
 
-        proc = subprocess.Popen(
-            command,
-            bufsize=-1,
-            env=env,
-            preexec_fn=None if sys.platform == 'win32' else os.setsid,
-            cwd=cwd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            universal_newlines=True,
-            encoding="utf-8",
-            errors="ignore")
+        with subprocess.Popen(
+                command,
+                bufsize=-1,
+                env=env,
+                preexec_fn=None if sys.platform == 'win32' else os.setsid,
+                cwd=cwd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                universal_newlines=True,
+                encoding="utf-8",
+                errors="ignore") as proc:
 
-        # Send the created analyzer process' object if somebody wanted it.
-        if proc_callback:
-            proc_callback(proc)
+            # Send the created analyzer process' object if somebody wanted it.
+            if proc_callback:
+                proc_callback(proc)
 
-        stdout, stderr = proc.communicate()
-        return proc.returncode, stdout, stderr
+            stdout, stderr = proc.communicate()
+            return proc.returncode, stdout, stderr

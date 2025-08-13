@@ -24,8 +24,8 @@ def path(test_project):
 def get_info(test_project):
     test_proj_cfg = os.path.join(os.path.realpath(path(test_project)),
                                  'project_info.json')
-    project_info = \
-        json.load(open(test_proj_cfg, encoding="utf-8", errors="ignore"))
+    with open(test_proj_cfg, encoding="utf-8", errors="ignore") as file:
+        project_info = json.load(file)
     return project_info
 
 
@@ -49,15 +49,15 @@ def clean(test_project, environment=None):
         return 0
     try:
         print(clean_cmd)
-        proc = subprocess.Popen(
-            shlex.split(clean_cmd),
-            cwd=project_path,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            env=environment,
-            encoding="utf-8",
-            errors="ignore")
-        _, _ = proc.communicate()
+        with subprocess.Popen(
+                shlex.split(clean_cmd),
+                cwd=project_path,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                env=environment,
+                encoding="utf-8",
+                errors="ignore") as proc:
+            _, _ = proc.communicate()
         return 0
     except subprocess.CalledProcessError as cerr:
         return cerr.returncode

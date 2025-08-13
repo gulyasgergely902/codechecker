@@ -27,12 +27,15 @@ class SourceCodeCommentTestCase(unittest.TestCase):
         cls.__test_src_dir = os.path.join(
             os.path.dirname(__file__), 'source_code_comment_test_files')
 
+        # pylint: disable-next=consider-using-with
         cls.__tmp_srcfile_1 = open(os.path.join(cls.__test_src_dir,
                                                 'test_file_1'),
                                    encoding='utf-8', errors="ignore")
+        # pylint: disable-next=consider-using-with
         cls.__tmp_srcfile_2 = open(os.path.join(cls.__test_src_dir,
                                                 'test_file_2'),
                                    encoding='utf-8', errors="ignore")
+        # pylint: disable-next=consider-using-with
         cls.__tmp_srcfile_3 = open(os.path.join(cls.__test_src_dir,
                                                 'test_file_3'),
                                    encoding='utf-8', errors="ignore")

@@ -114,13 +114,13 @@ int main()
 
         # WHEN
         # Run analyze.
-        process = subprocess.Popen(
-            analyze_cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            encoding="utf-8",
-            errors="ignore")
-        process.communicate()
+        with subprocess.Popen(
+                analyze_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                encoding="utf-8",
+                errors="ignore") as process:
+            process.communicate()
 
         # THEN
         errcode = process.returncode
@@ -138,28 +138,28 @@ int main()
 
         fixit_list_cmd = [self._codechecker_cmd, "fixit", self.report_dir]
 
-        process = subprocess.Popen(
-            fixit_list_cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            stdin=subprocess.PIPE,
-            encoding="utf-8",
-            errors="ignore")
-        out, _ = process.communicate(input='[]')
+        with subprocess.Popen(
+                fixit_list_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                stdin=subprocess.PIPE,
+                encoding="utf-8",
+                errors="ignore") as process:
+            out, _ = process.communicate(input='[]')
 
         self.assertIn("v.empty()", out)
 
         fixit_apply_cmd = [self._codechecker_cmd, "fixit", "-a",
                            self.report_dir]
 
-        process = subprocess.Popen(
-            fixit_apply_cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            stdin=subprocess.PIPE,
-            encoding="utf-8",
-            errors="ignore")
-        process.communicate(input='[]')
+        with subprocess.Popen(
+                fixit_apply_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                stdin=subprocess.PIPE,
+                encoding="utf-8",
+                errors="ignore") as process:
+            process.communicate(input='[]')
 
         with open(source_file_cpp, encoding="utf-8", errors="ignore") as f:
             new_source_file = f.read()
@@ -207,13 +207,13 @@ int main()
 
         # WHEN
         # Run analyze.
-        process = subprocess.Popen(
-            analyze_cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            encoding="utf-8",
-            errors="ignore")
-        process.communicate()
+        with subprocess.Popen(
+                analyze_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                encoding="utf-8",
+                errors="ignore") as process:
+            process.communicate()
 
         # THEN
         errcode = process.returncode
@@ -222,14 +222,14 @@ int main()
         fixit_dir = os.path.join(self.report_dir, 'fixit')
         self.assertTrue(os.path.isdir(fixit_dir))
 
-        process = subprocess.Popen(
-            [self._codechecker_cmd, 'fixit', self.report_dir],
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            stdin=subprocess.PIPE,
-            encoding="utf-8",
-            errors="ignore")
-        _, err = process.communicate(input='[]')
+        with subprocess.Popen(
+                [self._codechecker_cmd, 'fixit', self.report_dir],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                stdin=subprocess.PIPE,
+                encoding="utf-8",
+                errors="ignore") as process:
+            _, err = process.communicate(input='[]')
 
         self.assertNotIn(
             'Skipped files due to modification since last analysis',
@@ -242,14 +242,14 @@ int main()
         mod_time = time.mktime(date.timetuple())
         os.utime(source_file_cpp, (mod_time, mod_time))
 
-        process = subprocess.Popen(
-            [self._codechecker_cmd, 'fixit', self.report_dir],
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            stdin=subprocess.PIPE,
-            encoding="utf-8",
-            errors="ignore")
-        _, err = process.communicate(input='[]')
+        with subprocess.Popen(
+                [self._codechecker_cmd, 'fixit', self.report_dir],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                stdin=subprocess.PIPE,
+                encoding="utf-8",
+                errors="ignore") as process:
+            _, err = process.communicate(input='[]')
 
         self.assertIn('Skipped files due to modification since last analysis',
                       err)
@@ -285,14 +285,14 @@ int main()
         analyze_cmd = [self._codechecker_cmd, "analyze", build_json,
                        "--analyzers", "clang-tidy", "-o", "reports1"]
 
-        process = subprocess.Popen(
-            analyze_cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            cwd=self.test_workspace,
-            encoding="utf-8",
-            errors="ignore")
-        process.communicate()
+        with subprocess.Popen(
+                analyze_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                cwd=self.test_workspace,
+                encoding="utf-8",
+                errors="ignore") as process:
+            process.communicate()
 
         # --- Analyze version 2 --- #
 
@@ -302,55 +302,55 @@ int main()
         analyze_cmd = [self._codechecker_cmd, "analyze", build_json,
                        "--analyzers", "clang-tidy", "-o", "reports2"]
 
-        process = subprocess.Popen(
-            analyze_cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            cwd=self.test_workspace,
-            encoding="utf-8",
-            errors="ignore")
-        process.communicate()
+        with subprocess.Popen(
+                analyze_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                cwd=self.test_workspace,
+                encoding="utf-8",
+                errors="ignore") as process:
+            process.communicate()
 
         # --- Test fixit --- #
 
         fixit_cmd = [self._codechecker_cmd, "fixit", report_dir2]
 
-        process = subprocess.Popen(
-            fixit_cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            stdin=subprocess.PIPE,
-            cwd=self.test_workspace,
-            encoding="utf-8",
-            errors="ignore")
-        out, err = process.communicate(input='[]')
-        print(out, err)
+        with subprocess.Popen(
+                fixit_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                stdin=subprocess.PIPE,
+                cwd=self.test_workspace,
+                encoding="utf-8",
+                errors="ignore") as process:
+            out, err = process.communicate(input='[]')
+            print(out, err)
 
         self.assertEqual(out.count('DiagnosticMessage'), 2)
 
         diff_cmd = [self._codechecker_cmd, "cmd", "diff", "--resolved",
                     "-b", report_dir1, "-n", report_dir2, "-o", "json"]
 
-        process = subprocess.Popen(
-            diff_cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            cwd=self.test_workspace,
-            encoding="utf-8",
-            errors="ignore")
-        out, err = process.communicate()
-        print('\n' + out + '\n')
+        with subprocess.Popen(
+                diff_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                cwd=self.test_workspace,
+                encoding="utf-8",
+                errors="ignore") as process:
+            out, err = process.communicate()
+            print('\n' + out + '\n')
 
-        process = subprocess.Popen(
-            fixit_cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            stdin=subprocess.PIPE,
-            encoding="utf-8",
-            errors="ignore")
-        out, err = process.communicate(input=out)
-        print('\n' + out + '\n')
-        self.assertEqual(out.count("DiagnosticMessage"), 1)
+        with subprocess.Popen(
+                fixit_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                stdin=subprocess.PIPE,
+                encoding="utf-8",
+                errors="ignore") as process:
+            out, err = process.communicate(input=out)
+            print('\n' + out + '\n')
+            self.assertEqual(out.count("DiagnosticMessage"), 1)
 
     @unittest.skipIf(which('clang-apply-replacements') is None,
                      "clang-apply-replacements clang tool must be available "
@@ -393,14 +393,14 @@ int main()
         analyze_cmd = [self._codechecker_cmd, "analyze", build_json,
                        "--analyzers", "clang-tidy", "-o", report_dir]
 
-        process = subprocess.Popen(
-            analyze_cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            cwd=self.test_workspace,
-            encoding="utf-8",
-            errors="ignore")
-        process.communicate()
+        with subprocess.Popen(
+                analyze_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                cwd=self.test_workspace,
+                encoding="utf-8",
+                errors="ignore") as process:
+            process.communicate()
 
         # --- Test fixit --- #
 
@@ -414,15 +414,15 @@ int main()
 
         fixit_cmd = [self._codechecker_cmd, "fixit", report_dir, "--apply"]
 
-        process = subprocess.Popen(
-            fixit_cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            stdin=subprocess.PIPE,
-            cwd=self.test_workspace,
-            encoding="utf-8",
-            errors="ignore")
-        process.communicate(input='[]')
+        with subprocess.Popen(
+                fixit_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                stdin=subprocess.PIPE,
+                cwd=self.test_workspace,
+                encoding="utf-8",
+                errors="ignore") as process:
+            process.communicate(input='[]')
 
         new_hash_1 = content_hash(source_file1)
         new_hash_2 = content_hash(source_file2)

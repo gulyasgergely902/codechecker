@@ -361,22 +361,22 @@ class ImplicitCompilerInfo:
         patched_env = os.environ.copy()
         patched_env["LC_ALL"] = "C"
         try:
-            proc = subprocess.Popen(
-                cmd,
-                stdin=subprocess.PIPE,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
-                universal_newlines=True,
-                encoding="utf-8",
-                env=patched_env,
-                errors="ignore")
+            with subprocess.Popen(
+                    cmd,
+                    stdin=subprocess.PIPE,
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE,
+                    universal_newlines=True,
+                    encoding="utf-8",
+                    env=patched_env,
+                    errors="ignore") as proc:
 
-            # The parameter is usually a compile command in this context which
-            # gets a dash ("-") as a compiler flag. This flag makes gcc
-            # expecting the source code from the standard input. This is given
-            # to communicate() function.
-            _, err = proc.communicate("")
-            return err
+                # The parameter is usually a compile command in this context
+                # which gets a dash ("-") as a compiler flag. This flag makes
+                # gcc expecting the source code from the standard input. This
+                # is given to communicate() function.
+                _, err = proc.communicate("")
+                return err
         except OSError as oerr:
             # TODO: shlex.join(cmd) would be more elegant after upgrading to
             # Python 3.8.

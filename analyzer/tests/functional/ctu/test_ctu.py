@@ -313,8 +313,8 @@ class TestCtu(unittest.TestCase):
             new_map_file = os.path.join(ctu_dir, arch, 'externalDefMap.txt')
 
             try:
-                fn = open(new_map_file, "r", encoding='utf-8')
-                line = fn.readline()
+                with open(new_map_file, "r", encoding='utf-8') as file:
+                    line = file.readline()
                 return line[0].isdigit()
             except IOError:
                 print("Error: File does not appear to exist.")

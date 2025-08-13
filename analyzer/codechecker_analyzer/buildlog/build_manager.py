@@ -31,26 +31,29 @@ def execute_buildcmd(command, silent=False, environ=None, cwd=None):
     Execute the the build command and continuously write
     the output from the process to the standard output.
     """
-    proc = subprocess.Popen(
-        command,
-        bufsize=-1,
-        env=environ,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT,
-        cwd=cwd,
-        shell=True,
-        universal_newlines=True,
-        encoding="utf-8",
-        errors="ignore")
+    with subprocess.Popen(
+            command,
+            bufsize=-1,
+            env=environ,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            cwd=cwd,
+            shell=True,
+            universal_newlines=True,
+            encoding="utf-8",
+            errors="ignore") as proc:
 
-    while True:
-        line = proc.stdout.readline()
-        if not line and proc.poll() is not None:
-            break
-        if not silent:
-            sys.stdout.write(line)
+        if not proc.stdout:
+            raise OSError
 
-    return proc.returncode
+        while True:
+            line = proc.stdout.readline()
+            if not line and proc.poll() is not None:
+                break
+            if not silent:
+                sys.stdout.write(line)
+
+        return proc.returncode
 
 
 def perform_build_command(
@@ -86,6 +89,7 @@ def perform_build_command(
         LOG.info("Using CodeChecker ld-logger.")
 
         # Same as linux's touch.
+        # pylint: disable-next=consider-using-with
         open(logfile, 'a', encoding="utf-8", errors="ignore").close()
         log_env = env.get_log_env(
             logfile, original_env, use_absolute_ldpreload_path)

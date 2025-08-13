@@ -21,17 +21,17 @@ from libtest import env
 
 def run_cmd(cmd, environ=None):
     print(cmd)
-    proc = subprocess.Popen(
-        cmd,
-        env=environ,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        encoding="utf-8",
-        errors="ignore")
+    with subprocess.Popen(
+            cmd,
+            env=environ,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            encoding="utf-8",
+            errors="ignore") as proc:
 
-    out, err = proc.communicate()
-    print(out)
-    return proc.returncode, out, err
+        out, err = proc.communicate()
+        print(out)
+        return proc.returncode, out, err
 
 
 class TestCmdline(unittest.TestCase):
