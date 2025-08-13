@@ -80,14 +80,14 @@ class TestSkip(unittest.TestCase):
         if analyzer_extra_options:
             analyze_cmd.extend(analyzer_extra_options)
 
-        process = subprocess.Popen(
-            analyze_cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            cwd=cwd,
-            encoding="utf-8",
-            errors="ignore")
-        out, err = process.communicate()
+        with subprocess.Popen(
+                analyze_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                cwd=cwd,
+                encoding="utf-8",
+                errors="ignore") as process:
+            out, err = process.communicate()
 
         print(out)
         print(err)
@@ -124,13 +124,13 @@ class TestSkip(unittest.TestCase):
         if extra_options:
             cmd.extend(extra_options)
 
-        process = subprocess.Popen(
-            cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            encoding="utf-8",
-            errors="ignore")
-        out, err = process.communicate()
+        with subprocess.Popen(
+                cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                encoding="utf-8",
+                errors="ignore") as process:
+            out, err = process.communicate()
 
         return out, err, process.returncode
 
@@ -254,14 +254,14 @@ class TestSkip(unittest.TestCase):
                        "--ignore", skip_file,
                        "-o", self.report_dir]
 
-        process = subprocess.Popen(
-            analyze_cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            cwd=test_dir,
-            encoding="utf-8",
-            errors="ignore")
-        out, err = process.communicate()
+        with subprocess.Popen(
+                analyze_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                cwd=test_dir,
+                encoding="utf-8",
+                errors="ignore") as process:
+            out, err = process.communicate()
 
         print(out)
         print(err)

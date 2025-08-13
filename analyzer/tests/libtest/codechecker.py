@@ -38,20 +38,20 @@ def call_command(cmd, cwd, env):
         # In case the Popen fails, have these initialized.
         out = ''
         err = ''
-        proc = subprocess.Popen(
-            cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            cwd=cwd,
-            env=env,
-            encoding="utf-8",
-            errors="ignore")
-        out, err = proc.communicate()
-        if proc.returncode != 0:
-            show(out, err)
-            print(f'Unsuccessful run: {cmd_log}')
-            print(proc.returncode)
-        return out, err, proc.returncode
+        with subprocess.Popen(
+                cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                cwd=cwd,
+                env=env,
+                encoding="utf-8",
+                errors="ignore") as proc:
+            out, err = proc.communicate()
+            if proc.returncode != 0:
+                show(out, err)
+                print(f'Unsuccessful run: {cmd_log}')
+                print(proc.returncode)
+            return out, err, proc.returncode
     except OSError as oerr:
         print(oerr)
         show(out, err)
@@ -96,33 +96,33 @@ def log_and_analyze(codechecker_cfg, test_project_path, clean_project=True):
     analyze_cmd.extend(codechecker_cfg['checkers'])
     try:
         print("LOG: " + ' '.join(log_cmd))
-        proc = subprocess.Popen(
-            shlex.split(
-                ' '.join(log_cmd)),
-            cwd=test_project_path,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            env=codechecker_cfg['check_env'],
-            encoding="utf-8",
-            errors="ignore")
-        out, err = proc.communicate()
-        print(out)
-        print(err)
+        with subprocess.Popen(
+                shlex.split(
+                    ' '.join(log_cmd)),
+                cwd=test_project_path,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                env=codechecker_cfg['check_env'],
+                encoding="utf-8",
+                errors="ignore") as proc:
+            out, err = proc.communicate()
+            print(out)
+            print(err)
 
         print("ANALYZE:")
         print(shlex.split(' '.join(analyze_cmd)))
-        proc = subprocess.Popen(
-            shlex.split(
-                ' '.join(analyze_cmd)),
-            cwd=test_project_path,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            env=codechecker_cfg['check_env'],
-            encoding="utf-8",
-            errors="ignore")
-        out, err = proc.communicate()
-        print(out)
-        print(err)
+        with subprocess.Popen(
+                shlex.split(
+                    ' '.join(analyze_cmd)),
+                cwd=test_project_path,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                env=codechecker_cfg['check_env'],
+                encoding="utf-8",
+                errors="ignore") as proc:
+            out, err = proc.communicate()
+            print(out)
+            print(err)
         return 0
     except subprocess.CalledProcessError as cerr:
         print("Failed to call:\n" + ' '.join(cerr.cmd))

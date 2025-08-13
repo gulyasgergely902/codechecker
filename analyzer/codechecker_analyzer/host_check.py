@@ -30,20 +30,20 @@ def check_analyzer(compiler_bin):
     environ = analyzer_context.get_context().get_env_for_bin(
         compiler_bin)
     try:
-        proc = subprocess.Popen(
-            clang_version_cmd,
-            env=environ,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            encoding="utf-8",
-            errors="ignore")
-        out, err = proc.communicate()
-        if not proc.returncode:
-            return True
-        LOG.error('Failed to run: "%s"', ' '.join(clang_version_cmd))
-        LOG.error('stdout: %s', out)
-        LOG.error('stderr: %s', err)
-        return False
+        with subprocess.Popen(
+                clang_version_cmd,
+                env=environ,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                encoding="utf-8",
+                errors="ignore") as proc:
+            out, err = proc.communicate()
+            if not proc.returncode:
+                return True
+            LOG.error('Failed to run: "%s"', ' '.join(clang_version_cmd))
+            LOG.error('stdout: %s', out)
+            LOG.error('stderr: %s', err)
+            return False
 
     except OSError as oerr:
         if oerr.errno == errno.ENOENT:
@@ -60,15 +60,15 @@ def has_analyzer_config_option(clang_bin, config_option_name):
     context = analyzer_context.get_context()
 
     try:
-        proc = subprocess.Popen(
-            cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            env=context.get_env_for_bin(clang_bin),
-            encoding="utf-8", errors="ignore")
-        out, err = proc.communicate()
-        LOG.debug_analyzer("stdout:\n%s", out)
-        LOG.debug_analyzer("stderr:\n%s", err)
+        with subprocess.Popen(
+                cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                env=context.get_env_for_bin(clang_bin),
+                encoding="utf-8", errors="ignore") as proc:
+            out, err = proc.communicate()
+            LOG.debug_analyzer("stdout:\n%s", out)
+            LOG.debug_analyzer("stderr:\n%s", err)
 
         match = re.search(config_option_name, out)
         if match:
@@ -93,15 +93,17 @@ def has_analyzer_option(clang_bin, feature):
 
         LOG.debug_analyzer('run: "%s"', ' '.join(cmd))
         try:
-            proc = subprocess.Popen(
-                cmd,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
-                env=analyzer_context.get_context().get_env_for_bin(clang_bin),
-                encoding="utf-8", errors="ignore")
-            out, err = proc.communicate()
-            LOG.debug_analyzer("stdout:\n%s", out)
-            LOG.debug_analyzer("stderr:\n%s", err)
+            with subprocess.Popen(
+                    cmd,
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE,
+                    env=analyzer_context.get_context().get_env_for_bin(
+                        clang_bin
+                    ),
+                    encoding="utf-8", errors="ignore") as proc:
+                out, err = proc.communicate()
+                LOG.debug_analyzer("stdout:\n%s", out)
+                LOG.debug_analyzer("stderr:\n%s", err)
 
             return proc.returncode == 0
         except OSError:

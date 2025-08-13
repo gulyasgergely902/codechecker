@@ -104,15 +104,15 @@ def is_ignore_conflict_supported():
     Detects if clang-apply-replacements supports --ignore-insert-conflict flag.
     """
     context = analyzer_context.get_context()
-    proc = subprocess.Popen([context.replacer_binary, '--help'],
-                            stdout=subprocess.PIPE,
-                            stderr=subprocess.PIPE,
-                            env=context
-                            .get_env_for_bin(
-                                context.replacer_binary),
-                            encoding="utf-8", errors="ignore")
-    out, _ = proc.communicate()
-    return '--ignore-insert-conflict' in out
+    with subprocess.Popen([context.replacer_binary, '--help'],
+                          stdout=subprocess.PIPE,
+                          stderr=subprocess.PIPE,
+                          env=context
+                          .get_env_for_bin(
+            context.replacer_binary),
+            encoding="utf-8", errors="ignore") as proc:
+        out, _ = proc.communicate()
+        return '--ignore-insert-conflict' in out
 
 
 def print_unsupported_analyzers(errored):

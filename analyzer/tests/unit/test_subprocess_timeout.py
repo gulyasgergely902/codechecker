@@ -32,25 +32,27 @@ class SubprocessTimeoutTest(unittest.TestCase):
         gracefully before the timeout expired.
         """
         # Create a process that executes quickly.
-        proc = subprocess.Popen(['echo',
-                                 'This process executes quickly!'],
-                                stdout=subprocess.PIPE,
-                                stderr=subprocess.PIPE,
-                                preexec_fn=os.setpgrp,
-                                encoding="utf-8",
-                                errors="ignore")
-        print(f"Started `echo` with PID {proc.pid}")
+        with subprocess.Popen(['echo',
+                               'This process executes quickly!'],
+                              stdout=subprocess.PIPE,
+                              stderr=subprocess.PIPE,
+                              preexec_fn=os.setpgrp,
+                              encoding="utf-8",
+                              errors="ignore") as proc:
+            print(f"Started `echo` with PID {proc.pid}")
 
-        future = setup_process_timeout(proc, 5, signal.SIGKILL)
+            future = setup_process_timeout(proc, 5, signal.SIGKILL)
 
-        # Simulate waiting for the process.
-        proc.wait()
+            # Simulate waiting for the process.
+            proc.wait()
 
-        # Execution reaches this spot, the process exited, one way or another.
-        killed = future()
-        self.assertFalse(killed,
-                         "Process timeout watcher said it killed the "
-                         "process, but it should have exited long beforehand.")
+            # Execution reaches this spot, the process exited, one way
+            # or another.
+            killed = future()
+            self.assertFalse(killed,
+                             "Process timeout watcher said it killed the "
+                             "process, but it should have exited "
+                             "long beforehand.")
 
     def test_timeout_with_long_running(self):
         """
@@ -58,28 +60,28 @@ class SubprocessTimeoutTest(unittest.TestCase):
         and properly reports that it was killed.
         """
         # Create a process that runs infinitely.
-        proc = subprocess.Popen(['sh',
-                                 '-c',
-                                 'yes'],
-                                stdout=subprocess.PIPE,
-                                stderr=subprocess.PIPE,
-                                preexec_fn=os.setpgrp,
-                                encoding="utf-8",
-                                errors="ignore")
-        print(f"Started `yes` with PID {proc.pid}")
+        with subprocess.Popen(['sh',
+                               '-c',
+                               'yes'],
+                              stdout=subprocess.PIPE,
+                              stderr=subprocess.PIPE,
+                              preexec_fn=os.setpgrp,
+                              encoding="utf-8",
+                              errors="ignore") as proc:
+            print(f"Started `yes` with PID {proc.pid}")
 
-        future = setup_process_timeout(proc, 5)
+            future = setup_process_timeout(proc, 5)
 
-        # Simulate waiting for the process.
-        proc.wait()
+            # Simulate waiting for the process.
+            proc.wait()
 
-        # Execution reaches this spot, which means the process was killed.
-        # (Or it ran way too long and the OS killed it. Usually tests run
-        # quick enough this isn't the case...)
-        killed = future()
-        self.assertTrue(killed,
-                        "Process timeout watcher said it did not kill the "
-                        "process, but it should have.")
+            # Execution reaches this spot, which means the process was killed.
+            # (Or it ran way too long and the OS killed it. Usually tests run
+            # quick enough this isn't the case...)
+            killed = future()
+            self.assertTrue(killed,
+                            "Process timeout watcher said it did not kill the "
+                            "process, but it should have.")
 
         with self.assertRaises(psutil.NoSuchProcess):
             # Try to fetch the process from the system. It shouldn't exist.

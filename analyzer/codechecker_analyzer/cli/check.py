@@ -911,29 +911,30 @@ def main(args):
     try:
         # --- Step 1.: Perform logging if build command was specified.
         if 'command' in args:
-            logfile = tempfile.NamedTemporaryFile().name
+            with tempfile.NamedTemporaryFile() as logfile:
 
-            # Translate the argument list between check and log.
-            log_args = argparse.Namespace(
-                command=args.command, logfile=logfile)
-            __update_if_key_exists(args, log_args, "quiet")
-            __update_if_key_exists(args, log_args, "verbose")
-            __update_if_key_exists(
-                args, log_args, "use_absolute_ldpreload_path")
+                # Translate the argument list between check and log.
+                log_args = argparse.Namespace(
+                    command=args.command, logfile=logfile.name)
+                __update_if_key_exists(args, log_args, "quiet")
+                __update_if_key_exists(args, log_args, "verbose")
+                __update_if_key_exists(
+                    args, log_args, "use_absolute_ldpreload_path")
 
-            import codechecker_analyzer.cli.log as log_module
-            LOG.debug("Calling LOG with args:")
-            LOG.debug(log_args)
+                import codechecker_analyzer.cli.log as log_module
+                LOG.debug("Calling LOG with args:")
+                LOG.debug(log_args)
 
-            # If not explicitly given the debug log file of ld_logger is placed
-            # in report directory if any. Otherwise parallel "CodeChecker
-            # check" commands would overwrite each other's log files under /tmp
-            # which is the default location for "CodeChecker check".
-            if 'CC_LOGGER_DEBUG_FILE' not in os.environ:
-                os.environ['CC_LOGGER_DEBUG_FILE'] = \
-                    os.path.join(output_dir, 'codechecker.logger.debug')
+                # If not explicitly given the debug log file of ld_logger is
+                # placed in report directory if any. Otherwise parallel
+                # "CodeChecker check" commands would overwrite each other's
+                # log files under /tmp which is the default location for
+                # "CodeChecker check".
+                if 'CC_LOGGER_DEBUG_FILE' not in os.environ:
+                    os.environ['CC_LOGGER_DEBUG_FILE'] = \
+                        os.path.join(output_dir, 'codechecker.logger.debug')
 
-            log_module.main(log_args)
+                log_module.main(log_args)
         elif 'logfile' in args:
             logfile = args.logfile
 

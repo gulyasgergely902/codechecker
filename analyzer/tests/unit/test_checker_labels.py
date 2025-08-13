@@ -19,6 +19,7 @@ from codechecker_common.checker_labels import CheckerLabels
 
 class TestCheckerLabels(unittest.TestCase):
     def setUp(self) -> None:
+        # pylint: disable-next=consider-using-with
         self.labels_dir = tempfile.TemporaryDirectory()
         self.initialize_labels_dir()
 

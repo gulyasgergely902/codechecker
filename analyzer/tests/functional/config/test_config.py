@@ -93,15 +93,15 @@ class TestConfig(unittest.TestCase):
             analyze_cmd.extend(extra_options)
 
         # Run analyze.
-        process = subprocess.Popen(
-            analyze_cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            encoding="utf-8",
-            errors="ignore")
-        out, err = process.communicate()
-        print(err)
-        return out, process.returncode
+        with subprocess.Popen(
+                analyze_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                encoding="utf-8",
+                errors="ignore") as process:
+            out, err = process.communicate()
+            print(err)
+            return out, process.returncode
 
     def __run_parse(self, config_file_path: str):
         """
@@ -112,14 +112,14 @@ class TestConfig(unittest.TestCase):
                        "--config", config_file_path]
 
         # Run analyze.
-        process = subprocess.Popen(
-            analyze_cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            encoding="utf-8",
-            errors="ignore")
-        out, _ = process.communicate()
-        return out, process.returncode
+        with subprocess.Popen(
+                analyze_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                encoding="utf-8",
+                errors="ignore") as process:
+            out, _ = process.communicate()
+            return out, process.returncode
 
     def test_only_clangsa_config(self):
         """
@@ -405,13 +405,13 @@ parse:
                      "--config", self.config_file_json]
 
         # Run analyze.
-        process = subprocess.Popen(
-            check_cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            encoding="utf-8",
-            errors="ignore")
-        out, _ = process.communicate()
+        with subprocess.Popen(
+                check_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                encoding="utf-8",
+                errors="ignore") as process:
+            out, _ = process.communicate()
 
         print(out)
         self.assertEqual(process.returncode, 2)

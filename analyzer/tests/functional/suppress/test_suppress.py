@@ -41,17 +41,15 @@ def _generate_suppress_file(suppress_file):
             hashlib.md5(suppress_line.encode("utf-8")).hexdigest() +
             '#' + hash_version)
 
-    s_file = open(suppress_file, 'w', encoding='utf-8', errors='ignore')
-    for k in suppress_stuff:
-        s_file.write(k + '||' + 'idziei éléáálk ~!@#$#%^&*() \n')
-        s_file.write(
-            k + '||' + 'test_~!@#$%^&*.cpp' +
-            '||' + 'idziei éléáálk ~!@#$%^&*(\n')
-        s_file.write(
-            hashlib.md5(suppress_line.encode("utf-8")).hexdigest() + '||' +
-            'test_~!@#$%^&*.cpp' + '||' + 'idziei éléáálk ~!@#$%^&*(\n')
-
-    s_file.close()
+    with open(suppress_file, 'w', encoding='utf-8', errors='ignore') as file:
+        for k in suppress_stuff:
+            file.write(k + '||' + 'idziei éléáálk ~!@#$#%^&*() \n')
+            file.write(
+                k + '||' + 'test_~!@#$%^&*.cpp' +
+                '||' + 'idziei éléáálk ~!@#$%^&*(\n')
+            file.write(
+                hashlib.md5(suppress_line.encode("utf-8")).hexdigest() + '||' +
+                'test_~!@#$%^&*.cpp' + '||' + 'idziei éléáálk ~!@#$%^&*(\n')
 
 
 class TestSuppress(unittest.TestCase):
