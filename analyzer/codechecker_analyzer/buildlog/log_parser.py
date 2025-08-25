@@ -1234,8 +1234,8 @@ def _process_entry_worker(args):
                                clangsa.version.get,
                                analyzer_clang_version)
         return action
-    except Exception as e:
-        LOG.error("Error processing entry: %s", e)
+    except KeyError as err:
+        LOG.error("Error processing entry: %s", err)
         return None
 
 
