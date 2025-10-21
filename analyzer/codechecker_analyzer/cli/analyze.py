@@ -163,7 +163,8 @@ def add_arguments_to_parser(parser):
                         help="The input of the analysis can be either a "
                              "compilation database JSON file, a path to a "
                              "source file or a path to a directory containing "
-                             "source files.")
+                             "source files.",
+                        nargs='+')
 
     parser.add_argument('-j', '--jobs',
                         type=int,
@@ -1279,10 +1280,16 @@ def main(args):
             sys.exit(1)
         compiler_info_file = args.compiler_info_file
 
-    compile_commands = \
-        compilation_database.gather_compilation_database(args.input)
+    LOG.info(args.input)
+
+    compile_commands, directory_path = \
+        compilation_database.gather_compilation_database(args.input, True)
+    if directory_path:
+        LOG.info("directory_path=%s", directory_path)
+
+    LOG.info(compile_commands)
     if compile_commands is None:
-        LOG.error(f"Found no compilation commands in '{args.input}'")
+        LOG.error("Found no compilation commands in %s", args.input)
         sys.exit(1)
 
     # Process the skip list if present. This will filter out analysis actions.

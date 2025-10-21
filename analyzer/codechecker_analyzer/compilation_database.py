@@ -12,8 +12,9 @@ Utilities for compilation database handling.
 
 import os
 import shlex
-from typing import Callable, Dict, List, Optional
+from typing import Callable, Dict, List, Optional, Tuple
 
+from codechecker_common import logger
 from codechecker_common.util import load_json
 
 
@@ -137,7 +138,10 @@ def find_build_actions_for_file(file_path: str) -> List[Dict]:
         load_json(comp_db)))
 
 
-def gather_compilation_database(analysis_input: str) -> Optional[List[Dict]]:
+def gather_compilation_database(
+        analysis_input: List[str],
+        support_directory_analysis: bool
+        ) -> Tuple[Optional[List[Dict]], Optional[str]]:
     """
     Return a compilation database that describes the build of the given
     analysis_input:
@@ -171,42 +175,49 @@ def gather_compilation_database(analysis_input: str) -> Optional[List[Dict]]:
         return None
 
     # Case 1: analysis_input is a compilation database JSON file.
+    temp_analyzis_input = analysis_input[0]
+    if len(analysis_input) > 1:
+        print("Analysing multiple inputs it not yet supported!")
 
-    build_actions = load_json(analysis_input, display_warning=False)
+    build_actions = load_json(temp_analyzis_input, display_warning=False)
+    directory_path = None
 
     if build_actions is not None:
         pass
 
     # Case 2: analysis_input is a C/C++/Obj-C source file.
 
-    elif is_c_lang_source_file(analysis_input):
-        build_actions = find_build_actions_for_file(analysis_input)
+    elif is_c_lang_source_file(temp_analyzis_input):
+        build_actions = find_build_actions_for_file(temp_analyzis_input)
 
     # Case 3: analysis_input is a directory.
 
-    elif os.path.isdir(analysis_input):
-        compilation_database_files = \
-            find_all_compilation_databases(analysis_input)
+    elif os.path.isdir(temp_analyzis_input):
+        # TODO: Here is the case where the input is a directory!
+        if support_directory_analysis:
+            directory_path = temp_analyzis_input
+        else:
+            build_actions = []
+            compilation_database_files = \
+                find_all_compilation_databases(temp_analyzis_input)
 
-        build_actions = []
+            for comp_db_file in compilation_database_files:
+                comp_db = load_json(comp_db_file)
 
-        for comp_db_file in compilation_database_files:
-            comp_db = load_json(comp_db_file)
+                if not comp_db:
+                    continue
 
-            if not comp_db:
-                continue
+                for ba in comp_db:
+                    file_path = os.path.join(ba["directory"], ba["file"])
 
-            for ba in comp_db:
-                file_path = os.path.join(ba["directory"], ba["file"])
-
-                if os.path.commonpath([file_path, analysis_input]) \
-                        == analysis_input and __select_compilation_database(
-                        compilation_database_files,
-                        file_path) == comp_db_file:
-                    build_actions.append(ba)
+                    if os.path.commonpath([file_path, temp_analyzis_input]) \
+                            == temp_analyzis_input and __select_compilation_database(
+                            compilation_database_files,
+                            file_path) == comp_db_file:
+                        build_actions.append(ba)
 
     # Compilation database transformation.
     if build_actions is not None:
         change_args_to_command_in_comp_db(build_actions)
 
-    return build_actions
+    return build_actions, directory_path

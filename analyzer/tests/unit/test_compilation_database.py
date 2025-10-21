@@ -127,19 +127,19 @@ class TestCompilationDatabase(unittest.TestCase):
         # Build actions for files.
 
         comp_db = compilation_database.gather_compilation_database(
-            TestCompilationDatabase.source_file_outer)
+            TestCompilationDatabase.source_file_outer, False)
 
         self.assertEqual(len(comp_db), 1)
         self.assertIn("gcc outer.c", compile_commands(comp_db))
 
         comp_db = compilation_database.gather_compilation_database(
-            TestCompilationDatabase.source_file_inner)
+            TestCompilationDatabase.source_file_inner, False)
 
         self.assertEqual(len(comp_db), 1)
         self.assertIn("gcc inner.c", compile_commands(comp_db))
 
         comp_db = compilation_database.gather_compilation_database(
-            TestCompilationDatabase.source_file_main)
+            TestCompilationDatabase.source_file_main, False)
 
         # In case a compile_commands.json is found outside of the project dir.
         if len(comp_db) != 0:
@@ -154,14 +154,14 @@ class TestCompilationDatabase(unittest.TestCase):
         # Build actions for directories.
 
         comp_db = compilation_database.gather_compilation_database(
-            TestCompilationDatabase.project_dir)
+            TestCompilationDatabase.project_dir, False)
 
         self.assertEqual(len(comp_db), 2)
         self.assertIn("gcc outer.c", compile_commands(comp_db))
         self.assertIn("gcc inner.c", compile_commands(comp_db))
 
         comp_db = compilation_database.gather_compilation_database(
-            TestCompilationDatabase.project_sub_dir)
+            TestCompilationDatabase.project_sub_dir, False)
 
         self.assertEqual(len(comp_db), 1)
         self.assertIn("gcc inner.c", compile_commands(comp_db))
@@ -169,6 +169,7 @@ class TestCompilationDatabase(unittest.TestCase):
         # Non-existing file or directory.
 
         comp_db = compilation_database.gather_compilation_database(
-            os.path.join(TestCompilationDatabase.project_dir, "non_existing"))
+            os.path.join(TestCompilationDatabase.project_dir, "non_existing"),
+            False)
 
         self.assertIsNone(comp_db)
