@@ -1,13 +1,13 @@
 <template>
   <v-container>
     <edit-cleanup-plan-dialog
-      :value.sync="editDialog"
+      v-model="editDialog"
       :cleanup-plan="selected"
       @save:cleanup-plan="fetchCleanupPlans"
     />
 
     <remove-cleanup-plan-dialog
-      :value.sync="removeDialog"
+      v-model="removeDialog"
       :cleanup-plan="selected"
       @on:confirm="fetchCleanupPlans"
     />

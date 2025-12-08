@@ -20,6 +20,10 @@ export default {
   name: "ClearAllFilters",
   mixins: [ BaseFilterMixin ],
 
+  emits: [
+    "clear"
+  ],
+
   methods: {
     clearAllFilters() {
       this.$emit("clear");

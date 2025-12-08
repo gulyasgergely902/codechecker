@@ -54,9 +54,15 @@ export default {
   components: {
     ConfirmDialog
   },
+
   props: {
     selected: { type: Array, required: true }
   },
+
+  emits: [
+    "on-confirm"
+  ],
+
   data() {
     return {
       dialog: false,

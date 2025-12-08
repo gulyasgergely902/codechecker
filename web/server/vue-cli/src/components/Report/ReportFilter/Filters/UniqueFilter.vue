@@ -25,7 +25,13 @@ import BaseFilterMixin from "./BaseFilter.mixin";
 export default {
   name: "UniqueFilter",
   components: { TooltipHelpIcon },
+
   mixins: [ BaseFilterMixin ],
+
+  emits: [
+    "update:url"
+  ],
+
   data() {
     return {
       id: "is-unique",

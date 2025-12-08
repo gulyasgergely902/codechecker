@@ -116,6 +116,12 @@ export default {
     value: { type: Boolean, default: false },
     sourceComponent: { type: Object, default: () => null },
   },
+
+  emits: [
+    "update:value",
+    "save:component"
+  ],
+
   data() {
     return {
       placeHolderValue: "Value of the source component.\nEach line must start "

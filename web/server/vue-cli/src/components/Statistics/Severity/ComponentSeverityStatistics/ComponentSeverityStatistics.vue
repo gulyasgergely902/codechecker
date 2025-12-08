@@ -27,34 +27,22 @@
             :total-columns="totalColumns"
           >
             <template
-              v-for="item in [
-                ['critical', Severity.CRITICAL],
-                ['high', Severity.HIGH],
-                ['medium', Severity.MEDIUM],
-                ['low', Severity.LOW],
-                ['style', Severity.STYLE],
-                ['unspecified', Severity.UNSPECIFIED],
-              ]"
-              v-slot:[`header.${item[0]}.count`]="{ header }"
+              v-for="item in severityValues"
+              v-slot:[getHeaderSlotName(item)]="{ header }"
+              :key="item[0]"
             >
-              <span :key="item[0]">
+              <span>
                 <severity-icon :status="item[1]" :size="16" />
                 {{ header.text }}
               </span>
             </template>
 
             <template
-              v-for="i in [
-                ['critical', Severity.CRITICAL],
-                ['high', Severity.HIGH],
-                ['medium', Severity.MEDIUM],
-                ['low', Severity.LOW],
-                ['style', Severity.STYLE],
-                ['unspecified', Severity.UNSPECIFIED],
-              ]"
-              v-slot:[`item.${i[0]}.count`]="{ item }"
+              v-for="i in severityValues"
+              v-slot:[getItemSlotName(i)]="{ item }"
+              :key="i[0]"
             >
-              <span :key="i[0]">
+              <span>
                 <router-link
                   v-if="item[i[0]].count"
                   :to="{ name: 'reports', query: {
@@ -171,7 +159,25 @@ export default {
       fieldsToUpdate: fieldsToUpdate
     };
   },
+  computed: {
+    severityValues() {
+      return [
+        [ "critical", Severity.CRITICAL ],
+        [ "high", Severity.HIGH ],
+        [ "medium", Severity.MEDIUM ],
+        [ "low", Severity.LOW ],
+        [ "style", Severity.STYLE ],
+        [ "unspecified", Severity.UNSPECIFIED ],
+      ];
+    }
+  },
   methods: {
+    getHeaderSlotName(item) {
+      return `header.${item[0]}.count`;
+    },
+    getItemSlotName(i) {
+      return `item.${i[0]}.count`;
+    },
     getComponentStatistics(component, runIds, reportFilter, cmpData) {
       const filter = new ReportFilter(reportFilter);
       filter["severity"] = null;

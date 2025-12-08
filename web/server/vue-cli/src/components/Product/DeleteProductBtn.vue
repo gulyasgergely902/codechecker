@@ -48,9 +48,14 @@ export default {
   components: {
     ConfirmDialog
   },
+
   props: {
     product: { type: Object, required: true }
   },
+
+  emits: [
+    "on-complete"
+  ],
 
   data() {
     return {

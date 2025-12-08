@@ -67,6 +67,12 @@ export default {
     value: { type: Boolean, default: false },
     rule: { type: Object, default: () => null },
   },
+
+  emits: [
+    "update:value",
+    "on:confirm"
+  ],
+
   data() {
     return {
       reportHash: null,
@@ -78,6 +84,7 @@ export default {
       }
     };
   },
+
   computed: {
     dialog: {
       get() {

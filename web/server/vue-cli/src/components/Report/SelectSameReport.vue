@@ -34,15 +34,22 @@ export default {
   components: {
     SelectSameReportItem
   },
+
   props: {
     report: { type: Object, default: null }
   },
+
+  emits: [
+    "update:report"
+  ],
+
   data() {
     return {
       items: [],
       active: null
     };
   },
+
   watch: {
     report() {
       this.init();
@@ -85,12 +92,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep .v-select__selections input {
+:deep(.v-select__selections input) {
   display: none;
 }
 
 .v-select.v-text-field--outlined {
-  ::v-deep .theme--light.v-label {
+  :deep(.theme--light.v-label) {
     background-color: #fff;
   }
 }

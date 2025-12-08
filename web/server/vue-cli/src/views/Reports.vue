@@ -10,22 +10,22 @@
     </pane>
     <pane>
       <checker-documentation-dialog
-        :value.sync="checkerDocDialog"
+        v-model="checkerDocDialog"
         :checker="selectedChecker"
       />
 
       <v-data-table
         v-model="selected"
+        v-model:options="pagination"
+        v-model:server-items-length="totalItems"
+        v-model:expanded="expanded"
         v-fill-height
         :headers="tableHeaders"
         :items="formattedReports"
-        :options.sync="pagination"
         :loading="loading"
         loading-text="Loading reports..."
-        :server-items-length.sync="totalItems"
         :footer-props="footerProps"
         :must-sort="true"
-        :expanded.sync="expanded"
         show-expand
         show-select
         :mobile-breakpoint="1100"
@@ -99,7 +99,7 @@
 
         <template #item.bugHash="{ item }">
           <span :title="item.bugHash">
-            {{ item.bugHash | truncate(10) }}
+            {{ truncate(item.bugHash, 10) }}
           </span>
         </template>
 
@@ -527,6 +527,12 @@ export default {
             });
           });
         }));
+    },
+
+    truncate(text, length) {
+      if (!text) return "";
+      if (text.length <= length) return text;
+      return text.substring(0, length) + "...";
     }
   }
 };

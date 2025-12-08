@@ -1,7 +1,6 @@
 const CopyPlugin = require('copy-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
-const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin');
 const { DefinePlugin, ProvidePlugin } = require('webpack');
 const ESLintPlugin = require('eslint-webpack-plugin');
 
@@ -15,7 +14,7 @@ const helpers = require('./helpers');
 function sassLoaderOptions(indentedSyntax=false) {
   return {
     implementation: require('sass'),
-    additionalData: `@import "~@/variables.scss"` + (indentedSyntax ? '' : ';'),
+    additionalData: `@use "@/variables.scss"` + (indentedSyntax ? '' : ';'),
     sassOptions: { indentedSyntax },
   }
 }
@@ -182,7 +181,6 @@ module.exports = {
       overrideConfigFile: './.eslintrc.js'
     }),
     new VueLoaderPlugin(),
-    new VuetifyLoaderPlugin(),
     new HTMLWebpackPlugin({
       showErrors: true,
       cache: true,

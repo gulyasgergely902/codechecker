@@ -67,6 +67,12 @@ export default {
     value: { type: Boolean, default: false },
     comment: { type: Object, default: () => null }
   },
+
+  emits: [
+    "update:value",
+    "on-confirm"
+  ],
+
   computed: {
     dialog: {
       get() {

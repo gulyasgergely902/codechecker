@@ -18,7 +18,7 @@
 
     <template v-slot:item.closedAt="{ item }">
       <span v-if="item.closedAt">
-        {{ item.closedAt | fromUnixTime }}
+        {{ fromUnixTime(item.closedAt) }}
       </span>
     </template>
 
@@ -89,6 +89,12 @@ export default {
     loading: { type: Boolean, default: false },
     hideCols: { type: Array, default: () => [] }
   },
+  emits: [
+    "remove",
+    "close",
+    "reopen",
+    "edit"
+  ],
   computed: {
     headers() {
       return [

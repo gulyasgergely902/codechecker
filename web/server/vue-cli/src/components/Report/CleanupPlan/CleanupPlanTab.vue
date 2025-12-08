@@ -28,6 +28,11 @@ export default {
   props: {
     value: { type: Number, default: null }
   },
+
+  emits: [
+    "input"
+  ],
+
   computed: {
     tab: {
       get() {

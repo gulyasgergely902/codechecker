@@ -63,7 +63,7 @@
       flat
       outlined
       class="mt-4"
-      @keyup.native.enter="addNewAuthRight"
+      @keyup.enter="addNewAuthRight"
     >
       <template v-slot:append>
         <v-btn
@@ -94,6 +94,12 @@ export default {
     extraParamsJson: { type: String, required: true },
     isGroup: { type: Boolean, required: true }
   },
+
+  emits: [
+    "update:error",
+    "update:success"
+  ],
+
   data() {
     return {
       Permission,
@@ -198,7 +204,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep .v-input--selection-controls__input {
+:deep(.v-input--selection-controls__input) {
   margin: 0;
 }
 </style>

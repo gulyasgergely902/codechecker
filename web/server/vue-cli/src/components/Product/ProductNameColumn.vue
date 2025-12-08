@@ -10,7 +10,7 @@
         class="my-1"
       >
         <span class="white--text headline">
-          {{ product.endpoint | productIconName }}
+          {{ productIconName(product.endpoint) }}
         </span>
       </v-avatar>
     </v-list-item-avatar>

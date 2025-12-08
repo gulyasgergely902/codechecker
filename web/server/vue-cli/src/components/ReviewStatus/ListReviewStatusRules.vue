@@ -1,30 +1,30 @@
 <template>
   <v-data-table
+    v-model="totalItems"
+    v-model:options="pagination"
     :headers="headers"
     :items="rules"
     :loading="loading"
     :mobile-breakpoint="1000"
-    :options.sync="pagination"
     loading-text="Loading review status rules..."
-    :server-items-length.sync="totalItems"
     :footer-props="footerProps"
     item-key="reportHash"
   >
     <template v-slot:top>
       <edit-review-status-rule-dialog
-        :value.sync="editDialog"
+        v-model="editDialog"
         :rule="selected"
         @on:confirm="fetchReviewStatusRules"
       />
 
       <remove-review-status-rule-dialog
-        :value.sync="removeDialog"
+        v-model="removeDialog"
         :rule="selected"
         @on:confirm="fetchReviewStatusRules"
       />
 
       <remove-filtered-rules-dialog
-        :value.sync="removeFilteredRuleDialog"
+        v-model="removeFilteredRuleDialog"
         :total="totalItems"
         :filter="filter"
         @on:confirm="fetchReviewStatusRules"
@@ -97,7 +97,7 @@
           'review-status': reviewStatusFromCodeToString(item.status)
         }}"
       >
-        {{ item.reportHash | truncate(10) }}
+        {{ truncate(item.reportHash, 10) }}
       </router-link>
     </template>
 
@@ -110,7 +110,7 @@
         <v-icon left>
           mdi-calendar-range
         </v-icon>
-        {{ item.date | prettifyDate }}
+        {{ prettifiedDate(item.date) }}
       </v-chip>
     </template>
 
@@ -236,6 +236,12 @@ export default {
     };
   },
 
+  computed: {
+    prettifiedDate(date) {
+      return this.prettifyDate(date);
+    }
+  },
+
   watch: {
     pagination: {
       handler() {
@@ -356,6 +362,12 @@ export default {
     removeReviewStatusRule(rule) {
       this.selected = rule;
       this.removeDialog = true;
+    },
+
+    truncate(text, length) {
+      if (!text) return "";
+      if (text.length <= length) return text;
+      return text.substring(0, length) + "...";
     }
   }
 };
@@ -370,7 +382,7 @@ export default {
   }
 }
 
-::v-deep .v-toolbar__content {
+:deep(.v-toolbar__content) {
   padding: 0;
 }
 </style>

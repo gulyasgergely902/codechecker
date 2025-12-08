@@ -87,6 +87,10 @@ export default {
     runData: { type: Array, default: () => [] }
   },
 
+  emits: [
+    "update:value"
+  ],
+
   data() {
     return {
       runsWithAnalysisInfo: [],

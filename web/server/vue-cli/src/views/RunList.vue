@@ -1,27 +1,27 @@
 <template>
   <v-card flat tile>
     <analysis-info-dialog
-      :value.sync="analysisInfoDialog"
+      v-model="analysisInfoDialog"
       :run-id="selectedRunId"
       :run-history-id="selectedRunHistoryId"
     />
 
     <analyzer-statistics-dialog
-      :value.sync="analyzerStatisticsDialog"
+      v-model="analyzerStatisticsDialog"
       :run-id="selectedRunId"
       :run-history-id="selectedRunHistoryId"
     />
 
     <v-data-table
       v-model="selected"
+      v-model:server-items-length="totalItems"
+      v-model:expanded="expanded"
+      v-model:options="pagination"
       :headers="headers"
       :items="runs"
-      :options.sync="pagination"
       :loading="loading"
       loading-text="Loading runs..."
-      :server-items-length.sync="totalItems"
       :footer-props="footerProps"
-      :expanded.sync="expanded"
       show-expand
       :must-sort="true"
       :mobile-breakpoint="1000"
@@ -48,12 +48,12 @@
           :colspan="headers.length + 1"
         >
           <expanded-run
+            v-model:selected-baseline-tags="selectedBaselineTags"
+            v-model:selected-compared-to-tags="selectedComparedToTags"
             :histories="item.$history.values"
             :run="item"
             :open-analysis-info-dialog="openAnalysisInfoDialog"
             :open-analyzer-statistics-dialog="openAnalyzerStatisticsDialog"
-            :selected-baseline-tags.sync="selectedBaselineTags"
-            :selected-compared-to-tags.sync="selectedComparedToTags"
           >
             <v-btn
               v-if="item.$history.hasMore"
@@ -87,7 +87,7 @@
           :value="item.analyzerStatistics"
           :show-dividers="false"
           tag="div"
-          @click.native="openAnalyzerStatisticsDialog(item)"
+          @click="openAnalyzerStatisticsDialog(item)"
         />
       </template>
 
@@ -100,7 +100,7 @@
           <v-icon left>
             mdi-calendar-range
           </v-icon>
-          {{ item.runDate | prettifyDate }}
+          {{ prettifiedDate(item.runDate) }}
         </v-chip>
       </template>
 
@@ -269,7 +269,11 @@ export default {
     ...mapGetters("run", [
       "runFilter",
       "runHistoryFilter"
-    ])
+    ]),
+
+    prettifiedDate(runDate) {
+      return this.prettifyDate(runDate);
+    }
   },
 
   watch: {
@@ -551,7 +555,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.v-data-table ::v-deep tbody tr.v-data-table__expanded__content {
+.v-data-table :deep(tbody tr.v-data-table__expanded__content) {
   box-shadow: none;
 }
 </style>

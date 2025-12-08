@@ -165,7 +165,12 @@ export default {
     SelectOption,
     SelectedToolbarTitleItems
   },
+
   mixins: [ BaseSelectOptionFilterMixin ],
+
+  emits: [
+    "update:url"
+  ],
 
   data() {
     return {

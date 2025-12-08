@@ -54,6 +54,10 @@ export default {
   },
   mixins: [ BaseFilterMixin, DateMixin ],
 
+  emits: [
+    "update:url"
+  ],
+
   data() {
     return {
       id: "open-reports-date",

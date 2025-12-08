@@ -1,6 +1,6 @@
 <template>
   <manage-cleanup-plan-dialog
-    :value.sync="dialog"
+    v-model="dialog"
   >
     <select-option
       :id="id"

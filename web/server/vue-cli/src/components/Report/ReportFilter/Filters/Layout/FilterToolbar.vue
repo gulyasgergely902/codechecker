@@ -51,6 +51,10 @@ export default {
     panel: { type: Boolean, default: false }
   },
 
+  emits: [
+    "clear"
+  ],
+
   data() {
     return {
       value: this.panel ? 0 : null
@@ -72,11 +76,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep .v-toolbar > .v-toolbar__content {
+:deep(.v-toolbar > .v-toolbar__content) {
   padding: 0;
 }
 
-::v-deep .selected-items {
+:deep(.selected-items) {
   color: grey;
 }
 </style>

@@ -173,6 +173,14 @@ export default {
     search: { type: Object, default: null },
   },
 
+  emits: [
+    "cancel",
+    "select",
+    "update:items",
+    "apply",
+    "apply:finished"
+  ],
+
   data() {
     return {
       searchTxt: null,

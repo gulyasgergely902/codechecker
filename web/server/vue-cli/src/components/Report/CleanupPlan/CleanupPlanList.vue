@@ -1,8 +1,11 @@
 <template>
   <v-list v-if="value && value.length">
-    <template v-for="(cleanupPlan, idx) in value">
+    <!-- eslint-disable-next-line vue/require-v-for-key -->
+    <template 
+      v-for="(cleanupPlan, idx) in value"
+      :key="cleanupPlan.id.toNumber()"
+    >
       <v-list-item
-        :key="cleanupPlan.id.toNumber()"
         :value="cleanupPlan.id.toNumber()"
       >
         <template v-slot:default="{ active }">
@@ -28,7 +31,7 @@
                 mdi-calendar-blank
               </v-icon>
               Closed on
-              {{ cleanupPlan.closedAt | fromUnixTime("yyyy-MM-dd") }}
+              {{ fromUnixTime(cleanupPlan.closedAt, "yyyy-MM-dd") }}
             </v-list-item-subtitle>
 
             <v-list-item-subtitle

@@ -77,6 +77,11 @@ export default {
   props: {
     bus: { type: Object, required: true }
   },
+
+  emits: [
+    "on:filter"
+  ],
+
   data() {
     const queries = this.$router.currentRoute.query;
     const reportHash = queries["report-hash"];
@@ -93,6 +98,7 @@ export default {
       noAssociatedReports
     };
   },
+
   computed: {
     status() {
       if (this.reviewStatus !== null) {
@@ -119,6 +125,7 @@ export default {
       return filter;
     }
   },
+
   mounted() {
     this.onFilterChanged();
 
@@ -131,6 +138,7 @@ export default {
       this.onFilterChanged();
     });
   },
+
   methods: {
     onTextFilterChanged: _.debounce(function () {
       this.onFilterChanged();

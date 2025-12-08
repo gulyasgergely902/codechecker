@@ -84,10 +84,10 @@
     >
       <template v-slot:activator="{ on, attrs }">
         <v-btn
+          v-bind="attrs"
           text
           :class="configureMenuItems.map(c => c.route).includes($route.name) &&
             'v-btn--active router-link-active'"
-          v-bind="attrs"
           v-on="on"
         >
           <v-icon left>

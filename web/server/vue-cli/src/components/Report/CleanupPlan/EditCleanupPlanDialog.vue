@@ -49,7 +49,7 @@
             />
 
             <due-date-menu
-              :value.sync="dueDate"
+              v-model="dueDate"
             />
 
             <v-textarea
@@ -103,6 +103,10 @@ export default {
     value: { type: Boolean, default: false },
     cleanupPlan: { type: Object, default: () => null },
   },
+  emits: [
+    "save:cleanup-plan",
+    "update:value"
+  ],
   data() {
     return {
       description: null,

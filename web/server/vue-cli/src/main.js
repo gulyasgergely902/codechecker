@@ -18,8 +18,14 @@ import ChartDataLabels from "chartjs-plugin-datalabels";
 
 Chart.plugins.unregister(ChartDataLabels);
 
-import Vue from "vue";
-import vuetify from "@/plugins/vuetify";
+import { createApp } from "vue";
+
+import "vuetify/styles";
+import { createVuetify } from "vuetify";
+import * as components from "vuetify/components";
+import * as directives from "vuetify/directives";
+
+import App from "./App.vue";
 
 import {
   GET_AUTH_PARAMS,
@@ -33,13 +39,13 @@ import router from "./router";
 import store from "./store";
 import filters from "./filters";
 
-Vue.use(filters);
+const app = createApp(App);
 
-import App from "./App.vue";
+app.use(filters);
 
 import { eventHub } from "@cc-api";
 
-Vue.config.productionTip = false;
+app.config.productionTip = false;
 
 let isFirstRouterResolve = true;
 
@@ -104,9 +110,34 @@ router.afterEach(to => {
   store.commit(SET_QUERIES, { location: query_namespace, query: to.query });
 });
 
-new Vue({
-  router,
-  store,
-  vuetify,
-  render: h => h(App),
-}).$mount("#app");
+const vuetifyOpts = {
+  iconfont: "mdi",
+  theme: {
+    options: {
+      customProperties: true,
+    },
+    themes: {
+      light: {
+        primary: "#2280c3",
+        secondary: "#2c87c7",
+        accent: "#009688",
+        error: "#f44336",
+        warning: "#ff9800",
+        info: "#3f51b5",
+        success: "#4caf50",
+        grey: "#9E9E9E"
+      }
+    },
+  }
+};
+
+const vuetify = new createVuetify({
+  components,
+  directives,
+  vuetifyOpts
+});
+
+app.use(router);
+app.use(store);
+app.use(vuetify);
+app.mount("#app");

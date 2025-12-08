@@ -6,13 +6,13 @@
   >
     <template v-slot:top>
       <edit-source-component-dialog
-        :value.sync="editDialog"
+        v-model="editDialog"
         :source-component="selected"
         @save:component="fetchSourceComponents"
       />
 
       <remove-source-component-dialog
-        :value.sync="removeDialog"
+        v-model="removeDialog"
         :source-component="selected"
         @on:confirm="fetchSourceComponents"
       />

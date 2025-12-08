@@ -89,6 +89,10 @@ export default {
     loading: { type: Boolean, default: false },
     contentClass: { type: String, default: null }
   },
+  emits: [
+    "confirm",
+    "input"
+  ],
   computed: {
     dialog: {
       get() {

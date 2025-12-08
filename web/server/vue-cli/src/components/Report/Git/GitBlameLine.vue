@@ -68,7 +68,7 @@
                   </span>
                 </a>
                 <span :title="`Tracking branch: ${trackingBranch}`">
-                  ({{ trackingBranch | truncate(20) }})
+                  ({{ truncate(trackingBranch, 20) }})
                 </span>
               </v-list-item-subtitle>
 
@@ -134,6 +134,13 @@ export default {
     },
     hexsha() {
       return this.commit.hexsha.substring(0, 8);
+    }
+  },
+  methods: {
+    truncate(text, length) {
+      if (!text) return "";
+      if (text.length <= length) return text;
+      return text.substring(0, length) + "...";
     }
   }
 };

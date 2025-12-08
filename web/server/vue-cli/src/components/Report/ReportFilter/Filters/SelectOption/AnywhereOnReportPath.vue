@@ -27,6 +27,11 @@ export default {
   props: {
     value: { type: Boolean, default: false }
   },
+
+  emits: [
+    "input"
+  ],
+
   methods: {
     change(value) {
       this.$emit("input", value);

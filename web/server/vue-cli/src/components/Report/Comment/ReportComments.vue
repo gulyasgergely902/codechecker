@@ -8,13 +8,13 @@
     </v-overlay>
 
     <edit-comment-dialog
-      :value.sync="editDialog"
+      v-model="editDialog"
       :comment="selected"
       @on-confirm="fetchComments"
     />
 
     <remove-comment-dialog
-      :value.sync="removeDialog"
+      v-model="removeDialog"
       :comment="selected"
       @on-confirm="fetchComments"
     />
@@ -132,11 +132,11 @@ export default {
 <style lang="scss" scoped>
 $width: 48px;
 
-::v-deep .v-timeline-item__divider {
+:deep(.v-timeline-item__divider) {
   min-width: $width;
 }
 
-.v-timeline--dense ::v-deep .v-timeline-item__body {
+.v-timeline--dense :deep(.v-timeline-item__body) {
   max-width: calc(100% - #{$width});
 }
 

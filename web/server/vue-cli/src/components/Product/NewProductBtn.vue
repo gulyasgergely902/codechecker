@@ -24,7 +24,7 @@
     <template v-slot:content>
       <product-config-form
         ref="form"
-        :is-valid.sync="isValid"
+        v-model="isValid"
         :is-super-user="isSuperUser"
         :product-config="productConfig"
       />
@@ -48,9 +48,15 @@ export default {
     ConfirmDialog,
     ProductConfigForm
   },
+
   props: {
     isSuperUser: { type: Boolean, default: false }
   },
+
+  emits: [
+    "on-complete"
+  ],
+
   data() {
     return {
       dialog: false,
@@ -60,6 +66,7 @@ export default {
       isValid: false
     };
   },
+
   methods: {
     save() {
       if (!this.$refs.form.validate()) return;

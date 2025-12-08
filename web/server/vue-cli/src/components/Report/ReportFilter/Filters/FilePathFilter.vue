@@ -47,7 +47,12 @@ export default {
     AnywhereOnReportPath,
     SelectOption
   },
+
   mixins: [ BaseSelectOptionFilterMixin ],
+
+  emits: [
+    "update:url"
+  ],
 
   data() {
     return {

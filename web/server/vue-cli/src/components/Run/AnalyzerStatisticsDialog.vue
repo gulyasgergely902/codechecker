@@ -128,6 +128,10 @@ export default {
     runHistoryId: { type: Object, default: () => null }
   },
 
+  emits: [
+    "update:value"
+  ],
+
   data() {
     return {
       analyzerStatistics: null,

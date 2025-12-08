@@ -165,12 +165,19 @@ export default {
     ReviewStatusIcon,
     SelectReviewStatusItem
   },
+
   mixins: [ ReviewStatusMixin ],
+
   props: {
     value: { type: Object, default: () => {} },
     report: { type: Object, default: () => {} },
     onConfirm: { type: Function, default: () => {} }
   },
+
+  emits: [
+    "update:report"
+  ],
+
   data() {
     return {
       items: [],
@@ -246,11 +253,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep .v-select__selections input {
+:deep(.v-select__selections input) {
   display: none;
 }
 
-::v-deep .v-select.v-text-field--outlined {
+:deep(.v-select.v-text-field--outlined) {
   .theme--light.v-label {
     background-color: #fff;
   }

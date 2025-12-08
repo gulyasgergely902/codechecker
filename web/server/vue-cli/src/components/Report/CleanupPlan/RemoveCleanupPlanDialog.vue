@@ -29,10 +29,16 @@ export default {
   components: {
     ConfirmDialog
   },
+
   props: {
     value: { type: Boolean, default: false },
     cleanupPlan: { type: Object, default: () => null }
   },
+
+  emits: [
+    "update:value",
+    "on:confirm"
+  ],
 
   computed: {
     dialog: {

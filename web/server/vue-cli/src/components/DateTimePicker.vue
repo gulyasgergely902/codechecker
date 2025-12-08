@@ -64,7 +64,7 @@
           color="grey lighten-1"
           class="clear-btn"
           text
-          @click.native="clear"
+          @click="clear"
         >
           Clear
         </v-btn>
@@ -99,6 +99,11 @@ export default {
     dense: { type: Boolean, default: false },
     prependInnerIcon: { type: String, default: null },
   },
+
+  emits: [
+    "input"
+  ],
+
   data() {
     return {
       dialog: false,
@@ -184,7 +189,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep .v-picker.v-card {
+:deep(v-picker.v-card) {
   box-shadow: none;
 
   & > .v-picker__title {

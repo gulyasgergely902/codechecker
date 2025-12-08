@@ -2,7 +2,7 @@
   <v-container fluid>
     <statistics-dialog
       v-if="type"
-      :value.sync="showRuns[type]"
+      v-model="showRuns[type]"
       :checker-name="selectedCheckerName"
       :type="type"
       :run-data="runData"
@@ -135,12 +135,17 @@ export default {
     StatisticsDialog,
     TooltipHelpIcon
   },
+
   mixins: [
     AnalysisInfoHandlingAPIMixin,
     BaseStatistics,
     ReviewStatusMixin,
     SeverityMixin,
     ToCSV
+  ],
+
+  emits: [
+    "refresh-filter"
   ],
 
   data() {

@@ -394,6 +394,11 @@ export default {
     refreshFilter: { type: Boolean, default: false }
   },
 
+  emits: [
+    "set-refresh-filter-state",
+    "refresh"
+  ],
+
   data() {
     return {
       activeBaselinePanelId: 0,
@@ -426,7 +431,7 @@ export default {
     this.initByUrl();
   },
 
-  beforeDestroy() {
+  beforeUnmount() {
     this.unregisterWatchers();
 
     const filters = this.$refs.filters;

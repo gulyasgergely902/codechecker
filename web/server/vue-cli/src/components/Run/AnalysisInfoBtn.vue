@@ -15,5 +15,8 @@
 <script>
 export default {
   name: "AnalysisInfoBtn",
+  emits: [
+    "click"
+  ],
 };
 </script>

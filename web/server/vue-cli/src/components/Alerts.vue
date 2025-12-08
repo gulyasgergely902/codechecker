@@ -1,25 +1,25 @@
 <template>
   <span>
     <v-alert
-      v-model="success"
       dismissible
       color="success"
       border="left"
       elevation="2"
       colored-border
       icon="mdi-check"
+      v-on="success"
     >
       {{ successMsg }}
     </v-alert>
 
     <v-alert
-      v-model="error"
       dismissible
       color="error"
       border="left"
       elevation="2"
       colored-border
       icon="mdi-alert-outline"
+      v-on="error"
     >
       {{ errorMsg }}
     </v-alert>

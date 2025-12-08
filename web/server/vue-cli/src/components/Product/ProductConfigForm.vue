@@ -185,12 +185,19 @@ export default {
   components: {
     TooltipHelpIcon, SelectConfidentialityItem
   },
+
   mixins: [ ConfidentialityMixin ],
+
   props: {
     productConfig: { type: Object, required: true },
     isValid: { type: Boolean, default: false },
     isSuperUser: { type: Boolean, default: false }
   },
+
+  emits: [
+    "update:is-valid"
+  ],
+
   data() {
     return {
       rules: {

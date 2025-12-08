@@ -40,7 +40,13 @@ export default {
   components: {
     ConfirmDialog
   },
+
   mixins: [ BaseFilterMixin ],
+
+  emits: [
+    "update"
+  ],
+
   data() {
     return {
       dialog: false

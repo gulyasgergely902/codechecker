@@ -50,10 +50,17 @@ import { ConfirmDialog } from "@/components";
 export default {
   name: "RemoveReviewStatusRuleDialog",
   components: { ConfirmDialog },
+
   props: {
     value: { type: Boolean, default: false },
     rule: { type: Object, default: () => null },
   },
+
+  emits: [
+    "update:value",
+    "on:confirm"
+  ],
+
   computed: {
     dialog: {
       get() {
@@ -64,6 +71,7 @@ export default {
       }
     },
   },
+
   methods: {
     removeReviewStatusRule() {
       const filter = new ReviewStatusRuleFilter();

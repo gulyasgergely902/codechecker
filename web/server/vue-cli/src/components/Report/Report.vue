@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="pa-0">
     <analysis-info-dialog
-      :value.sync="analysisInfoDialog"
+      v-model="analysisInfoDialog"
       :report-id="reportId"
     />
 
@@ -30,7 +30,7 @@
               align-self="center"
             >
               <analysis-info-btn
-                @click.native="openAnalysisInfoDialog"
+                @click="openAnalysisInfoDialog"
               />
             </v-col>
 
@@ -85,7 +85,7 @@
                                 {{ reviewData.author }}
                               </v-list-item-title>
                               <v-list-item-subtitle>
-                                {{ reviewData.date | prettifyDate }}
+                                {{ prettifiedDate() }}
                               </v-list-item-subtitle>
                             </v-list-item-content>
                           </v-list-item>
@@ -188,7 +188,7 @@
                       class="grey--text text--darken-3"
                     >
                       <v-icon class="mr-0" small>mdi-source-branch</v-icon>
-                      ({{ trackingBranch | truncate(20) }})
+                      ({{ truncate(trackingBranch, 20) }})
                     </span>
                   </v-col>
 
@@ -340,7 +340,10 @@ export default {
     treeItem: { type: Object, default: null }
   },
 
-  emits: [ "update-review-data" ],
+  emits: [
+    "update-review-data",
+    "update:report"
+  ],
 
   data() {
     const enableBlameView =
@@ -394,6 +397,10 @@ export default {
       return this.report && this.report.reviewData
         ? this.report.reviewData
         : new ReviewData();
+    },
+
+    prettifiedDate() {
+      return this.prettifyDate(this.reviewData.date);
     }
   },
 
@@ -438,7 +445,7 @@ export default {
     window.addEventListener("resize", this.onResize);
   },
 
-  destroyed() {
+  unmounted() {
     document.removeEventListener("keydown", this.findText);
     window.removeEventListener("resize", this.onResize);
   },
@@ -929,6 +936,12 @@ export default {
     openAnalysisInfoDialog() {
       this.reportId = this.report.reportId;
       this.analysisInfoDialog = true;
+    },
+
+    truncate(text, length) {
+      if (!text) return "";
+      if (text.length <= length) return text;
+      return text.substring(0, length) + "...";
     }
   }
 };
@@ -970,11 +983,11 @@ export default {
     font-size: initial;
     line-height: initial;
 
-    ::v-deep .CodeMirror-code > div:hover {
+    :deep(.CodeMirror-code > div:hover) {
       background-color: lighten(grey, 42%);
     }
 
-    &.blame ::v-deep .CodeMirror {
+    &.blame :deep(.CodeMirror) {
       line-height: 21px;
 
       .CodeMirror-gutter-wrapper {
@@ -984,32 +997,32 @@ export default {
       }
     }
 
-    ::v-deep .cm-matchhighlight:not(.cm-searching) {
+    :deep(.cm-matchhighlight:not(.cm-searching)) {
       background-color: lightgreen;
     }
 
-    ::v-deep .CodeMirror-selection-highlight-scrollbar {
+    :deep(.CodeMirror-selection-highlight-scrollbar) {
       background-color: green;
     }
   }
 }
 
-::v-deep .checker-step {
+:deep(.checker-step) {
   background-color: #eeb;
 }
 
-::v-deep .blame-gutter {
+:deep(.blame-gutter) {
   width: 400px;
   background-color: #f7f7f7;
 }
 
-::v-deep .report-step-msg.current {
+:deep(.report-step-msg.current) {
   border: 2px dashed var(--v-primary-base) !important;
   opacity: 1;
   font-weight: bold;
 }
 
-::v-deep .report-step-msg {
+:deep(.report-step-msg) {
   opacity: 0.7;
   font-weight: lighter;
 }

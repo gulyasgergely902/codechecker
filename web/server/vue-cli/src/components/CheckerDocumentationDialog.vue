@@ -69,12 +69,14 @@ export default {
     value: { type: Boolean, required: true },
     checker: { type: Checker, default: null }
   },
+  emits: [
+    "update:value"
+  ],
   data() {
     return {
       labels: []
     };
   },
-
   computed: {
     dialog: {
       get() {

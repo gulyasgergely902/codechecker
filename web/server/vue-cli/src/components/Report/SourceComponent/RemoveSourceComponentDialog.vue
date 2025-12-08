@@ -68,6 +68,11 @@ export default {
     sourceComponent: { type: Object, default: () => null }
   },
 
+  emits: [
+    "update:value",
+    "on:confirm"
+  ],
+
   computed: {
     dialog: {
       get() {

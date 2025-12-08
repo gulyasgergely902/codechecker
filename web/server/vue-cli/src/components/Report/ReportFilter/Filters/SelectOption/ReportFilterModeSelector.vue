@@ -51,6 +51,11 @@ export default {
       default: ""
     }
   },
+
+  emits: [
+    "input"
+  ],
+
   methods: {
     emitUpdate(selection) {
       this.$emit("input", selection);

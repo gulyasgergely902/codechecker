@@ -7,7 +7,7 @@
     />
 
     <items
-      :items.sync="tags"
+      v-model:items="tags"
       :selected-items="selectedItems"
       :search="search"
       :limit="defaultLimit"
@@ -72,12 +72,21 @@ import Items from "./SelectOption/Items";
 export default {
   name: "BaselineTagItems",
   components: { BulbMessage, Items },
+
   mixins: [ BaseFilterMixin, DateMixin ],
+
   props: {
     runId: { type: Number, required: true },
     selectedItems: { type: Array, default: null },
     limit: { type: Number, required: true }
   },
+
+  emits: [
+    "apply",
+    "select",
+    "cancel"
+  ],
+
   data() {
     return {
       loading: false,
@@ -90,6 +99,7 @@ export default {
       filterOpt: {}
     };
   },
+
   computed: {
     ...mapState({
       reportFilter(state) {
@@ -97,6 +107,7 @@ export default {
       }
     })
   },
+
   watch: {
     async runId() {
       this.tags = await this.fetchTags(this.filterOpt);
@@ -186,7 +197,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep .v-date-picker-table {
+:deep(.v-date-picker-table) {
   height: 210px;
 }
 </style>

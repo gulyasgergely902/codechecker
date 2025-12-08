@@ -35,17 +35,25 @@ export default {
   name: "SelectReviewStatus",
   components: { SelectReviewStatusItem },
   mixins: [ ReviewStatusMixin ],
+
   props: {
     value: { type: Number, default: null },
     label: { type: String, default: "Select review status" },
     clearable: { type: Boolean, default: true },
     rules: { type: Array, default: () => [] }
   },
+
+  emits: [
+    "input",
+    "change"
+  ],
+
   data() {
     return {
       items: []
     };
   },
+
   computed: {
     reviewStatus: {
       get() {

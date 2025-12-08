@@ -65,7 +65,13 @@ export default {
   components: {
     FilterToolbar
   },
+
   mixins: [ BaseFilterMixin ],
+
+  emits: [
+    "update:url"
+  ],
+
   data() {
     return {
       minId: "min-bug-path-length",

@@ -100,6 +100,10 @@ export default {
     showTotal: { type: Boolean, default: false },
     simplifyShowingIfAll: { type: Boolean, default: true }
   },
+  emits: [
+    "showing-good-click",
+    "showing-bad-click"
+  ],
   computed: {
     total() {
       return (this.numTotal > 0

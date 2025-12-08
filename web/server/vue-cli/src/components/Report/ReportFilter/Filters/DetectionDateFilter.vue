@@ -80,7 +80,13 @@ export default {
     DetectionDateFilterIcon,
     SelectOption
   },
+
   mixins: [ BaseSelectOptionFilterMixin, DateMixin ],
+
+  emits: [
+    "update:url"
+  ],
+
   data() {
     return {
       title: "Detection date",

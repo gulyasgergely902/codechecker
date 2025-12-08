@@ -57,7 +57,7 @@
           :select="select"
         >
           <items
-            :items.sync="items"
+            v-model:items="items"
             :selected-items="prevSelectedItems"
             :search="search"
             :multiple="multiple"
@@ -119,6 +119,7 @@ export default {
     ItemsSelected,
     SelectedToolbarTitleItems
   },
+
   props: {
     title: { type: String, required: true },
     bus: { type: Object, required: true },
@@ -139,6 +140,15 @@ export default {
       }
     }
   },
+
+  emits: [
+    "on-menu-show",
+    "cancel",
+    "select",
+    "input",
+    "clear"
+  ],
+
   data() {
     return {
       items: [],

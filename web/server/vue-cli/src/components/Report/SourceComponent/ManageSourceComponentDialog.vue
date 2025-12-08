@@ -57,9 +57,15 @@ export default {
   components: {
     ListSourceComponents
   },
+
   props: {
     value: { type: Boolean, default: false },
   },
+
+  emits: [
+    "update:value"
+  ],
+
   computed: {
     dialog: {
       get() {

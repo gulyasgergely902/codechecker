@@ -42,13 +42,20 @@ export default {
     ProductUserPermission,
     ProductGroupPermission
   },
+
   mixins: [ PopulatePermissionsMixin ],
+
   props: {
     product: { type: Object, required: true },
     bus: { type: Object, required: true },
     success: { type: Boolean, default: false },
     error: { type: Boolean, default: false }
   },
+
+  emits: [
+    "update:success",
+    "update:error"
+  ],
 
   data() {
     return {

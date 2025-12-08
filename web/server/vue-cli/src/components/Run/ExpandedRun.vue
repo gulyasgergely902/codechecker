@@ -40,7 +40,7 @@
               }"
               class="date mr-2"
             >
-              <strong>{{ history.time | prettifyDate }}</strong>
+              <strong>{{ prettifiedTime() }}</strong>
             </router-link>
           </v-col>
           <v-col class="pa-0" align-self="center" cols="auto">
@@ -74,7 +74,7 @@
                   <v-divider class="mx-2 d-inline" inset vertical />
 
                   <analysis-info-btn
-                    @click.native="openAnalysisInfoDialog(
+                    @click="openAnalysisInfoDialog(
                       run.runId, history.id)"
                   />
 
@@ -89,7 +89,7 @@
                   <analyzer-statistics-btn
                     v-if="Object.keys(history.analyzerStatistics).length"
                     :value="history.analyzerStatistics"
-                    @click.native="openAnalyzerStatisticsDialog(null, history)"
+                    @click="openAnalyzerStatisticsDialog(null, history)"
                   />
                 </v-list-item-subtitle>
               </v-list-item-content>
@@ -151,6 +151,7 @@ export default {
     ShowStatisticsBtn,
     VersionTag
   },
+
   props: {
     histories: { type: Array, required: true },
     run: { type: Object, required: true },
@@ -159,6 +160,12 @@ export default {
     selectedBaselineTags: { type: Array, required: true },
     selectedComparedToTags: { type: Array, required: true }
   },
+
+  emits: [
+    "update:selected-baseline-tags",
+    "update:selected-compared-to-tags"
+  ],
+
   computed: {
     baselineTags: {
       get() {
@@ -192,6 +199,10 @@ export default {
 
         return acc;
       }, {});
+    },
+
+    prettifiedTime() {
+      return this.prettifyDate(this.history.time);
     }
   }
 };

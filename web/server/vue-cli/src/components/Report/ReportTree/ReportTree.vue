@@ -1,9 +1,9 @@
 <template>
   <v-treeview
+    v-model:open="openedItems"
+    v-model:active="activeItems"
     v-model="tree"
     :items="items"
-    :open.sync="openedItems"
-    :active.sync="activeItems"
     :load-children="getChildren"
     :return-object="true"
     activatable
@@ -68,6 +68,10 @@ export default {
     report: { type: Object, default: null },
     reviewStatus: { type: Number, default: null }
   },
+
+  emits: [
+    "click"
+  ],
 
   data() {
     return {
@@ -285,11 +289,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.v-treeview--dense ::v-deep .v-treeview-node__root {
+.v-treeview--dense :deep(.v-treeview-node__root) {
   min-height: 25px;
 }
 
-::v-deep .v-treeview-node__level {
+:deep(.v-treeview-node__level) {
   width: 18px;
 }
 </style>

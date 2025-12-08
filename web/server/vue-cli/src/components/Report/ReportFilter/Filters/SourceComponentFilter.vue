@@ -1,6 +1,6 @@
 <template>
   <manage-source-component-dialog
-    :value.sync="dialog"
+    v-model="dialog"
   >
     <select-option
       :id="id"
@@ -74,7 +74,12 @@ export default {
     SelectOption,
     SourceComponentTooltip
   },
+
   mixins: [ BaseSelectOptionFilterMixin ],
+
+  emits: [
+    "update:url"
+  ],
 
   data() {
     return {

@@ -23,10 +23,16 @@ export default {
   components: {
     BaseStatisticsTable
   },
+
   props: {
     items: { type: Array, required: true },
     loading: { type: Boolean, default: false }
   },
+
+  emits: [
+    "enabled-click"
+  ],
+
   data() {
     return {
       headers: [
@@ -110,6 +116,6 @@ export default {
 </script>
 
 <style lang="scss">
-$class-name: ".checker-statistics > ::v-deep .v-data-table__wrapper";
-@import "@/components/Statistics/style.scss";
+$class-name: ".checker-statistics > :deep(.v-data-table__wrapper)";
+@use "@/components/Statistics/style.scss";
 </style>

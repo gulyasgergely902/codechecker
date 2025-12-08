@@ -1,11 +1,11 @@
 <template>
   <v-container fluid>
     <v-data-table
+      v-model:options="pagination"
+      v-model:page="page"
       :headers="headers"
       :items="products"
-      :options.sync="pagination"
       :footer-props="footerProps"
-      :page.sync="page"
       :must-sort="true"
       :loading="loading"
       :mobile-breakpoint="1000"
@@ -103,7 +103,7 @@
           <v-icon left>
             mdi-calendar-range
           </v-icon>
-          {{ item.latestStoreToProduct | prettifyDate }}
+          {{ prettifiedDate() }}
         </v-chip>
       </template>
 
@@ -203,6 +203,12 @@ export default {
       isSuperUser: false,
       isAdminOfAnyProduct: false
     };
+  },
+
+  computed: {
+    prettifiedDate() {
+      return this.prettifyDate(this.item.latestStoreToProduct.date);
+    }
   },
 
   watch: {
@@ -379,7 +385,7 @@ export default {
   display: inline-block;
   max-width: 150px;
 
-  ::v-deep .v-chip__content {
+  :deep(.v-chip__content) {
     line-height: 32px;
     display: inline-block !important;
     white-space: nowrap;

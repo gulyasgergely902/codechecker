@@ -66,6 +66,11 @@ export default {
     selectedItems: { type: Array, required: true },
     multiple: { type: Boolean, default: true }
   },
+
+  emits: [
+    "update:select"
+  ],
+
   computed: {
     selected: {
       get() {

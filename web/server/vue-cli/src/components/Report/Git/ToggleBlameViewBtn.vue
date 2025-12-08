@@ -25,6 +25,11 @@ export default {
     value: { type: Boolean, required: true },
     disabled: { type: Boolean, default: false }
   },
+
+  emits: [
+    "input"
+  ],
+
   methods: {
     toggleBlameView() {
       this.$emit("input", !this.value);

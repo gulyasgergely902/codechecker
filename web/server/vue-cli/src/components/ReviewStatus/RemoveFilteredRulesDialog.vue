@@ -38,11 +38,18 @@ import { ConfirmDialog } from "@/components";
 export default {
   name: "RemoveFilteredRulesDialog",
   components: { ConfirmDialog },
+
   props: {
     value: { type: Boolean, default: false },
     filter: { type: Object, default: null },
     total: { type: Number, default: null },
   },
+
+  emits: [
+    "update:value",
+    "on:confirm"
+  ],
+
   computed: {
     dialog: {
       get() {
@@ -53,6 +60,7 @@ export default {
       }
     },
   },
+
   methods: {
     removeReviewStatusRule() {
       ccService.getClient().removeReviewStatusRules(this.filter,

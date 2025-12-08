@@ -1,12 +1,11 @@
 <template>
   <v-data-table
+    v-bind="{ ...$props, ...$attrs }"
     :disable-pagination="true"
     :hide-default-footer="true"
     :custom-sort="customSort"
     :must-sort="true"
     class="elevation-0"
-    v-bind="{ ...$props, ...$attrs }"
-    v-on="$listeners"
   >
     <template v-slot:header.component="{ header }">
       <v-icon size="16">
@@ -534,7 +533,7 @@
       </div>
     </template>
 
-    <template v-if="necessaryTotal" slot="body.append">
+    <template v-if="necessaryTotal" v-slot:body.append>
       <tr>
         <td class="text-center" :colspan="colspan">
           <strong>Total</strong>
@@ -550,7 +549,7 @@
     </template>
 
     <template
-      v-for="(_, slot) of $scopedSlots"
+      v-for="(_, slot) of $slots"
       v-slot:[slot]="scope"
     >
       <slot :name="slot" v-bind="scope" />
@@ -605,6 +604,9 @@ export default {
     },
     necessaryTotal: { type: Boolean, default: false }
   },
+  emits: [
+    "enabled-click"
+  ],
   data() {
     return {
       DetectionStatus,
@@ -726,11 +728,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep table {
+:deep(table) {
   border: thin solid rgba(0, 0, 0, 0.12);
 }
 
-::v-deep a {
+:deep(a) {
   text-decoration: none;
 
   &:not(.severity):hover {

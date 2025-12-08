@@ -163,6 +163,12 @@ export default {
     selectedComparedToTags: { type: Array, required: true }
   },
 
+  emits: [
+    "on-run-filter-changed",
+    "on-run-history-filter-changed",
+    "update"
+  ],
+
   computed: {
     ...mapGetters("run", [
       "runName",

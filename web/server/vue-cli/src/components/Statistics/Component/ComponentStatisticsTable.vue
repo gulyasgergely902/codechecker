@@ -1,5 +1,6 @@
 <template>
   <base-statistics-table
+    v-model:expanded="expanded"
     class="component-statistics"
     :headers="headers"
     :items="items"
@@ -10,7 +11,6 @@
     no-data-text="No component statistics available"
     item-key="component"
     show-expand
-    :expanded.sync="expanded"
     :necessary-total="true"
     @item-expanded="itemExpanded"
   >
@@ -19,7 +19,7 @@
     </template>
 
     <template
-      v-for="(_, slot) of $scopedSlots"
+      v-for="(_, slot) of $slots"
       v-slot:[slot]="scope"
     >
       <slot :name="slot" v-bind="scope" />
@@ -132,6 +132,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$class-name: ".component-statistics > ::v-deep .v-data-table__wrapper";
-@import "@/components/Statistics/style.scss";
+$class-name: ".component-statistics > :deep(.v-data-table__wrapper)";
+@use "@/components/Statistics/style.scss";
 </style>

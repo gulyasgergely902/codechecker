@@ -8,13 +8,13 @@
   >
     <template v-slot:activator="{ on, attrs }">
       <v-btn
+        v-bind="attrs"
         color="primary"
         class="set-cleanup-plan-btn"
         outlined
         small
         :disabled="!selectedReportHashes.length"
         :loading="loading"
-        v-bind="attrs"
         v-on="on"
       >
         <v-icon class="mr-1" small>

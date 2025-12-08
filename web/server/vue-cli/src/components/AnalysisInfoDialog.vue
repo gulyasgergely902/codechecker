@@ -95,7 +95,7 @@
                     >
                       <checker-group
                         v-if="group !== GroupKeys.NoGroup"
-                        :key="group"
+                        :key="`group-${group}`"
                         :group="group"
                         :checkers="checkers"
                         :counts="
@@ -103,7 +103,7 @@
                       />
                       <checker-rows
                         v-else
-                        :key="group"
+                        :key="`row-${group}`"
                         :checkers="checkers"
                       />
                     </template>
@@ -199,6 +199,10 @@ export default {
     reportId: { type: Object, default: () => null },
   },
 
+  emits: [
+    "update:value"
+  ],
+
   data() {
     return {
       postProcessedAnalysisInfoReady: false,
@@ -287,7 +291,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep .analysis-info {
+:deep(.analysis-info) {
   .analyze-command {
     border: 1px solid grey;
     padding: 4px;

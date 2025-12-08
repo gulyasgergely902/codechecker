@@ -65,7 +65,7 @@
         <v-tab-item>
           <v-container fluid>
             <product-config-form
-              :is-valid.sync="isValid"
+              v-model="isValid"
               :is-super-user="isSuperUser"
               :product-config="productConfig"
             />
@@ -73,10 +73,10 @@
         </v-tab-item>
         <v-tab-item>
           <edit-product-permission
+            v-model:success="success"
+            v-model:error="error"
             :product="product"
             :bus="bus"
-            :success.sync="success"
-            :error.sync="error"
           />
         </v-tab-item>
       </v-tabs-items>
@@ -104,10 +104,16 @@ export default {
     EditProductPermission,
     ProductConfigForm
   },
+
   props: {
     product: { type: Object, required: true },
     isSuperUser: { type: Boolean, default: false }
   },
+
+  emits: [
+    "on-complete"
+  ],
+
   data() {
     return {
       dialog: false,
@@ -122,6 +128,7 @@ export default {
       bus: new Vue()
     };
   },
+
   watch: {
     dialog() {
       if (!this.dialog) return;
