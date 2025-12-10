@@ -13,9 +13,13 @@ const helpers = require('./helpers');
 
 function sassLoaderOptions(indentedSyntax=false) {
   return {
+    api: 'modern-compiler',
     implementation: require('sass'),
     additionalData: `@use "@/variables.scss"` + (indentedSyntax ? '' : ';'),
-    sassOptions: { indentedSyntax },
+    sassOptions: {
+      indentedSyntax,
+      silenceDeprecations: [ "legacy-js-api", "import", "if" ],
+    },
   }
 }
 
@@ -204,5 +208,12 @@ module.exports = {
         }
       ]
     }),
-  ]
-}
+  ],
+  stats: {
+    warningsFilter: warning => {
+      return /sass-loader/i.test(warning) ||
+             /Deprecation Warning/i.test(warning) ||
+             /SassDeprecationWarning/i.test(warning);
+    }
+  }
+};

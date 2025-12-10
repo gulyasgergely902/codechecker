@@ -9,9 +9,9 @@
       </v-col>
       <v-col class="pt-0">
         <component
+          v-bind="{ to: links[key] }"
           :is="links[key] ? 'router-link' : 'span'"
           :class="key"
-          v-bind="{ to: links[key] }"
         >
           <severity-icon
             v-if="key === 'severity'"
