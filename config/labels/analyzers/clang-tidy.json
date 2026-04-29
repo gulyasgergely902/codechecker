@@ -291,7 +291,6 @@
     "bugprone-default-operator-new-on-overaligned-type": [
       "doc_url:https://clang.llvm.org/extra/clang-tidy/checks/bugprone/default-operator-new-on-overaligned-type.html",
       "guideline:sei-cert-cpp",
-      "profile:default",
       "profile:extreme",
       "profile:security",
       "profile:sensitive",
