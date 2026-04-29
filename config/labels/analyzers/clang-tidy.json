@@ -8161,7 +8161,6 @@
     ],
     "performance-use-std-move": [
       "doc_url:https://clang.llvm.org/extra/clang-tidy/checks/performance/use-std-move.html",
-      "profile:default",
       "profile:extreme",
       "profile:sensitive",
       "severity:LOW"
