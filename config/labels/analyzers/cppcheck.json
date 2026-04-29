@@ -846,6 +846,9 @@
     "cppcheck-missingInclude": [
       "severity:LOW"
     ],
+    "cppcheck-missingIncludeExplicit": [
+      "severity:LOW"
+    ],
     "cppcheck-missingIncludeSystem": [
       "severity:LOW"
     ],
@@ -1013,6 +1016,12 @@
       "severity:STYLE"
     ],
     "cppcheck-oppositeInnerCondition": [
+      "profile:default",
+      "profile:extreme",
+      "profile:sensitive",
+      "severity:MEDIUM"
+    ],
+    "cppcheck-overlappingInnerCondition": [
       "profile:default",
       "profile:extreme",
       "profile:sensitive",
