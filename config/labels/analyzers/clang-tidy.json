@@ -3943,10 +3943,6 @@
       "doc_url:https://clang.llvm.org/docs/DiagnosticsReference.html#wmatrix-conversion",
       "severity:MEDIUM"
     ],
-    "clang-diagnostic-matrix-conversions": [
-      "doc_url:https://clang.llvm.org/docs/DiagnosticsReference.html#wmatrix-conversions",
-      "severity:MEDIUM"
-    ],
     "clang-diagnostic-max-tokens": [
       "doc_url:https://clang.llvm.org/docs/DiagnosticsReference.html#wmax-tokens",
       "severity:MEDIUM"
