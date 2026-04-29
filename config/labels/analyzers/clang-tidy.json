@@ -2703,6 +2703,9 @@
     ],
     "clang-diagnostic-enum-compare-typo": [
       "doc_url:https://clang.llvm.org/docs/DiagnosticsReference.html#wenum-compare-typo",
+      "profile:default",
+      "profile:extreme",
+      "profile:sensitive",
       "severity:HIGH"
     ],
     "clang-diagnostic-enum-constexpr-conversion": [
@@ -3220,6 +3223,9 @@
     ],
     "clang-diagnostic-groupshared-initializer": [
       "doc_url:https://clang.llvm.org/docs/DiagnosticsReference.html#wgroupshared-initializer",
+      "profile:default",
+      "profile:extreme",
+      "profile:sensitive",
       "severity:MEDIUM"
     ],
     "clang-diagnostic-header-guard": [
@@ -3244,6 +3250,9 @@
     ],
     "clang-diagnostic-hlsl-explicit-binding": [
       "doc_url:https://clang.llvm.org/docs/DiagnosticsReference.html#whlsl-explicit-binding",
+      "profile:default",
+      "profile:extreme",
+      "profile:sensitive",
       "severity:MEDIUM"
     ],
     "clang-diagnostic-hlsl-extensions": [
@@ -3400,26 +3409,44 @@
     ],
     "clang-diagnostic-implicit-overflow-behavior-conversion": [
       "doc_url:https://clang.llvm.org/docs/DiagnosticsReference.html#wimplicit-overflow-behavior-conversion",
+      "profile:default",
+      "profile:extreme",
+      "profile:sensitive",
       "severity:MEDIUM"
     ],
     "clang-diagnostic-implicit-overflow-behavior-conversion-assignment": [
       "doc_url:https://clang.llvm.org/docs/DiagnosticsReference.html#wimplicit-overflow-behavior-conversion-assignment",
+      "profile:default",
+      "profile:extreme",
+      "profile:sensitive",
       "severity:MEDIUM"
     ],
     "clang-diagnostic-implicit-overflow-behavior-conversion-assignment-pedantic": [
       "doc_url:https://clang.llvm.org/docs/DiagnosticsReference.html#wimplicit-overflow-behavior-conversion-assignment-pedantic",
+      "profile:default",
+      "profile:extreme",
+      "profile:sensitive",
       "severity:MEDIUM"
     ],
     "clang-diagnostic-implicit-overflow-behavior-conversion-function-boundary": [
       "doc_url:https://clang.llvm.org/docs/DiagnosticsReference.html#wimplicit-overflow-behavior-conversion-function-boundary",
+      "profile:default",
+      "profile:extreme",
+      "profile:sensitive",
       "severity:MEDIUM"
     ],
     "clang-diagnostic-implicit-overflow-behavior-conversion-function-boundary-pedantic": [
       "doc_url:https://clang.llvm.org/docs/DiagnosticsReference.html#wimplicit-overflow-behavior-conversion-function-boundary-pedantic",
+      "profile:default",
+      "profile:extreme",
+      "profile:sensitive",
       "severity:MEDIUM"
     ],
     "clang-diagnostic-implicit-overflow-behavior-conversion-pedantic": [
       "doc_url:https://clang.llvm.org/docs/DiagnosticsReference.html#wimplicit-overflow-behavior-conversion-pedantic",
+      "profile:default",
+      "profile:extreme",
+      "profile:sensitive",
       "severity:MEDIUM"
     ],
     "clang-diagnostic-implicit-retain-self": [
@@ -3503,6 +3530,9 @@
     ],
     "clang-diagnostic-incompatible-pointer-types-discards-overflow-behavior": [
       "doc_url:https://clang.llvm.org/docs/DiagnosticsReference.html#wincompatible-pointer-types-discards-overflow-behavior",
+      "profile:default",
+      "profile:extreme",
+      "profile:sensitive",
       "severity:MEDIUM"
     ],
     "clang-diagnostic-incompatible-pointer-types-discards-qualifiers": [
@@ -3941,6 +3971,9 @@
     ],
     "clang-diagnostic-matrix-conversion": [
       "doc_url:https://clang.llvm.org/docs/DiagnosticsReference.html#wmatrix-conversion",
+      "profile:default",
+      "profile:extreme",
+      "profile:sensitive",
       "severity:MEDIUM"
     ],
     "clang-diagnostic-max-tokens": [
