@@ -268,9 +268,11 @@
     ],
     "bugprone-copy-constructor-mutates-argument": [
       "doc_url:https://clang.llvm.org/extra/clang-tidy/checks/bugprone/copy-constructor-mutates-argument.html",
+      "guideline:sei-cert-cpp",
       "profile:default",
       "profile:extreme",
       "profile:sensitive",
+      "sei-cert-cpp:oop58-cpp",
       "severity:MEDIUM"
     ],
     "bugprone-crtp-constructor-accessibility": [
@@ -288,10 +290,12 @@
     ],
     "bugprone-default-operator-new-on-overaligned-type": [
       "doc_url:https://clang.llvm.org/extra/clang-tidy/checks/bugprone/default-operator-new-on-overaligned-type.html",
+      "guideline:sei-cert-cpp",
       "profile:default",
       "profile:extreme",
       "profile:security",
       "profile:sensitive",
+      "sei-cert-cpp:mem57-cpp",
       "severity:HIGH"
     ],
     "bugprone-derived-method-shadowing-base-method": [
@@ -2274,7 +2278,7 @@
       "severity:MEDIUM"
     ],
     "clang-diagnostic-default-const-init-var": [
-      "doc_url:https://clang.llvm.org/docs/DiagnosticsReference.html#wdefault-const-init-var",      
+      "doc_url:https://clang.llvm.org/docs/DiagnosticsReference.html#wdefault-const-init-var",
       "profile:extreme",
       "profile:sensitive",
       "severity:MEDIUM"
@@ -7513,7 +7517,7 @@
       "severity:MEDIUM"
     ],
     "misc-no-recursion": [
-      "doc_url:https://clang.llvm.org/extra/clang-tidy/checks/misc/no-recursion.html",            
+      "doc_url:https://clang.llvm.org/extra/clang-tidy/checks/misc/no-recursion.html",
       "severity:LOW"
     ],
     "misc-noexcept-move-constructor": [
