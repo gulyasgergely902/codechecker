@@ -3828,6 +3828,9 @@
     "clang-diagnostic-lifetime-safety-dangling-field": [
       "doc_url:https://clang.llvm.org/docs/DiagnosticsReference.html#wlifetime-safety-dangling-field",
       "guideline:memory-safety",
+      "profile:default",
+      "profile:extreme",
+      "profile:sensitive",
       "memory-safety:cwe-416",
       "severity:HIGH"
     ],
@@ -3840,6 +3843,9 @@
     "clang-diagnostic-lifetime-safety-dangling-global": [
       "doc_url:https://clang.llvm.org/docs/DiagnosticsReference.html#wlifetime-safety-dangling-global",
       "guideline:memory-safety",
+      "profile:default",
+      "profile:extreme",
+      "profile:sensitive",
       "memory-safety:cwe-416",
       "severity:HIGH"
     ],
@@ -3870,6 +3876,9 @@
     "clang-diagnostic-lifetime-safety-return-stack-addr": [
       "doc_url:https://clang.llvm.org/docs/DiagnosticsReference.html#wlifetime-safety-return-stack-addr",
       "guideline:memory-safety",
+      "profile:default",
+      "profile:extreme",
+      "profile:sensitive",
       "memory-safety:cwe-416",
       "severity:HIGH"
     ],
@@ -3890,6 +3899,9 @@
     "clang-diagnostic-lifetime-safety-use-after-scope": [
       "doc_url:https://clang.llvm.org/docs/DiagnosticsReference.html#wlifetime-safety-use-after-scope",
       "guideline:memory-safety",
+      "profile:default",
+      "profile:extreme",
+      "profile:sensitive",
       "memory-safety:cwe-416",
       "severity:HIGH"
     ],
