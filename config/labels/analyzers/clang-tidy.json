@@ -6436,7 +6436,7 @@
     ],
     "clang-diagnostic-unused-but-set-global": [
       "doc_url:https://clang.llvm.org/docs/DiagnosticsReference.html#wunused-but-set-global",
-      "severity:MEDIUM"
+      "severity:LOW"
     ],
     "clang-diagnostic-unused-but-set-parameter": [
       "doc_url:https://clang.llvm.org/docs/DiagnosticsReference.html#wunused-but-set-parameter",
@@ -8164,7 +8164,7 @@
       "profile:default",
       "profile:extreme",
       "profile:sensitive",
-      "severity:MEDIUM"
+      "severity:LOW"
     ],
     "portability-avoid-pragma-once": [
       "doc_url:https://clang.llvm.org/extra/clang-tidy/checks/portability/avoid-pragma-once.html",
