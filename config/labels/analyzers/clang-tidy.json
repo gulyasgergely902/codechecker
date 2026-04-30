@@ -592,8 +592,8 @@
       "profile:security",
       "profile:sensitive",
       "owasp-top-10-2021:owasp-A02-2021",
-      "sei-cert-c:msc30-c",
-      "sei-cert-cpp:msc50-cpp",
+      "sei-cert-c:msc32-c",
+      "sei-cert-cpp:msc51-cpp",
       "severity:MEDIUM"
     ],
     "bugprone-raw-memory-call-on-non-trivial-type": [
