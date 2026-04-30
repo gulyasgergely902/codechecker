@@ -75,7 +75,7 @@
     ],
     "abseil-unchecked-statusor-access": [
       "doc_url:https://clang.llvm.org/extra/clang-tidy/checks/abseil/unchecked-statusor-access.html",
-      "severity:STYLE"
+      "severity:HIGH"
     ],
     "abseil-upgrade-duration-conversions": [
       "doc_url:https://clang.llvm.org/extra/clang-tidy/checks/abseil/upgrade-duration-conversions.html",
@@ -326,7 +326,7 @@
       "profile:security",
       "profile:sensitive",
       "sei-cert-cpp:err60-cpp",
-      "severity:MEDIUM"
+      "severity:HIGH"
     ],
     "bugprone-exception-escape": [
       "doc_url:https://clang.llvm.org/extra/clang-tidy/checks/bugprone/exception-escape.html",
@@ -956,7 +956,7 @@
       "profile:sensitive",
       "sei-cert-cpp:dcl57-cpp",
       "sei-cert-cpp:err55-cpp",
-      "severity:MEDIUM"
+      "severity:HIGH"
     ],
     "bugprone-unused-local-non-trivial-variable": [
       "doc_url:https://clang.llvm.org/extra/clang-tidy/checks/bugprone/unused-local-non-trivial-variable.html",
