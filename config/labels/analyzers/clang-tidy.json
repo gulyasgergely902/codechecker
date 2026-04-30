@@ -291,6 +291,7 @@
     "bugprone-default-operator-new-on-overaligned-type": [
       "doc_url:https://clang.llvm.org/extra/clang-tidy/checks/bugprone/default-operator-new-on-overaligned-type.html",
       "guideline:sei-cert-cpp",
+      "profile:default",
       "profile:extreme",
       "profile:security",
       "profile:sensitive",
@@ -322,6 +323,7 @@
     "bugprone-exception-copy-constructor-throws": [
       "doc_url:https://clang.llvm.org/extra/clang-tidy/checks/bugprone/exception-copy-constructor-throws.html",
       "guideline:sei-cert-cpp",
+      "profile:default",
       "profile:extreme",
       "profile:security",
       "profile:sensitive",
@@ -951,6 +953,7 @@
     "bugprone-unsafe-to-allow-exceptions": [
       "doc_url:https://clang.llvm.org/extra/clang-tidy/checks/bugprone/unsafe-to-allow-exceptions.html",
       "guideline:sei-cert-cpp",
+      "profile:default",
       "profile:extreme",
       "profile:security",
       "profile:sensitive",
