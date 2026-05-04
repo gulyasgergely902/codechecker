@@ -323,7 +323,6 @@
     "bugprone-exception-copy-constructor-throws": [
       "doc_url:https://clang.llvm.org/extra/clang-tidy/checks/bugprone/exception-copy-constructor-throws.html",
       "guideline:sei-cert-cpp",
-      "profile:default",
       "profile:extreme",
       "profile:security",
       "profile:sensitive",
@@ -3251,7 +3250,6 @@
     ],
     "clang-diagnostic-hlsl-explicit-binding": [
       "doc_url:https://clang.llvm.org/docs/DiagnosticsReference.html#whlsl-explicit-binding",
-      "profile:extreme",
       "severity:MEDIUM"
     ],
     "clang-diagnostic-hlsl-extensions": [
@@ -3815,7 +3813,9 @@
     "clang-diagnostic-lifetime-safety-dangling-field": [
       "doc_url:https://clang.llvm.org/docs/DiagnosticsReference.html#wlifetime-safety-dangling-field",
       "guideline:memory-safety",
+      "profile:default",
       "profile:extreme",
+      "profile:sensitive",
       "memory-safety:cwe-416",
       "severity:HIGH"
     ],
@@ -3828,7 +3828,9 @@
     "clang-diagnostic-lifetime-safety-dangling-global": [
       "doc_url:https://clang.llvm.org/docs/DiagnosticsReference.html#wlifetime-safety-dangling-global",
       "guideline:memory-safety",
+      "profile:default",
       "profile:extreme",
+      "profile:sensitive",
       "memory-safety:cwe-416",
       "severity:HIGH"
     ],
@@ -3859,7 +3861,9 @@
     "clang-diagnostic-lifetime-safety-return-stack-addr": [
       "doc_url:https://clang.llvm.org/docs/DiagnosticsReference.html#wlifetime-safety-return-stack-addr",
       "guideline:memory-safety",
+      "profile:default",
       "profile:extreme",
+      "profile:sensitive",
       "memory-safety:cwe-416",
       "severity:HIGH"
     ],
@@ -3877,10 +3881,21 @@
       "doc_url:https://clang.llvm.org/docs/DiagnosticsReference.html#wlifetime-safety-suggestions",
       "severity:LOW"
     ],
+    "clang-diagnostic-lifetime-safety-use-after-free": [
+      "doc_url:https://clang.llvm.org/docs/DiagnosticsReference.html#wlifetime-safety-use-after-free",
+      "guideline:memory-safety",
+      "profile:default",
+      "profile:extreme",
+      "profile:sensitive",
+      "memory-safety:cwe-416",
+      "severity:HIGH"
+    ],
     "clang-diagnostic-lifetime-safety-use-after-scope": [
       "doc_url:https://clang.llvm.org/docs/DiagnosticsReference.html#wlifetime-safety-use-after-scope",
       "guideline:memory-safety",
+      "profile:default",
       "profile:extreme",
+      "profile:sensitive",
       "memory-safety:cwe-416",
       "severity:HIGH"
     ],
