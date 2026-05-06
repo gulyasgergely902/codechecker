@@ -234,7 +234,7 @@ function login() {
     error.value = false;
 
     const returnTo = route.query["return_to"];
-    router.replace(returnTo || { name: "products" });
+    router.replace(returnTo ? { path: returnTo } : { name: "products" });
   }).catch(err => {
     errorMsg.value = `Failed to log in! ${err.message}`;
     error.value = true;
