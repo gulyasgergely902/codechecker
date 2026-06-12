@@ -22,7 +22,7 @@
     <v-app-bar-nav-icon>
       <v-avatar
         size="36px"
-        :image="require('@/assets/logo.png')"
+        :image="cc_logo"
         color="transparent"
       />
     </v-app-bar-nav-icon>
@@ -144,6 +144,8 @@ import { defaultReportFilterValues } from "@/components/Report/ReportFilter";
 import { defaultStatisticsFilterValues } from "@/components/Statistics";
 import HeaderMenuItems from "./HeaderMenuItems";
 import UserInfoMenu from "./UserInfoMenu";
+
+import cc_logo from "@/assets/logo.png";
 
 const store = useStore();
 const route = useRoute();

@@ -192,10 +192,10 @@ watch(pagination, () => {
 }, { deep: true });
 
 watch(page, () => {
-  const page = page === 1 ? undefined : page;
+  const pageVal = page.value === 1 ? undefined : page.value;
   router.replace({
     query: {
-      "page": page
+      "page": pageVal
     }
   }).catch(() => {});
 });
