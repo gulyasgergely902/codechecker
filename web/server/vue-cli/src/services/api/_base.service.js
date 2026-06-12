@@ -10,13 +10,15 @@ import store from "@/store";
 import { ADD_ERROR, PURGE_AUTH } from "@/store/mutations.type";
 import tokenService from "./token.service";
 
+import codeCheckerApi from "codechecker-api/package.json";
+
 // Host should be set explicitly to `hostname` because thrift will use
 // the value of `window.location.host` which will contain port number by
 // default on local host which cause invalid url format.
 const host = process.env.CC_SERVER_HOST || window.location.hostname;
 const port = parseInt(process.env.CC_SERVER_PORT, 10) ||
   parseInt(window.location.port, 10);
-const api = process.env.CC_API_VERSION;
+const api = codeCheckerApi.version.split(".").slice(0, 2).join(".");
 
 // Use native EventTarget for Vue 3 compliance
 const eventHub = new EventTarget();
@@ -29,7 +31,9 @@ class BaseService {
 
     // Event which can be used to update client on route changes.
     eventHub.addEventListener("update", event => {
-      this._client = this.createClient(event.detail);
+      if (event.detail !== undefined) {
+        this._client = this.createClient(event.detail);
+      }
     });
   }
 

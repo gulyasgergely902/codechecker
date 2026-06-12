@@ -10,33 +10,33 @@ const router = createRouter({
       meta: {
         requiresAuth: true
       },
-      component: () => import("@/views/Products")
+      component: () => import("@/views/Products.vue")
     },
     {
       path: "/login",
       name: "login",
       alias: [ "/login.html" ],
-      component: () => import("@/views/Login")
+      component: () => import("@/views/Login.vue")
     },
     {
       path: "/login/OAuthLogin/:provider",
       name: "oauthlogin",
-      component: () => import("@/views/OAuthLogin")
+      component: () => import("@/views/OAuthLogin.vue")
     },
     {
       path: "/userguide",
       name: "userguide",
-      component: () => import("@/views/Userguide"),
+      component: () => import("@/views/Userguide.vue"),
     },
     {
       path: "/new-features",
       name: "new-features",
-      component: () => import("@/views/NewFeatures")
+      component: () => import("@/views/NewFeatures.vue")
     },
     {
       path: "/404",
       name: "404",
-      component: () => import("@/views/NotFound")
+      component: () => import("@/views/NotFound.vue")
     },
     {
       // Should be kept in sync with the regex from is_valid_product_endpoint
@@ -45,61 +45,61 @@ const router = createRouter({
       meta: {
         requiresAuth: true
       },
-      component: () => import("@/views/ProductDetail"),
+      component: () => import("@/views/ProductDetail.vue"),
       children: [
         {
           path: "",
           name: "main_runs",
-          component: () => import("@/views/RunList")
+          component: () => import("@/views/RunList.vue")
         },
         {
           path: "runs",
           name: "runs",
-          component: () => import("@/views/RunList")
+          component: () => import("@/views/RunList.vue")
         },
         {
           path: "statistics",
           name: "statistics",
           redirect: { name: "product-overview" },
-          component: () => import("@/views/Statistics"),
+          component: () => import("@/views/Statistics.vue"),
           children: [
             {
               path: "overview",
               name: "product-overview",
               component: () =>
-                import("@statistics/Overview/Overview"),
+                import("@statistics/Overview/Overview.vue"),
             },
             {
               path: "checker",
               name: "checker-statistics",
               component: () =>
-                import("@statistics/Checker/CheckerStatistics"),
+                import("@statistics/Checker/CheckerStatistics.vue"),
             },
             {
               path: "severity",
               name: "severity-statistics",
               component: () =>
-                import("@statistics/Severity/SeverityStatistics"),
+                import("@statistics/Severity/SeverityStatistics.vue"),
             },
             {
               path: "component",
               name: "component-statistics",
               component: () => import(
-                "@statistics/Component/ComponentStatistics"),
+                "@statistics/Component/ComponentStatistics.vue"),
             },
             {
               path: "coverage",
               name: "checker-coverage-statistics",
               component: () =>
                 import(
-                  "@statistics/CheckerCoverage/CheckerCoverageStatistics"
+                  "@statistics/CheckerCoverage/CheckerCoverageStatistics.vue"
                 ),
             },
             {
               path: "guideline",
               name: "guideline-statistics",
               component: () => import(
-                "@/components/Statistics/Guideline/GuidelineStatistics"
+                "@/components/Statistics/Guideline/GuidelineStatistics.vue"
               ),
             },
           ]
@@ -107,27 +107,27 @@ const router = createRouter({
         {
           path: "reports",
           name: "reports",
-          component: () => import("@/views/Reports")
+          component: () => import("@/views/Reports.vue")
         },
         {
           path: "report-detail",
           name: "report-detail",
-          component: () => import("@/views/ReportDetail")
+          component: () => import("@/views/ReportDetail.vue")
         },
         {
           path: "cleanup-plan",
           name: "cleanup-plan",
-          component: () => import("@/views/CleanupPlan")
+          component: () => import("@/views/CleanupPlan.vue")
         },
         {
           path: "review-status-rules",
           name: "review-status-rules",
-          component: () => import("@/views/ReviewStatusRules")
+          component: () => import("@/views/ReviewStatusRules.vue")
         },
         {
           path: "source-component",
           name: "source-component",
-          component: () => import("@/views/SourceComponent")
+          component: () => import("@/views/SourceComponent.vue")
         },
       ]
     },
