@@ -143,6 +143,12 @@ const vuetify = createVuetify({
         }
       }
     }
+  },
+  defaults: {
+    VBtn: {
+      class: "text-uppercase",
+      style: "text-transform: uppercase;",
+    }
   }
 });
 

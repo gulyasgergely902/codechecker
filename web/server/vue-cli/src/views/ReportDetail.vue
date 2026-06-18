@@ -1,8 +1,7 @@
 <template>
   <v-container
     v-if="reportNotFound"
-    class="text-center"
-    fill-height
+    class="text-center fill-height d-flex align-center flex-wrap"
   >
     <v-row align="center" justify="center">
       <v-col class="error--text" cols="6">

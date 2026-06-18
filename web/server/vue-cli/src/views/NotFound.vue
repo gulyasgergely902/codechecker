@@ -1,7 +1,6 @@
 <template>
   <v-container
-    class="text-center"
-    fill-height
+    class="text-center fill-height d-flex align-center flex-wrap"
   >
     <v-row align="center">
       <v-col>

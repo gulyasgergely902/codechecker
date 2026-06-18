@@ -55,7 +55,7 @@
           >
             <v-row
               no-gutters
-              align="center"
+              class="align-center"
             >
               <v-col
                 cols="auto"

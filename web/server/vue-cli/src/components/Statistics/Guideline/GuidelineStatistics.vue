@@ -69,7 +69,7 @@
                 multiple
                 density="comfortable"
               >
-                <template v-slot:selection="{ item }">
+                <template v-slot:selection="{ internalItem: item }">
                   <div class="selection-item">
                     {{ item.raw.name }}
                   </div>

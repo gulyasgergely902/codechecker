@@ -12,7 +12,7 @@
     density="compact"
     variant="outlined"
   >
-    <template v-slot:selection="{ item }">
+    <template v-slot:selection="{ internalItem: item }">
       <div class="d-flex align-center">
         <review-status-icon
           :status="item.value"
@@ -23,7 +23,7 @@
       </div>
     </template>
 
-    <template v-slot:item="{ item, props: itemProps }">
+    <template v-slot:item="{ internalItem: item, props: itemProps }">
       <v-list-item
         v-bind="itemProps"
       >

@@ -13,7 +13,7 @@
     variant="solo"
     @update:model-value="selectSameReport"
   >
-    <template v-slot:selection="{ item }">
+    <template v-slot:selection="{ internalItem: item }">
       <div class="d-flex align-center">
         <detection-status-icon
           class="mr-2"
@@ -42,7 +42,7 @@
       </div>
     </template>
 
-    <template v-slot:item="{ item, props: listItemProps }">
+    <template v-slot:item="{ internalItem: item, props: listItemProps }">
       <v-list-item
         v-bind="listItemProps"
         :title="null"
