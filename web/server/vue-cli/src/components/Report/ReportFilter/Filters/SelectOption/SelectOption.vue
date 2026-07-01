@@ -7,7 +7,7 @@
     <template v-slot:append-toolbar-title>
       <slot name="append-toolbar-title">
         <SelectedToolbarTitleItems
-          :value="selectedItems"
+          :value="allSelectedItems"
         />
       </slot>
     </template>
@@ -48,14 +48,14 @@
         <slot
           name="menu-content"
           :items="items"
-          :prev-selected-items="props.selectedItems"
+          :prev-selected-items="allSelectedItems"
           :apply="applyFilters"
           :on-apply-finished="closeMenu"
           :cancel="cancel"
         >
           <Items
             :items="items"
-            :selected-items="props.selectedItems"
+            :selected-items="allSelectedItems"
             :search="search"
             :multiple="multiple"
             :limit="limit"
@@ -83,7 +83,7 @@
 
     <slot :update-selected-items="emitInput">
       <items-selected
-        :selected-items="selectedItems"
+        :selected-items="allSelectedItems"
         :multiple="multiple"
         @update:select="emitInput"
       >
