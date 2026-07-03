@@ -22,9 +22,11 @@
                 class="ml-4"
                 label="Search for products..."
                 hide-details
-                variant="outlined"
                 clearable
                 density="compact"
+                color="primary"
+                variant="outlined"
+                prepend-inner-icon="mdi-magnify"
               />
             </v-col>
 
@@ -72,7 +74,7 @@
           <v-chip
             color="primary"
             class="mr-2 my-1"
-            variant="outlined"
+            variant="tonal"
             :title="admin"
           >
             <template v-slot:prepend>
@@ -89,8 +91,10 @@
 
       <template #item.runCount="{ item }">
         <v-chip
-          class="text-black"
-          :color="gradientColor.getGradientColor(item.runCount, 500)"
+          :style="{
+            color: gradientColor.getGradientTextColor(item.runCount, 500) 
+          }"
+          :color="gradientColor.getTonalGradientColor(item.runCount, 500)"
           size="small"
           variant="flat"
         >
@@ -101,9 +105,8 @@
       <template #item.latestStoreToProduct="{ item }">
         <v-chip
           v-if="item.latestStoreToProduct"
-          class="ma-2"
           color="primary"
-          variant="outlined"
+          variant="tonal"
         >
           <template v-slot:prepend>
             <v-icon
@@ -223,11 +226,13 @@ const headers = ref([
   {
     title: "Name",
     value: "displayedName",
+    align: "start",
     sortable: true
   },
   {
     title: "Admins",
     value: "admins",
+    align: "center",
     sortable: false
   },
   {
@@ -239,11 +244,13 @@ const headers = ref([
   {
     title: "Latest store to product",
     value: "latestStoreToProduct",
+    align: "center",
     sortable: true
   },
   {
     title: "Actions",
     value: "actions",
+    align: "center",
     sortable: false
   }, 
 ]);
@@ -366,6 +373,13 @@ function initializeComponent() {
 <style lang="scss" scoped>
 .v-list-item__subtitle {
   white-space: normal;
+}
+
+:deep(
+  th.v-data-table__th--sortable.v-data-table-column--align-center
+  .v-data-table-header__content
+) {
+  padding-left: 18px;
 }
 
 .v-chip-max-width-wrapper {

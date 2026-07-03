@@ -22,7 +22,7 @@
         <review-status-icon
           class="mr-2"
           :status="item.raw.reviewStatus"
-          :size="16"
+          size="small"
         />
         <span
           class="mr-2"
@@ -55,7 +55,7 @@
         <review-status-icon
           class="mr-2"
           :status="item.raw.reviewStatus"
-          :size="16"
+          size="small"
         />
         <span
           class="mr-2"

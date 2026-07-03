@@ -143,7 +143,8 @@ const vuetify = createVuetify({
           info: "#3f51b5",
           success: "#4caf50",
           grey: "#9E9E9E",
-          "grey-card": "#e0e0e0"
+          "grey-card": "#e0e0e0",
+          "dark-grey": "#3a3a3a"
         }
       }
     }

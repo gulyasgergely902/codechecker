@@ -2,7 +2,7 @@
   <div class="d-inline-flex align-center">
     <review-status-icon
       :status="value"
-      :size="16"
+      size="small"
       class="mr-2"
     />
 

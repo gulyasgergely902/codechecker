@@ -1,6 +1,6 @@
 <template>
   <v-btn
-    variant="outlined"
+    variant="tonal"
     color="primary"
     class="diff-runs-btn mr-2"
     :to="{ name: 'reports',

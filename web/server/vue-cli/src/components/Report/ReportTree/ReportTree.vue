@@ -32,7 +32,7 @@
       <review-status-icon
         v-if="item.kind === ReportTreeKind.REPORT"
         :status="parseInt(item.report.reviewData.status)"
-        size="22"
+        size="medium"
       />
     </template>
 

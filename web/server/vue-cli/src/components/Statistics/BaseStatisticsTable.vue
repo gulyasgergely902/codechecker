@@ -18,7 +18,7 @@
     <template v-slot:header.unreviewed.count="{ column }">
       <review-status-icon
         :status="ReviewStatus.UNREVIEWED"
-        :size="16"
+        size="small"
         left
       />
       {{ column.title }}
@@ -27,7 +27,7 @@
     <template v-slot:header.confirmed.count="{ column }">
       <review-status-icon
         :status="ReviewStatus.CONFIRMED"
-        :size="16"
+        size="small"
         left
       />
       {{ column.title }}
@@ -50,7 +50,7 @@
     <template v-slot:header.falsePositive.count="{ column }">
       <review-status-icon
         :status="ReviewStatus.FALSE_POSITIVE"
-        :size="16"
+        size="small"
         left
       />
       {{ column.title }}
@@ -59,7 +59,7 @@
     <template v-slot:header.intentional.count="{ column }">
       <review-status-icon
         :status="ReviewStatus.INTENTIONAL"
-        :size="16"
+        size="small"
         left
       />
       {{ column.title }}

@@ -37,7 +37,7 @@
                 <div class="d-flex align-center">
                   <review-status-icon
                     :status="item.value"
-                    :size="16"
+                    size="small"
                     class="mx-2"
                   />
                   <span>{{ item.title }}</span>
@@ -51,7 +51,7 @@
                   <template v-slot:prepend>
                     <review-status-icon
                       :status="item.raw.id"
-                      :size="16"
+                      size="small"
                       class="mx-2"
                     />
                   </template>
@@ -96,7 +96,7 @@
             />
             <review-status-icon
               :status="r.reviewData.status"
-              :size="16"
+              size="small"
             />
             <router-link
               :to="{ name: 'report-detail', query: {

@@ -89,7 +89,7 @@
                     />
                     <review-status-icon
                       :status="parseInt(report.reviewData.status)"
-                      :size="18"
+                      size="small"
                     />
                     <router-link
                       :to="{ name: 'report-detail', query: {
@@ -186,7 +186,9 @@
         </template>
 
         <template v-else #item.reviewData="{ item }">
-          <review-status-icon :status="parseInt(item.reviewData.status)" />
+          <review-status-icon
+            :status="parseInt(item.reviewData.status)"
+          />
         </template>
 
         <template #item.detectionStatus="{ item }">
@@ -282,7 +284,10 @@
             class="tree-header-cell sortable"
             @click="toggleTreeSort('unreviewed')"
           >
-            <review-status-icon :status="0" :size="14" />
+            <review-status-icon
+              :status="0"
+              size="small"
+            />
             <v-icon
               v-if="treeSortKey === 'unreviewed'"
               size="12"
@@ -295,7 +300,10 @@
             class="tree-header-cell sortable"
             @click="toggleTreeSort('confirmed')"
           >
-            <review-status-icon :status="1" :size="14" />
+            <review-status-icon
+              :status="1"
+              size="small"
+            />
             <v-icon
               v-if="treeSortKey === 'confirmed'"
               size="12"
@@ -308,7 +316,10 @@
             class="tree-header-cell sortable"
             @click="toggleTreeSort('false_positive')"
           >
-            <review-status-icon :status="2" :size="14" />
+            <review-status-icon
+              :status="2"
+              size="small"
+            />
             <v-icon
               v-if="treeSortKey === 'false_positive'"
               size="12"
@@ -321,7 +332,10 @@
             class="tree-header-cell sortable"
             @click="toggleTreeSort('intentional')"
           >
-            <review-status-icon :status="3" :size="14" />
+            <review-status-icon
+              :status="3"
+              size="small"
+            />
             <v-icon
               v-if="treeSortKey === 'intentional'"
               size="12"
