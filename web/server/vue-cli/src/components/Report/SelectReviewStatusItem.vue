@@ -2,7 +2,7 @@
   <div>
     <review-status-icon
       :status="item.id"
-      :size="16"
+      size="small"
       class="mx-2"
     />
     {{ item.label }}

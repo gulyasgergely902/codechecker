@@ -35,6 +35,7 @@
       <router-link
         v-else
         :to="{ name: 'runs', params: { endpoint: product.endpoint } }"
+        class="text-grey-darken-4 text-subtitle-1"
       >
         {{ product.displayedName }}
       </router-link>
