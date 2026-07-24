@@ -1,14 +1,17 @@
 import { defineConfig, loadEnv } from "vite";
 import vue from "@vitejs/plugin-vue";
 import { join, resolve } from "path";
-import { viteStaticCopy } from "vite-plugin-static-copy";
+import { fileURLToPath } from "url";
+import { createRequire } from "module";
 import { nodePolyfills } from "vite-plugin-node-polyfills";
 import eslint from "vite-plugin-eslint2";
 import vuetify from "vite-plugin-vuetify";
 
+const require = createRequire(import.meta.url);
 const codeCheckerApi = require("codechecker-api/package.json");
 const apiVersion = codeCheckerApi.version.split(".").slice(0, 2).join(".");
 
+const __dirname = fileURLToPath(new URL(".", import.meta.url));
 const root = (...args) => resolve(__dirname, ...args);
 
 const CC_SERVICE_ENDPOINTS = [
@@ -34,7 +37,7 @@ export default defineConfig(({ mode }) => {
   const endpoints = CC_SERVICE_ENDPOINTS.join("|");
 
   return {
-    root: root("src"),
+    publicDir: root("public"),
     build: {
       outDir: root("dist"),
       emptyOutDir: true,
@@ -46,6 +49,25 @@ export default defineConfig(({ mode }) => {
           },
         },
       },
+    },
+    optimizeDeps: {
+      include: [
+        "vuetify",
+        "vuetify/components",
+        "vuetify/directives",
+        "thrift",
+        "codechecker-api/lib/codeCheckerAuthentication.js",
+        "codechecker-api/lib/authentication_types.js",
+        "codechecker-api/lib/configurationService.js",
+        "codechecker-api/lib/configuration_types.js",
+        "codechecker-api/lib/codeCheckerDBAccess.js",
+        "codechecker-api/lib/codeCheckerProductService.js",
+        "codechecker-api/lib/products_types.js",
+        "codechecker-api/lib/serverInfoService.js",
+        "codechecker-api/lib/report_server_types.js",
+        "codechecker-api/lib/codechecker_api_shared_types.js",
+        "buffer",
+      ],
     },
     resolve: {
       extensions: [ ".js", ".vue" ],
@@ -128,31 +150,15 @@ export default defineConfig(({ mode }) => {
     server: {
       port: 8080,
       proxy: {
-        [`^/(v[\\d.]+/)?(${endpoints})`]: proxyTarget,
+        [`^/(.+/)?(v[\\d.]+/)?(${endpoints})$`]: proxyTarget,
         "/docs": proxyTarget,
       },
     },
     plugins: [
       vue(),
-      viteStaticCopy({
-        targets: [
-          {
-            src: root("src", "assets", "userguide", "images"),
-            dest: root("dist", "images"),
-          },
-          {
-            src: root("src", "browsersupport.js"),
-            dest: root("dist"),
-          },
-          {
-            src: root("src", "static.js"),
-            dest: root("dist"),
-          },
-        ],
-      }),
       nodePolyfills({ include: [ "buffer" ] }),
       eslint({ include: [ "src/**/*.{js,vue}" ] }),
-      vuetify({ autoImport: true }),
+      ...(mode === "production" ? [ vuetify({ autoImport: true }) ] : []),
     ],
   };
 });

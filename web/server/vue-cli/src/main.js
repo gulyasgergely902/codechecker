@@ -1,6 +1,3 @@
-import "core-js/stable";
-import "regenerator-runtime/runtime";
-
 // Thrift uses captureStackTrace function which is not available in Firefox
 // and it will throw an exception. For this reason we define this function as
 // an empty function. There is already a patch which will solve this problem:
@@ -21,6 +18,8 @@ import { createApp } from "vue";
 
 import "vuetify/styles";
 import { createVuetify } from "vuetify";
+import * as components from "vuetify/components";
+import * as directives from "vuetify/directives";
 import { aliases, mdi } from "vuetify/iconsets/mdi";
 
 import App from "./App.vue";
@@ -119,6 +118,8 @@ router.afterEach(to => {
 });
 
 const vuetify = createVuetify({
+  components,
+  directives,
   icons: {
     defaultSet: "mdi",
     aliases,

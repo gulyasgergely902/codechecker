@@ -15,7 +15,7 @@
       v-model:items-per-page="itemsPerPage"
       v-model:sort-by="sortBy"
       v-model:expanded="expanded"
-      v-model:items-per-page-options="itemsPerPageOptions"
+      :items-per-page-options="itemsPerPageOptions"
       :items-length="totalItems"
       :headers="headers"
       :items="runs"

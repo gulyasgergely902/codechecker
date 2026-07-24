@@ -11,16 +11,14 @@ const baseStats = useBaseStatistics(props, getStatistics);
 baseStats.setupRefreshListener(fetchStatistics);
 
 onMounted(function() {
-  if (process.env.NODE_ENV !== "production") {
-    if (module.hot) {
-      if (module.hot.data) {
-        baseStats.statistics.value = module.hot.data.statistics;
-      }
-
-      module.hot.dispose(
-        _data => _data["statistics"] = baseStats.statistics.value
-      );
+  if (import.meta.hot) {
+    if (import.meta.hot.data && import.meta.hot.data.statistics) {
+      baseStats.statistics.value = import.meta.hot.data.statistics;
     }
+
+    import.meta.hot.dispose(
+      _data => _data["statistics"] = baseStats.statistics.value
+    );
   }
 });
 
