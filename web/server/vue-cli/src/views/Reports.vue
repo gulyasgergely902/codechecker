@@ -441,16 +441,19 @@ import { useGradientColor } from "@/composables/useGradientColor";
 import { useDetectionStatus } from "@/composables/useDetectionStatus";
 import { useSeverity } from "@/composables/useSeverity";
 import { useReviewStatus } from "@/composables/useReviewStatus";
-import {
-  DetectionStatusIcon,
-  ReviewStatusIcon,
-  SeverityIcon
-} from "@/components/Icons";
+import DetectionStatusIcon
+  from "@/components/Icons/DetectionStatusIcon.vue";
+import ReviewStatusIcon
+  from "@/components/Icons/ReviewStatusIcon.vue";
+import SeverityIcon
+  from "@/components/Icons/SeverityIcon.vue";
 
 import CheckerDocumentationDialog from
   "@/components/CheckerDocumentationDialog";
-import { ReportFilter } from "@/components/Report/ReportFilter";
-import { SetCleanupPlanBtn } from "@/components/Report/CleanupPlan";
+import ReportFilter
+  from "@/components/Report/ReportFilter/ReportFilter.vue";
+import SetCleanupPlanBtn
+  from "@/components/Report/CleanupPlan/SetCleanupPlanBtn.vue";
 
 const route = useRoute();
 const router = useRouter();

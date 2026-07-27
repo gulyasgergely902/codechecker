@@ -73,18 +73,22 @@
 </template>
 
 <script setup>
-import { ccService, handleThriftError } from "@cc-api";
 import { computed, ref } from "vue";
 
-import { DetectionStatusIcon } from "@/components/Icons";
-import TooltipHelpIcon from "@/components/TooltipHelpIcon";
+import { ccService, handleThriftError } from "@cc-api";
+
+import DetectionStatusIcon from "@/components/Icons/DetectionStatusIcon.vue";
+import TooltipHelpIcon from "@/components/TooltipHelpIcon.vue";
 import { DetectionStatus, ReportFilter } from "@cc/report-server-types";
 
 import {
   useBaseSelectOptionFilter
 } from "@/composables/useBaseSelectOptionFilter";
 import { useDetectionStatus } from "@/composables/useDetectionStatus";
-import { SelectOption, SelectedToolbarTitleItems } from "./SelectOption";
+import SelectOption
+  from "./SelectOption/SelectOption.vue";
+import SelectedToolbarTitleItems
+  from "./SelectOption/SelectedToolbarTitleItems.vue";
 
 const emit = defineEmits([ "update:url" ]);
 

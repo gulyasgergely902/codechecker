@@ -75,8 +75,9 @@
 </template>
 
 <script setup>
-import { fromUnixTime } from "@/filters/from-unix-time";
 import { computed } from "vue";
+
+import { fromUnixTime } from "@/filters/from-unix-time";
 import DueDate from "./DueDate";
 
 const props = defineProps({

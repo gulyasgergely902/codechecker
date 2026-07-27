@@ -578,13 +578,14 @@
 </template>
 
 <script setup>
-import CountChips from "@/components/CountChips";
-import {
-  DetectionStatusIcon,
-  ReviewStatusIcon,
-  SeverityIcon
-} from "@/components/Icons";
-import { SourceComponentTooltip } from "@/components/Report/SourceComponent";
+import CountChips from "@/components/CountChips.vue";
+import DetectionStatusIcon
+  from "@/components/Icons/DetectionStatusIcon.vue";
+import ReviewStatusIcon
+  from "@/components/Icons/ReviewStatusIcon.vue";
+import SeverityIcon from "@/components/Icons/SeverityIcon.vue";
+import SourceComponentTooltip
+  from "@/components/Report/SourceComponent/SourceComponentTooltip.vue";
 import { useReportStatus } from "@/composables/useReportStatus";
 import { useReviewStatus } from "@/composables/useReviewStatus";
 import { useSeverity } from "@/composables/useSeverity";

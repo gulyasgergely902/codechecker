@@ -147,16 +147,16 @@
 </template>
 
 <script setup>
+import { computed, ref, watch } from "vue";
+import { useRoute } from "vue-router";
+
 import { ccService, handleThriftError } from "@cc-api";
 import { ReportFilter } from "@cc/report-server-types";
-import { computed, ref, watch } from "vue";
 
 import {
   useBaseSelectOptionFilter
 } from "@/composables/useBaseSelectOptionFilter";
-import SelectOption from "./SelectOption/SelectOption";
-
-import { useRoute } from "vue-router";
+import SelectOption from "./SelectOption/SelectOption.vue";
 import AnywhereOnReportPath from "./SelectOption/AnywhereOnReportPath.vue";
 
 const emit = defineEmits([ "update:url" ]);

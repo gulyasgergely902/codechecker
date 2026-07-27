@@ -28,10 +28,12 @@
 </template>
 
 <script setup>
-import ConfirmDialog from "@/components/ConfirmDialog";
+import { ref } from "vue";
+
 import { useBaseFilter } from "@/composables/useBaseFilter";
 import { ccService, handleThriftError } from "@cc-api";
-import { ref } from "vue";
+
+import ConfirmDialog from "@/components/ConfirmDialog.vue";
 
 const emit = defineEmits([ "update" ]);
 const baseFilter = useBaseFilter();

@@ -14,7 +14,8 @@
 </template>
 
 <script setup>
-import { BaseStatisticsTable } from "@/components/Statistics";
+import BaseStatisticsTable
+  from "@/components/Statistics/BaseStatisticsTable.vue";
 
 defineProps({
   items: { type: Array, required: true },

@@ -34,14 +34,18 @@
 </template>
 
 <script setup>
-import { usePopulatePermissions } from "@/composables/usePopulatePermissions";
 import {
   computed,
   onMounted,
   ref
 } from "vue";
-import ProductGroupPermission from "./ProductGroupPermission";
-import ProductUserPermission from "./ProductUserPermission";
+
+import { usePopulatePermissions } from "@/composables/usePopulatePermissions";
+
+import ProductGroupPermission
+  from "@/components/Product/Permission/ProductGroupPermission.vue";
+import ProductUserPermission
+  from "@/components/Product/Permission/ProductUserPermission.vue";
 
 const props = defineProps({
   product: { type: Object, required: true },

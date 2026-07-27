@@ -36,18 +36,19 @@
 </template>
 
 <script setup>
-import { ccService, handleThriftError } from "@cc-api";
 import { computed, ref, watch } from "vue";
 import { useStore } from "vuex";
 
-import {
-  ManageCleanupPlanDialog
-} from "@/components/Report/CleanupPlan";
+import { ccService, handleThriftError } from "@cc-api";
+
+import ManageCleanupPlanDialog
+  from "@/components/Report/CleanupPlan/ManageCleanupPlanDialog.vue";
 
 import {
   useBaseSelectOptionFilter
 } from "@/composables/useBaseSelectOptionFilter";
-import SelectOption from "./SelectOption/SelectOption";
+import SelectOption
+  from "@/components/Report/ReportFilter/Filters/SelectOption/SelectOption.vue";
 
 const emit = defineEmits([ "update:url" ]);
 

@@ -16,8 +16,8 @@
 <script setup>
 import { computed, ref, watch } from "vue";
 import { useStore } from "vuex";
-import Errors from "@/components/Errors";
-import { TheHeader } from "@/components/Layout";
+import Errors from "@/components/Errors.vue";
+import TheHeader from "@/components/Layout/TheHeader.vue";
 
 const keepAliveList = ref([]);
 const store = useStore();

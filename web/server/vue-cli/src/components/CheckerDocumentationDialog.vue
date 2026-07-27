@@ -41,9 +41,11 @@
 
 <script setup>
 import { computed, ref, watch } from "vue";
-import { SeverityIcon } from "@/components/Icons";
+
 import { ccService, handleThriftError } from "@cc-api";
 import { Checker, Severity } from "@cc/report-server-types";
+
+import SeverityIcon from "@/components/Icons/SeverityIcon.vue";
 import ConfirmDialog from "@/components/ConfirmDialog.vue";
 
 const props = defineProps({

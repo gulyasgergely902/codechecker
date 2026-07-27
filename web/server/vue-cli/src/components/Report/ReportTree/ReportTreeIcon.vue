@@ -100,11 +100,12 @@ off or unavailable."
 <script setup>
 import { DetectionStatus } from "@cc/report-server-types";
 
-import {
-  DetectionStatusIcon,
-  ReportStepEnumIcon,
-  SeverityIcon
-} from "@/components/Icons";
+import DetectionStatusIcon
+  from "@/components/Icons/DetectionStatusIcon.vue";
+import ReportStepEnumIcon
+  from "@/components/Icons/ReportStepEnumIcon.vue";
+import SeverityIcon
+  from "@/components/Icons/SeverityIcon.vue";
 
 import ReportStepIcon from "./ReportStepIcon";
 import ReportTreeKind from "./ReportTreeKind";

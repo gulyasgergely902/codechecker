@@ -17,10 +17,11 @@
 </template>
 
 <script setup>
-import { ccService, handleThriftError } from "@cc-api";
 import { ref } from "vue";
+import { ccService, handleThriftError } from "@cc-api";
 
-import { SeverityIcon } from "@/components/Icons";
+import SeverityIcon
+  from "@/components/Icons/SeverityIcon.vue";
 import { ReportFilter, Severity } from "@cc/report-server-types";
 
 import { useBaseSelectOptionFilter }

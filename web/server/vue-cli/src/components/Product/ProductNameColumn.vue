@@ -108,10 +108,12 @@
 <script setup>
 import { ref } from "vue";
 
-import { ConfidentialityIcon } from "@/components/Icons";
-import { defaultReportFilterValues } from "@/components/Report/ReportFilter";
+import defaultReportFilterValues
+  from "@/components/Report/ReportFilter/DefaultReportFilterValues.js";
 import { useStrToColor } from "@/composables/useStrToColor";
 import { DBStatus } from "@cc/shared-types";
+
+import ConfidentialityIcon from "@/components/Icons/ConfidentialityIcon.vue";
 
 defineProps({
   product: { type: Object, required: true }

@@ -24,9 +24,10 @@
 </template>
 
 <script setup>
+import { computed } from "vue";
+
 import fromUnixTime from "@/filters/from-unix-time";
 import { fromUnixTime as fromUnixTimestamp, startOfToday } from "date-fns";
-import { computed } from "vue";
 
 const props = defineProps({
   value: { type: Number, required: true },

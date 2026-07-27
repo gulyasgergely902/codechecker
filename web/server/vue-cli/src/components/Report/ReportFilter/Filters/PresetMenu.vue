@@ -66,15 +66,16 @@
 
 <script setup>
 import { computed, nextTick, onMounted, ref, watch } from "vue";
+import { useRoute } from "vue-router";
+
 import isEqual from "lodash/isEqual";
-import ConfirmDialog from "@/components/ConfirmDialog";
+import ConfirmDialog from "@/components/ConfirmDialog.vue";
 import {
   authService,
   ccService,
   handleThriftError,
   prodService } from "@cc-api";
 import { Permission } from "@cc/shared-types";
-import { useRoute } from "vue-router";
 
 const emit = defineEmits([ "apply-preset", "clear-preset" ]);
 

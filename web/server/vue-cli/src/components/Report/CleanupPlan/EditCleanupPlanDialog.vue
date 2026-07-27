@@ -49,11 +49,12 @@
 </template>
 
 <script setup>
-import { ccService, handleThriftError } from "@cc-api";
 import { computed, ref, watch } from "vue";
 
-import ConfirmDialog from "@/components/ConfirmDialog";
-import DueDateMenu from "@/components/Report/CleanupPlan/DueDateMenu";
+import { ccService, handleThriftError } from "@cc-api";
+
+import ConfirmDialog from "@/components/ConfirmDialog.vue";
+import DueDateMenu from "@/components/Report/CleanupPlan/DueDateMenu.vue";
 
 const props = defineProps({
   modelValue: { type: Boolean, default: false },

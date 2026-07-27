@@ -43,7 +43,8 @@
 import { useReviewStatus } from "@/composables/useReviewStatus";
 import { ReviewStatus } from "@cc/report-server-types";
 import { computed, ref } from "vue";
-import { ReviewStatusIcon } from "@/components/Icons";
+import ReviewStatusIcon
+  from "@/components/Icons/ReviewStatusIcon.vue";
 
 const props = defineProps({
   modelValue: { type: Number, default: null },

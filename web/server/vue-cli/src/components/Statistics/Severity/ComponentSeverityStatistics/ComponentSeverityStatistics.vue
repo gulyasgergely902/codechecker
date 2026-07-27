@@ -121,13 +121,16 @@
 import { computed, ref } from "vue";
 import { useRouter } from "vue-router";
 
-import { DetectionStatusIcon, SeverityIcon } from "@/components/Icons";
+import DetectionStatusIcon
+  from "@/components/Icons/DetectionStatusIcon.vue";
+import SeverityIcon from "@/components/Icons/SeverityIcon.vue";
+import ReportDiffCount
+  from "@/components/Statistics/ReportDiffCount.vue";
 import {
-  ReportDiffCount,
   getComponents,
   initDiffField
-} from "@/components/Statistics";
-import TooltipHelpIcon from "@/components/TooltipHelpIcon";
+} from "@/components/Statistics/StatisticsHelper.js";
+import TooltipHelpIcon from "@/components/TooltipHelpIcon.vue";
 import { useBaseStatistics } from "@/composables/useBaseStatistics";
 import { useSeverity } from "@/composables/useSeverity";
 import { ccService, handleThriftError } from "@cc-api";

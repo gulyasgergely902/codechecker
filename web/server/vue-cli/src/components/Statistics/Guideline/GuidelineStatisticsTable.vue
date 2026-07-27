@@ -17,7 +17,8 @@
 <script setup>
 import { computed } from "vue";
 
-import { BaseStatisticsTable } from "@/components/Statistics";
+import BaseStatisticsTable
+  from "@/components/Statistics/BaseStatisticsTable.vue";
 import { v4 as uuidv4 } from "uuid";
 
 const props = defineProps({

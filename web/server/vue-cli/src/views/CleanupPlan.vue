@@ -12,7 +12,6 @@
 </template>
 
 <script setup>
-import {
-  ListCleanupPlans
-} from "@/components/Report/CleanupPlan";
+import ListCleanupPlans
+  from "@/components/Report/CleanupPlan/ListCleanupPlans.vue";
 </script>

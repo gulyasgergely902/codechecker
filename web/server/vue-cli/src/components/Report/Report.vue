@@ -346,21 +346,23 @@ import {
   ReviewData
 } from "@cc/report-server-types";
 
-import { AnalysisInfoDialog, CopyBtn } from "@/components";
-import { UserIcon } from "@/components/Icons";
-import { FillHeight } from "@/directives";
+import AnalysisInfoDialog from "@/components/AnalysisInfoDialog.vue";
+import CopyBtn from "@/components/CopyBtn.vue";
+import UserIcon from "@/components/Icons/UserIcon.vue";
+import SetCleanupPlanBtn
+  from "@/components/Report/CleanupPlan/SetCleanupPlanBtn.vue";
+import ReportComments from "@/components/Report/Comment/ReportComments.vue";
+import ToggleBlameViewBtn from "@/components/Report/Git/ToggleBlameViewBtn.vue";
+import SelectReviewStatus from "@/components/Report/SelectReviewStatus.vue";
+import ShowReportInfoDialog
+  from "@/components/Report/ReportInfo/ShowReportInfoDialog.vue";
+import SelectSameReport from "@/components/Report/SelectSameReport.vue";
+import ReportStepMessage from "@/components/Report/ReportStepMessage.vue";
 
-import { SetCleanupPlanBtn } from "@/components/Report/CleanupPlan";
 import ReportTreeKind from "@/components/Report/ReportTree/ReportTreeKind";
 
+import { FillHeight } from "@/directives";
 import { useGitBlame } from "@/composables/useGitBlame";
-import { ReportComments } from "./Comment";
-import ToggleBlameViewBtn from "./Git/ToggleBlameViewBtn";
-import { ShowReportInfoDialog } from "./ReportInfo";
-import SelectReviewStatus from "./SelectReviewStatus";
-import SelectSameReport from "./SelectSameReport";
-
-import ReportStepMessage from "./ReportStepMessage";
 
 const props = defineProps({
   treeItem: { type: Object, default: null }

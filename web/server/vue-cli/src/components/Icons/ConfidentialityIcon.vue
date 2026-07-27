@@ -28,9 +28,10 @@
 </template>
 
 <script setup>
+import { computed } from "vue";
+
 import { useConfidentiality } from "@/composables/useConfidentiality";
 import { Confidentiality } from "@cc/prod-types";
-import { computed } from "vue";
 
 const props = defineProps({
   value: { type: Number, required: true },

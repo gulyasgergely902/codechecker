@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-import TooltipHelpIcon from "@/components/TooltipHelpIcon";
+import TooltipHelpIcon from "@/components/TooltipHelpIcon.vue";
 import { useBaseFilter } from "@/composables/useBaseFilter";
 import { ref, watch } from "vue";
 import { useRoute } from "vue-router";

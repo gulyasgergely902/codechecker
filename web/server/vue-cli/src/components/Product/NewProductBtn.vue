@@ -40,8 +40,8 @@ import {
   ProductConfiguration
 } from "@cc/prod-types";
 
-import ConfirmDialog from "@/components/ConfirmDialog";
-import ProductConfigForm from "./ProductConfigForm";
+import ConfirmDialog from "@/components/ConfirmDialog.vue";
+import ProductConfigForm from "@/components/Product/ProductConfigForm.vue";
 
 defineProps({
   isSuperUser: { type: Boolean, default: false }

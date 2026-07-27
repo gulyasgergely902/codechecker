@@ -48,14 +48,15 @@ import {
   ReportFilter
 } from "@cc/report-server-types";
 
+import UniqueStatWarning
+  from "@/components/Statistics/UniqueStatWarning.vue";
 import {
-  UniqueStatWarning,
   getComponents,
   initDiffField
-} from "@/components/Statistics";
+} from "@/components/Statistics/StatisticsHelper.js";
 import {
   getComponentStatistics
-} from "@/components/Statistics/StatisticsHelper";
+} from "@/components/Statistics/StatisticsHelper.js";
 
 import ComponentStatisticsTable from "./ComponentStatisticsTable";
 

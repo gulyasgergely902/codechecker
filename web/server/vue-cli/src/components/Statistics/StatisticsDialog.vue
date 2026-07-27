@@ -61,7 +61,7 @@ import {
   CheckerInfoAvailability,
   setCheckerStatusUnavailableDueToVersion,
 } from "@/composables/useAnalysisInfo";
-import ConfirmDialog from "@/components/ConfirmDialog";
+import ConfirmDialog from "@/components/ConfirmDialog.vue";
 
 const props = defineProps({
   modelValue: { type: Boolean, required: true },

@@ -25,7 +25,8 @@
 </template>
 
 <script setup>
-import { AnalyzerStatisticsIcon } from "@/components/Icons";
+import AnalyzerStatisticsIcon
+  from "@/components/Icons/AnalyzerStatisticsIcon.vue";
 
 defineProps({
   name: { type: String, required: true },

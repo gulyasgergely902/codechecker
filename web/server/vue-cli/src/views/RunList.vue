@@ -15,7 +15,7 @@
       v-model:items-per-page="itemsPerPage"
       v-model:sort-by="sortBy"
       v-model:expanded="expanded"
-      v-model:items-per-page-options="itemsPerPageOptions"
+      :items-per-page-options="itemsPerPageOptions"
       :items-length="totalItems"
       :headers="headers"
       :items="runs"
@@ -162,13 +162,15 @@ import {
   RunSortType
 } from "@cc/report-server-types";
 
-import {
-  AnalyzerStatisticsBtn,
-  AnalyzerStatisticsDialog,
-  ExpandedRun,
-  RunFilterToolbar,
-  RunNameColumn
-} from "@/components/Run";
+import AnalyzerStatisticsBtn
+  from "@/components/Run/AnalyzerStatisticsBtn.vue";
+import AnalyzerStatisticsDialog
+  from "@/components/Run/AnalyzerStatisticsDialog.vue";
+import ExpandedRun from "@/components/Run/ExpandedRun.vue";
+import RunFilterToolbar
+  from "@/components/Run/RunFilterToolbar.vue";
+import RunNameColumn
+  from "@/components/Run/RunNameColumn.vue";
 
 const { prettifyCCVersion } = useVersion();
 

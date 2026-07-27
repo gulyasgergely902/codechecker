@@ -12,7 +12,7 @@ import DOMPurify from "dompurify";
 const doc = ref(null);
 
 onMounted(() => {
-  import("@/assets/userguide/userguide.md").then(_m => {
+  import("@/assets/userguide/userguide.md?raw").then(_m => {
     doc.value = DOMPurify.sanitize(marked(_m.default));
   });
 });

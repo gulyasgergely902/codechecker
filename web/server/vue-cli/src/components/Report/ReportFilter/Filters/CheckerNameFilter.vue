@@ -21,14 +21,16 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
+
 import { ccService, handleThriftError } from "@cc-api";
 import { ReportFilter } from "@cc/report-server-types";
-import { ref } from "vue";
 
 import {
   useBaseSelectOptionFilter
 } from "@/composables/useBaseSelectOptionFilter";
-import SelectOption from "./SelectOption/SelectOption";
+import SelectOption
+  from "@/components/Report/ReportFilter/Filters/SelectOption/SelectOption.vue";
 
 const emit = defineEmits([ "update:url" ]);
 

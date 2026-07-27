@@ -24,6 +24,7 @@
 
 <script setup>
 import { computed } from "vue";
+
 import DOMPurify from "dompurify";
 
 const props = defineProps({

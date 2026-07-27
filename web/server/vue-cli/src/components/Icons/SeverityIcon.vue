@@ -61,9 +61,10 @@
 </template>
 
 <script setup>
+import { computed } from "vue";
+
 import { useSeverity } from "@/composables/useSeverity";
 import { Severity } from "@cc/report-server-types";
-import { computed } from "vue";
 
 const props = defineProps({
   status: { type: Number, required: true },

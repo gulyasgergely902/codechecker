@@ -210,16 +210,17 @@
 
 <script setup>
 import { computed, onMounted, ref, watch } from "vue";
-import {
-  DetectionStatusIcon,
-  ReviewStatusIcon,
-  SeverityIcon
-} from "@/components/Icons";
+import DetectionStatusIcon
+  from "@/components/Icons/DetectionStatusIcon.vue";
+import ReviewStatusIcon
+  from "@/components/Icons/ReviewStatusIcon.vue";
+import SeverityIcon
+  from "@/components/Icons/SeverityIcon.vue";
 import { useDetectionStatus } from "@/composables/useDetectionStatus";
 import { useReviewStatus } from "@/composables/useReviewStatus";
 import { useSeverity } from "@/composables/useSeverity";
 import { ccService, handleThriftError } from "@cc-api";
-import ReportInfoItem from "@/components/Report/ReportInfo/ReportInfoItem";
+import ReportInfoItem from "@/components/Report/ReportInfo/ReportInfoItem.vue";
 import { Checker } from "@cc/report-server-types";
 
 const props = defineProps({

@@ -129,7 +129,7 @@ import _ from "lodash";
 import { ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
-import TooltipHelpIcon from "@/components/TooltipHelpIcon";
+import TooltipHelpIcon from "@/components/TooltipHelpIcon.vue";
 import { useBaseStatistics } from "@/composables/useBaseStatistics";
 import { ccService, handleThriftError } from "@cc-api";
 

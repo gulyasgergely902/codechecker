@@ -37,7 +37,8 @@
 </template>
 
 <script setup>
-import { AnalyzerStatisticsIcon } from "@/components/Icons";
+import AnalyzerStatisticsIcon
+  from "@/components/Icons/AnalyzerStatisticsIcon.vue";
 import { computed } from "vue";
 
 const props = defineProps({

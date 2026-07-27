@@ -118,7 +118,7 @@
 import { computed, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
-import TooltipHelpIcon from "@/components/TooltipHelpIcon";
+import TooltipHelpIcon from "@/components/TooltipHelpIcon.vue";
 import {
   CheckerInfoAvailability,
   useAnalysisInfo

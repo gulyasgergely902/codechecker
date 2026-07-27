@@ -83,10 +83,11 @@
 </template>
 
 <script setup>
-import { AnalyzerStatisticsIcon } from "@/components/Icons";
+import AnalyzerStatisticsIcon
+  from "@/components/Icons/AnalyzerStatisticsIcon.vue";
 import { ccService, handleThriftError } from "@cc-api";
 import { computed, onMounted, ref, watch } from "vue";
-import ConfirmDialog from "@/components/ConfirmDialog";
+import ConfirmDialog from "@/components/ConfirmDialog.vue";
 
 const props = defineProps({
   modelValue: { type: Boolean, default: false },

@@ -153,14 +153,18 @@ const { prettifyDate } = useDateUtils();
 import { authService, handleThriftError, prodService } from "@cc-api";
 import { Permission } from "@cc/shared-types";
 
-import { EditGlobalPermissionBtn } from "@/components/Product/Permission";
-import {
-  DeleteProductBtn,
-  EditAnnouncementBtn,
-  EditProductBtn,
-  NewProductBtn,
-  ProductNameColumn
-} from "@/components/Product/";
+import EditGlobalPermissionBtn
+  from "@/components/Product/Permission/EditGlobalPermissionBtn.vue";
+import DeleteProductBtn
+  from "@/components/Product/DeleteProductBtn.vue";
+import EditAnnouncementBtn
+  from "@/components/Product/EditAnnouncementBtn.vue";
+import EditProductBtn
+  from "@/components/Product/EditProductBtn.vue";
+import NewProductBtn
+  from "@/components/Product/NewProductBtn.vue";
+import ProductNameColumn
+  from "@/components/Product/ProductNameColumn.vue";
 
 const itemsPerPageOptions = [
   { value: 25, title: "25" },

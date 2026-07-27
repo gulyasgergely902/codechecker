@@ -65,8 +65,9 @@
 </template>
 
 <script setup>
-import { ReportStepEnumIcon } from "@/components/Icons";
 import { computed } from "vue";
+
+import ReportStepEnumIcon from "@/components/Icons/ReportStepEnumIcon.vue";
 
 const props = defineProps({
   id: { type: [ String, Number ], required: true },

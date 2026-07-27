@@ -175,12 +175,10 @@
 
 <script setup>
 import { computed, ref, watch } from "vue";
-import ConfirmDialog from "@/components/ConfirmDialog";
-import {
-  CheckerGroup,
-  CheckerRows
-} from "@/components/AnalysisInfo";
-import CountChips from "@/components/CountChips";
+import ConfirmDialog from "@/components/ConfirmDialog.vue";
+import CheckerGroup from "@/components/AnalysisInfo/CheckerGroup.vue";
+import CheckerRows from "@/components/AnalysisInfo/CheckerRows.vue";
+import CountChips from "@/components/CountChips.vue";
 
 import {
   CheckerInfoAvailability,

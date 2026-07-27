@@ -90,10 +90,11 @@ import { useStore } from "vuex";
 import { authService, handleThriftError } from "@cc-api";
 import { PermissionFilter } from "@cc/auth-types";
 import { Permission } from "@cc/shared-types";
-
-import { UserIcon } from "@/components/Icons";
-import PersonalAccessTokenBtn from "@/components/Layout/PersonalAccessTokenBtn";
 import { GET_LOGGED_IN_USER, LOGOUT } from "@/store/actions.type";
+
+import UserIcon from "@/components/Icons/UserIcon.vue";
+import PersonalAccessTokenBtn
+  from "@/components/Layout/PersonalAccessTokenBtn.vue";
 
 const menu = ref(false);
 const systemPermissions = ref([]);

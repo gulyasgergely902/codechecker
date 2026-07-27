@@ -79,12 +79,14 @@
 </template>
 
 <script setup>
-import { RunDescription } from "@/components/Run";
+import RunDescription from "@/components/Run/RunDescription.vue";
 import { computed } from "vue";
 
-import { defaultReportFilterValues } from "@/components/Report/ReportFilter";
+import defaultReportFilterValues
+  from "@/components/Report/ReportFilter/DefaultReportFilterValues.js";
 
-import { DetectionStatusIcon } from "@/components/Icons";
+import DetectionStatusIcon
+  from "@/components/Icons/DetectionStatusIcon.vue";
 import { useDetectionStatus } from "@/composables/useDetectionStatus";
 import { AnalysisInfoDialog } from "@/components";
 import ShowStatisticsBtn from "./ShowStatisticsBtn";

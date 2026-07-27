@@ -21,7 +21,8 @@
 </template>
 
 <script setup>
-import { CheckerStatisticsTable } from "@/components/Statistics";
+import CheckerStatisticsTable
+  from "@/components/Statistics/Checker/CheckerStatisticsTable.vue";
 
 defineProps({
   item: { type: Object, required: true },

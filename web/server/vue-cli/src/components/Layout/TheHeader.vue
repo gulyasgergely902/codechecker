@@ -26,7 +26,7 @@
     <v-app-bar-nav-icon>
       <v-avatar
         size="36px"
-        :image="require('@/assets/logo.png')"
+        :image="logoUrl"
         color="transparent"
       />
     </v-app-bar-nav-icon>
@@ -133,14 +133,18 @@
 
 <script setup>
 import { computed, onMounted, ref } from "vue";
+
 import { useRoute } from "vue-router";
 import { useStore } from "vuex";
 
 import { GET_ANNOUNCEMENT, GET_PACKAGE_VERSION } from "@/store/actions.type";
+import defaultReportFilterValues
+  from "@/components/Report/ReportFilter/DefaultReportFilterValues.js";
 
-import { defaultReportFilterValues } from "@/components/Report/ReportFilter";
-import HeaderMenuItems from "./HeaderMenuItems";
-import UserInfoMenu from "./UserInfoMenu";
+import HeaderMenuItems from "@/components/Layout/HeaderMenuItems.vue";
+import UserInfoMenu from "@/components/Layout/UserInfoMenu.vue";
+
+import logoUrl from "@/assets/logo.png";
 
 const store = useStore();
 const route = useRoute();

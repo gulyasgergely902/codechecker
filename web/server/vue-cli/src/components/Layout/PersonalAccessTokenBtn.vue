@@ -131,10 +131,12 @@
 </template>
 
 <script setup>
-import ConfirmDialog from "@/components/ConfirmDialog";
+import { computed, onMounted, ref, watch } from "vue";
+
 import { authService, handleThriftError } from "@cc-api";
 import { format } from "date-fns";
-import { computed, onMounted, ref, watch } from "vue";
+
+import ConfirmDialog from "@/components/ConfirmDialog.vue";
 
 const addPersonalAccessTokenDialog = ref(false);
 const deletePersonalAccessTokenDialog = ref(false);

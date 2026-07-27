@@ -70,10 +70,10 @@ import { ccService, handleThriftError } from "@cc-api";
 import { computed, ref, watch } from "vue";
 import { useStore } from "vuex";
 
-import {
-  ManageSourceComponentDialog,
-  SourceComponentTooltip
-} from "@/components/Report/SourceComponent";
+import ManageSourceComponentDialog
+  from "@/components/Report/SourceComponent/ManageSourceComponentDialog.vue";
+import SourceComponentTooltip
+  from "@/components/Report/SourceComponent/SourceComponentTooltip.vue";
 
 import { useBaseSelectOptionFilter }
   from "@/composables/useBaseSelectOptionFilter";

@@ -44,7 +44,7 @@ import { confService, handleThriftError } from "@cc-api";
 import { GET_ANNOUNCEMENT } from "@/store/actions.type";
 import { SET_ANNOUNCEMENT } from "@/store/mutations.type";
 
-import ConfirmDialog from "@/components/ConfirmDialog";
+import ConfirmDialog from "@/components/ConfirmDialog.vue";
 
 const store = useStore();
 const dialog = ref(false);

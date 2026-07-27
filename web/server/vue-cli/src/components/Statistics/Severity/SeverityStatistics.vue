@@ -67,12 +67,14 @@ import { useBaseStatistics } from "@/composables/useBaseStatistics";
 import { useSeverity } from "@/composables/useSeverity";
 import { useToCSV } from "@/composables/useToCSV";
 
-import { UniqueStatWarning } from "@/components/Statistics";
+import UniqueStatWarning
+  from "@/components/Statistics/UniqueStatWarning.vue";
 import {
   getSeverityStatistics
-} from "@/components/Statistics/StatisticsHelper";
-import TooltipHelpIcon from "@/components/TooltipHelpIcon";
-import { ComponentSeverityStatistics } from "./ComponentSeverityStatistics";
+} from "@/components/Statistics/StatisticsHelper.js";
+import TooltipHelpIcon from "@/components/TooltipHelpIcon.vue";
+import ComponentSeverityStatistics
+  from "./ComponentSeverityStatistics/ComponentSeverityStatistics.vue";
 
 import SeverityStatisticsTable from "./SeverityStatisticsTable";
 

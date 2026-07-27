@@ -74,13 +74,16 @@
 </template>
 
 <script setup>
-import { ccService, handleThriftError } from "@cc-api";
 import { computed, ref, watch } from "vue";
 
-import TooltipHelpIcon from "@/components/TooltipHelpIcon";
+import { ccService, handleThriftError } from "@cc-api";
+
+import TooltipHelpIcon from "@/components/TooltipHelpIcon.vue";
+import CleanupPlanList
+  from "@/components/Report/CleanupPlan/CleanupPlanList.vue";
+import CleanupPlanTab from "@/components/Report/CleanupPlan/CleanupPlanTab.vue";
+
 import { useCleanupPlan } from "@/composables/useCleanupPlan";
-import CleanupPlanList from "./CleanupPlanList";
-import CleanupPlanTab from "./CleanupPlanTab";
 
 const props = defineProps({
   selectedReports: { type: Array, required: true }

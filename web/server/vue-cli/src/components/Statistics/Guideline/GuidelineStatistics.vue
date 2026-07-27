@@ -146,7 +146,7 @@
 </template>
 
 <script setup>
-import TooltipHelpIcon from "@/components/TooltipHelpIcon";
+import TooltipHelpIcon from "@/components/TooltipHelpIcon.vue";
 import {
   CheckerInfoAvailability,
   useAnalysisInfo

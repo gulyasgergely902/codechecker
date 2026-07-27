@@ -72,10 +72,12 @@
 </template>
 
 <script setup>
-import CountChips from "@/components/CountChips";
-import { CountKeys } from "@/composables/useAnalysisInfo";
 import { computed } from "vue";
-import CheckerRows from "./CheckerRows";
+
+import CountChips from "@/components/CountChips.vue";
+import CheckerRows from "@/components/AnalysisInfo/CheckerRows.vue";
+
+import { CountKeys } from "@/composables/useAnalysisInfo";
 
 const props = defineProps({
   group: { type: String, required: true },

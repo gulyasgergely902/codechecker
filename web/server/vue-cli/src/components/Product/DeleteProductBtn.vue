@@ -39,8 +39,9 @@
 <script setup>
 import { ref } from "vue";
 
-import ConfirmDialog from "@/components/ConfirmDialog";
 import { handleThriftError, prodService } from "@cc-api";
+
+import ConfirmDialog from "@/components/ConfirmDialog.vue";
 
 const props = defineProps({
   product: { type: Object, required: true }

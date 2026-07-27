@@ -131,14 +131,18 @@
 </template>
 
 <script setup>
-import { DetectionStatusIcon, ReviewStatusIcon } from "@/components/Icons";
-import { useReviewStatus } from "@/composables/useReviewStatus";
-import { ccService } from "@cc-api";
-import { ReviewStatus } from "@cc/report-server-types";
 import { computed, ref } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
-import ConfirmDialog from "@/components/ConfirmDialog";
+
+import DetectionStatusIcon from "@/components/Icons/DetectionStatusIcon.vue";
+import ReviewStatusIcon from "@/components/Icons/ReviewStatusIcon.vue";
+import ConfirmDialog from "@/components/ConfirmDialog.vue";
+
+import { useReviewStatus } from "@/composables/useReviewStatus";
+
+import { ccService } from "@cc-api";
+import { ReviewStatus } from "@cc/report-server-types";
 
 const props = defineProps({
   value: { type: Object, default: () => {} },

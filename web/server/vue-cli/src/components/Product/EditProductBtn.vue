@@ -90,9 +90,10 @@ import {
   ProductConfiguration
 } from "@cc/prod-types";
 
-import ConfirmDialog from "@/components/ConfirmDialog";
-import EditProductPermission from "./Permission/EditProductPermission";
-import ProductConfigForm from "./ProductConfigForm";
+import ConfirmDialog from "@/components/ConfirmDialog.vue";
+import EditProductPermission
+  from "@/components/Product/Permission/EditProductPermission.vue";
+import ProductConfigForm from "@/components/Product/ProductConfigForm.vue";
 
 const props = defineProps({
   product: { type: Object, required: true },

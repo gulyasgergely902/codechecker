@@ -104,9 +104,11 @@
 </template>
 
 <script setup>
-import { useStrToColor } from "@/composables/useStrToColor";
-import { format } from "date-fns";
 import { computed } from "vue";
+
+import { format } from "date-fns";
+
+import { useStrToColor } from "@/composables/useStrToColor";
 
 const props = defineProps({
   commit: { type: Object, default: null },

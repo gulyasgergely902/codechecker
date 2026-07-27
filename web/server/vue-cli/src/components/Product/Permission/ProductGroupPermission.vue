@@ -9,11 +9,10 @@
 </template>
 
 <script setup>
-import {
-  ref
-} from "vue";
+import { ref } from "vue";
 
-import BaseProductPermission from "./BaseProductPermission";
+import BaseProductPermission
+  from "@/components/Product/Permission/BaseProductPermission.vue";
 
 defineProps({
   title: { type: String, default: "Group permissions" },

@@ -38,10 +38,11 @@
 <script setup>
 import { ref } from "vue";
 
-import { UniqueStatWarning } from "@/components/Statistics";
+import UniqueStatWarning
+  from "@/components/Statistics/UniqueStatWarning.vue";
 import {
   getCheckerStatistics
-} from "@/components/Statistics/StatisticsHelper";
+} from "@/components/Statistics/StatisticsHelper.js";
 import { useBaseStatistics } from "@/composables/useBaseStatistics";
 import { useSeverity } from "@/composables/useSeverity";
 import { useToCSV } from "@/composables/useToCSV";

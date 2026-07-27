@@ -72,11 +72,13 @@ import { onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { ccService, handleThriftError } from "@cc-api";
 import { CommentKind } from "@cc/report-server-types";
 
-import EditCommentDialog from "./EditCommentDialog";
-import NewComment from "./NewComment";
-import RemoveCommentDialog from "./RemoveCommentDialog";
-import SystemComment from "./SystemComment";
-import UserComment from "./UserComment";
+import EditCommentDialog
+  from "@/components/Report/Comment/EditCommentDialog.vue";
+import NewComment from "@/components/Report/Comment/NewComment.vue";
+import RemoveCommentDialog
+  from "@/components/Report/Comment/RemoveCommentDialog.vue";
+import SystemComment from "@/components/Report/Comment/SystemComment.vue";
+import UserComment from "@/components/Report/Comment/UserComment.vue";
 
 const props = defineProps({
   report: { type: Object, default: () => null }

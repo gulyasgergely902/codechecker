@@ -68,17 +68,17 @@ import { useRoute } from "vue-router";
 
 import { DateInterval, ReportDate } from "@cc/report-server-types";
 
-import DateTimePicker from "@/components/DateTimePicker";
+import DateTimePicker from "@/components/DateTimePicker.vue";
 import {
   useBaseSelectOptionFilter
 } from "@/composables/useBaseSelectOptionFilter";
 import { useDateUtils } from "@/composables/useDateUtils";
-import DetectionDateFilterIcon from "./DetectionDateFilterIcon";
+import DetectionDateFilterIcon from "./DetectionDateFilterIcon.vue";
 import DetectionDateFilterItems, {
   getDateInterval,
   titleFormatter
 } from "./DetectionDateFilterItems";
-import SelectOption from "./SelectOption/SelectOption";
+import SelectOption from "./SelectOption/SelectOption.vue";
 
 const emit = defineEmits([
   "update:url"

@@ -32,10 +32,12 @@
 </template>
 
 <script setup>
-import { useBaseFilter } from "@/composables/useBaseFilter";
 import { ref } from "vue";
 import { useRoute } from "vue-router";
-import FilterToolbar from "./Layout/FilterToolbar";
+
+import { useBaseFilter } from "@/composables/useBaseFilter";
+
+import FilterToolbar from "./Layout/FilterToolbar.vue";
 
 const emit = defineEmits([ "update:url" ]);
 const id = "report-hash";

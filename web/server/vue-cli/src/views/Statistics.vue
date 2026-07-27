@@ -64,7 +64,8 @@ import mitt from "mitt";
 import { ccService, handleThriftError } from "@cc-api";
 
 import { FillHeight } from "@/directives";
-import { ReportFilter } from "@/components/Report/ReportFilter";
+import ReportFilter
+  from "@/components/Report/ReportFilter/ReportFilter.vue";
 
 const vFillHeight = FillHeight;
 

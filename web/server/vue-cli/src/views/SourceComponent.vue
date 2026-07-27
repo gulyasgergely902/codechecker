@@ -6,5 +6,6 @@
 </template>
 
 <script setup>
-import { ListSourceComponents } from "@/components/Report/SourceComponent";
+import ListSourceComponents
+  from "@/components/Report/SourceComponent/ListSourceComponents.vue";
 </script>

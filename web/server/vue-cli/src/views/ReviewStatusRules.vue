@@ -13,5 +13,6 @@
 </template>
 
 <script setup>
-import { ListReviewStatusRules } from "@/components/ReviewStatus";
+import ListReviewStatusRules
+  from "@/components/ReviewStatus/ListReviewStatusRules.vue";
 </script>

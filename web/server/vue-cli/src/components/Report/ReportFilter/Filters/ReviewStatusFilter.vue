@@ -47,17 +47,21 @@
 </template>
 
 <script setup>
-import { ccService, handleThriftError } from "@cc-api";
 import { ref } from "vue";
 
-import { ReviewStatusIcon } from "@/components/Icons";
-import TooltipHelpIcon from "@/components/TooltipHelpIcon";
+import { ccService, handleThriftError } from "@cc-api";
+
+import ReviewStatusIcon from "@/components/Icons/ReviewStatusIcon.vue";
+import TooltipHelpIcon from "@/components/TooltipHelpIcon.vue";
+import SelectOption from "./SelectOption/SelectOption.vue";
+import SelectedToolbarTitleItems
+  from "./SelectOption/SelectedToolbarTitleItems.vue";
+
 import { ReportFilter, ReviewStatus } from "@cc/report-server-types";
 
 import { useBaseSelectOptionFilter }
   from "@/composables/useBaseSelectOptionFilter";
 import { useReviewStatus } from "@/composables/useReviewStatus";
-import { SelectOption, SelectedToolbarTitleItems } from "./SelectOption";
 
 const emit = defineEmits([ "update:url" ]);
 

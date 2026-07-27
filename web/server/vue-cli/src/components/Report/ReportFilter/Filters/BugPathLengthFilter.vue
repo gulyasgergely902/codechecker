@@ -57,13 +57,14 @@
 </template>
 
 <script setup>
-import { BugPathLengthRange } from "@cc/report-server-types";
 import { computed, ref } from "vue";
+import { useRoute } from "vue-router";
+
+import { BugPathLengthRange } from "@cc/report-server-types";
 
 import { useBaseFilter } from "@/composables/useBaseFilter";
-import FilterToolbar from "./Layout/FilterToolbar";
-
-import { useRoute } from "vue-router";
+import FilterToolbar
+  from "@/components/Report/ReportFilter/Filters/Layout/FilterToolbar.vue";
 
 const emit = defineEmits([
   "update:url"

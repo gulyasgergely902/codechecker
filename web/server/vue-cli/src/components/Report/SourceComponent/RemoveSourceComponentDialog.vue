@@ -28,7 +28,7 @@
 
 <script setup>
 import { ccService, handleThriftError } from "@cc-api";
-import ConfirmDialog from "@/components/ConfirmDialog";
+import ConfirmDialog from "@/components/ConfirmDialog.vue";
 import { ref } from "vue";
 
 const props = defineProps({

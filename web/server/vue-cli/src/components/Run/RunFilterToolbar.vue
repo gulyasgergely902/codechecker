@@ -162,9 +162,11 @@ import {
 } from "@/store/mutations.type";
 import _ from "lodash";
 
-import DateTimePicker from "@/components/DateTimePicker";
-import { DeleteRunBtn, LoadMultipleRunsBtn } from "@/components/Run";
-import TooltipHelpIcon from "@/components/TooltipHelpIcon";
+import DateTimePicker from "@/components/DateTimePicker.vue";
+import DeleteRunBtn from "@/components/Run/DeleteRunBtn.vue";
+import LoadMultipleRunsBtn
+  from "@/components/Run/LoadMultipleRunsBtn.vue";
+import TooltipHelpIcon from "@/components/TooltipHelpIcon.vue";
 
 const props = defineProps({
   selected: { type: Array, required: true },

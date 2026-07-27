@@ -62,14 +62,19 @@
 </template>
 
 <script setup>
-import { ccService, handleThriftError } from "@cc-api";
 import { onMounted, ref, watch } from "vue";
 
+import { ccService, handleThriftError } from "@cc-api";
+
 import { useCleanupPlan } from "@/composables/useCleanupPlan";
-import CleanupPlanTab from "./CleanupPlanTab";
-import EditCleanupPlanDialog from "./EditCleanupPlanDialog";
-import ListCleanupPlansTable from "./ListCleanupPlansTable.vue";
-import RemoveCleanupPlanDialog from "./RemoveCleanupPlanDialog";
+
+import CleanupPlanTab from "@/components/Report/CleanupPlan/CleanupPlanTab.vue";
+import EditCleanupPlanDialog
+  from "@/components/Report/CleanupPlan/EditCleanupPlanDialog.vue";
+import ListCleanupPlansTable
+  from "@/components/Report/CleanupPlan/ListCleanupPlansTable.vue";
+import RemoveCleanupPlanDialog
+  from "@/components/Report/CleanupPlan/RemoveCleanupPlanDialog.vue";
 
 const selected = ref(null);
 const editDialog = ref(false);

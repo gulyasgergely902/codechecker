@@ -60,10 +60,11 @@
 </template>
 
 <script setup>
-import { formatDistanceToNow, parse } from "date-fns";
 import { computed } from "vue";
 
-import { UserIcon } from "@/components/Icons";
+import { formatDistanceToNow, parse } from "date-fns";
+
+import UserIcon from "@/components/Icons/UserIcon.vue";
 
 const props = defineProps({
   comment: { type: Object, required: true }

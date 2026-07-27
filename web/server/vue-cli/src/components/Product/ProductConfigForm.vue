@@ -173,10 +173,11 @@ import {
   ref
 } from "vue";
 
+import { Confidentiality } from "@cc/prod-types";
+
 import { useConfidentiality } from "@/composables/useConfidentiality";
 
-import TooltipHelpIcon from "@/components/TooltipHelpIcon";
-import { Confidentiality } from "@cc/prod-types";
+import TooltipHelpIcon from "@/components/TooltipHelpIcon.vue";
 
 const props = defineProps({
   productConfig: { type: Object, required: true },

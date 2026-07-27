@@ -10,7 +10,7 @@
 </template>
 
 <script setup>
-import { ReviewStatusIcon } from "@/components/Icons";
+import ReviewStatusIcon from "@/components/Icons/ReviewStatusIcon.vue";
 
 defineProps({
   item: { type: Object, required: true }

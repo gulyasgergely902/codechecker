@@ -58,7 +58,8 @@ import {
 } from "@cc/report-server-types";
 import { nextTick, onMounted, ref, watch } from "vue";
 
-import { ReviewStatusIcon } from "@/components/Icons";
+import ReviewStatusIcon
+  from "@/components/Icons/ReviewStatusIcon.vue";
 
 import formatReportDetails from "./ReportDetailFormatter";
 import ReportTreeIcon from "./ReportTreeIcon";

@@ -24,9 +24,10 @@
 </template>
 
 <script setup>
-import { ccService, handleThriftError } from "@cc-api";
 import { computed } from "vue";
-import ConfirmDialog from "@/components/ConfirmDialog";
+
+import { ccService, handleThriftError } from "@cc-api";
+import ConfirmDialog from "@/components/ConfirmDialog.vue";
 
 const props = defineProps({
   modelValue: { type: Boolean, default: false },

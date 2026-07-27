@@ -438,37 +438,58 @@ import {
 import { useRoute, useRouter } from "vue-router";
 import { useStore } from "vuex";
 
-import {
-  AnalyzerNameFilter,
-  BaselineOpenReportsDateFilter,
-  BaselineRunFilter,
-  BugPathLengthFilter,
-  CheckerMessageFilter,
-  CheckerNameFilter,
-  CleanupPlanFilter,
-  ComparedToDiffTypeFilter,
-  ComparedToOpenReportsDateFilter,
-  ComparedToRunFilter,
-  DetectionDateFilter,
-  DetectionStatusFilter,
-  FilePathFilter,
-  FixDateFilter,
-  ReportHashFilter,
-  ReportStatusFilter,
-  ReviewStatusFilter,
-  SeverityFilter,
-  SourceComponentFilter,
-  TestcaseFilter,
-  UniqueFilter
-} from "./Filters";
-
+import AnalyzerNameFilter
+  from "./Filters/AnalyzerNameFilter.vue";
+import BaselineOpenReportsDateFilter
+  from "./Filters/BaselineOpenReportsDateFilter.vue";
+import BaselineRunFilter
+  from "./Filters/BaselineRunFilter.vue";
+import BugPathLengthFilter
+  from "./Filters/BugPathLengthFilter.vue";
+import CheckerMessageFilter
+  from "./Filters/CheckerMessageFilter.vue";
+import CheckerNameFilter
+  from "./Filters/CheckerNameFilter.vue";
+import CleanupPlanFilter
+  from "./Filters/CleanupPlanFilter.vue";
+import ComparedToDiffTypeFilter
+  from "./Filters/ComparedToDiffTypeFilter.vue";
+import ComparedToOpenReportsDateFilter
+  from "./Filters/ComparedToOpenReportsDateFilter.vue";
+import ComparedToRunFilter
+  from "./Filters/ComparedToRunFilter.vue";
+import DetectionDateFilter
+  from "./Filters/DetectionDateFilter.vue";
+import DetectionStatusFilter
+  from "./Filters/DetectionStatusFilter.vue";
+import FilePathFilter
+  from "./Filters/FilePathFilter.vue";
+import FixDateFilter
+  from "./Filters/FixDateFilter.vue";
+import ReportHashFilter
+  from "./Filters/ReportHashFilter.vue";
+import ReportStatusFilter
+  from "./Filters/ReportStatusFilter.vue";
+import ReviewStatusFilter
+  from "./Filters/ReviewStatusFilter.vue";
+import SeverityFilter
+  from "./Filters/SeverityFilter.vue";
+import SourceComponentFilter
+  from "./Filters/SourceComponentFilter.vue";
+import TestcaseFilter
+  from "./Filters/TestcaseFilter.vue";
+import UniqueFilter
+  from "./Filters/UniqueFilter.vue";
 import { useBaseFilter } from "@/composables/useBaseFilter";
+import ClearAllFilters
+  from "@/components/Report/ReportFilter/ClearAllFilters.vue";
+import RemoveFilteredReports
+  from "@/components/Report/ReportFilter/RemoveFilteredReports.vue";
+import ReportCount from "@/components/Report/ReportFilter/ReportCount.vue";
+import PresetMenu
+  from "@/components/Report/ReportFilter/Filters/PresetMenu.vue";
+import TooltipHelpIcon from "@/components/TooltipHelpIcon.vue";
 
-import ClearAllFilters from "./ClearAllFilters";
-import RemoveFilteredReports from "./RemoveFilteredReports";
-import ReportCount from "./ReportCount";
-import PresetMenu from "./Filters/PresetMenu.vue";
-import TooltipHelpIcon from "@/components/TooltipHelpIcon";
 import {
   authService,
   ccService,

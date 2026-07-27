@@ -19,7 +19,8 @@
 
 <script setup>
 
-import { defaultReportFilterValues } from "@/components/Report/ReportFilter";
+import defaultReportFilterValues
+  from "@/components/Report/ReportFilter/DefaultReportFilterValues.js";
 
 defineProps({
   reportFilterQuery: { type: Object, default: () => {} },

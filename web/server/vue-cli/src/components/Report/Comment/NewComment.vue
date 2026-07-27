@@ -36,9 +36,10 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
+
 import { ccService, handleThriftError } from "@cc-api";
 import { CommentData } from "@cc/report-server-types";
-import { ref } from "vue";
 
 const props = defineProps({
   comments: { type: Array, required: true },

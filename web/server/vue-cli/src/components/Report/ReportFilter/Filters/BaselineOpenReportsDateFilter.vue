@@ -45,12 +45,13 @@ import { computed, ref } from "vue";
 
 import { useRoute } from "vue-router";
 
-import DateTimePicker from "@/components/DateTimePicker";
-import TooltipHelpIcon from "@/components/TooltipHelpIcon";
+import DateTimePicker from "@/components/DateTimePicker.vue";
+import TooltipHelpIcon from "@/components/TooltipHelpIcon.vue";
+import FilterToolbar
+  from "@/components/Report/ReportFilter/Filters/Layout/FilterToolbar.vue";
+
 import { useBaseFilter } from "@/composables/useBaseFilter";
 import { useDateUtils } from "@/composables/useDateUtils";
-
-import FilterToolbar from "./Layout/FilterToolbar";
 
 const emit = defineEmits([
   "update:url"

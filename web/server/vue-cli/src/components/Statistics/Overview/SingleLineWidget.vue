@@ -54,7 +54,7 @@
 </template>
 
 <script setup>
-import TooltipHelpIcon from "@/components/TooltipHelpIcon";
+import TooltipHelpIcon from "@/components/TooltipHelpIcon.vue";
 
 defineProps({
   icon: { type: String, required: true },

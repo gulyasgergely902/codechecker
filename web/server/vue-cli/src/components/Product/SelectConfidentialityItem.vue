@@ -14,8 +14,9 @@
 </template>
 
 <script setup>
-import { ConfidentialityIcon } from "@/components/Icons";
 import { useConfidentiality } from "@/composables/useConfidentiality";
+
+import ConfidentialityIcon from "@/components/Icons/ConfidentialityIcon.vue";
 
 defineProps({
   value: { type: String, required: true }

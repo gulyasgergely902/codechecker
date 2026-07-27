@@ -77,10 +77,13 @@
 </template>
 
 <script setup>
-import { ccService } from "@cc-api";
 import { onMounted, ref, watch } from "vue";
 
-import { DetectionStatusIcon, ReviewStatusIcon } from "@/components/Icons";
+import { ccService } from "@cc-api";
+
+import DetectionStatusIcon from "@/components/Icons/DetectionStatusIcon.vue";
+import ReviewStatusIcon from "@/components/Icons/ReviewStatusIcon.vue";
+
 import { useGradientColor } from "@/composables/useGradientColor";
 
 const props = defineProps({

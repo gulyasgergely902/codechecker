@@ -58,8 +58,10 @@ import { onMounted, ref } from "vue";
 
 import { usePopulatePermissions } from "@/composables/usePopulatePermissions";
 
-import ProductGroupPermission from "./ProductGroupPermission";
-import ProductUserPermission from "./ProductUserPermission";
+import ProductGroupPermission
+  from "@/components/Product/Permission/ProductGroupPermission.vue";
+import ProductUserPermission
+  from "@/components/Product/Permission/ProductUserPermission.vue";
 
 const success = ref(false);
 const error = ref(false);

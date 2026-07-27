@@ -30,10 +30,11 @@
 <script setup>
 import { ref, watch } from "vue";
 
+import BaseStatisticsTable
+  from "@/components/Statistics/BaseStatisticsTable.vue";
 import {
-  BaseStatisticsTable,
   getCheckerStatistics
-} from "@/components/Statistics";
+} from "@/components/Statistics/StatisticsHelper.js";
 import { ReportFilter } from "@cc/report-server-types";
 import ExpandedItem from "./ExpandedItem";
 

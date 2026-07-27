@@ -31,7 +31,7 @@
 <script setup>
 import { ref } from "vue";
 
-import ConfirmDialog from "@/components/ConfirmDialog";
+import ConfirmDialog from "@/components/ConfirmDialog.vue";
 import EditGlobalPermission from "./EditGlobalPermission";
 
 const dialog = ref(false);

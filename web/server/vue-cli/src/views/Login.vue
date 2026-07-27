@@ -168,7 +168,7 @@ import { useStore } from "vuex";
 import { useRoute, useRouter } from "vue-router";
 import { LOGIN } from "@/store/actions.type";
 import { authService, handleThriftError } from "@cc-api";
-import Alerts from "@/components/Alerts";
+import Alerts from "@/components/Alerts.vue";
 
 const store = useStore();
 const route = useRoute();

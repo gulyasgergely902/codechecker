@@ -58,18 +58,20 @@
 </template>
 
 <script setup>
-import { endOfDay, parse } from "date-fns";
 import { onMounted, ref, watch } from "vue";
+
+import { endOfDay, parse } from "date-fns";
 
 import { ccService, handleThriftError } from "@cc-api";
 import { DateInterval, ReportFilter } from "@cc/report-server-types";
 
-import BulbMessage from "@/components/BulbMessage";
+import BulbMessage from "@/components/BulbMessage.vue";
+import Items
+  from "@/components/Report/ReportFilter/Filters/SelectOption/Items.vue";
+import { useDateUtils } from "@/composables/useDateUtils";
 import { useBaseSelectOptionFilter }
   from "@/composables/useBaseSelectOptionFilter";
 
-import { useDateUtils } from "@/composables/useDateUtils";
-import Items from "./SelectOption/Items";
 
 const props = defineProps({
   runId: { type: Number, required: true },

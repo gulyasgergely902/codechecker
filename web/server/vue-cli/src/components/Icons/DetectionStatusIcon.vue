@@ -55,9 +55,10 @@
 </template>
 
 <script setup>
+import { computed } from "vue";
+
 import { useDetectionStatus } from "@/composables/useDetectionStatus";
 import { DetectionStatus } from "@cc/report-server-types";
-import { computed } from "vue";
 
 const props = defineProps({
   status: { type: Number, required: true },

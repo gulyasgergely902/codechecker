@@ -45,7 +45,7 @@ import { ccService, handleThriftError } from "@cc-api";
 import { RunFilter } from "@cc/report-server-types";
 import { ref } from "vue";
 
-import ConfirmDialog from "@/components/ConfirmDialog";
+import ConfirmDialog from "@/components/ConfirmDialog.vue";
 
 const props = defineProps({
   selected: { type: Array, required: true },

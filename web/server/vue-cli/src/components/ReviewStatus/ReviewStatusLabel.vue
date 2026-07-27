@@ -13,7 +13,8 @@
 </template>
 
 <script setup>
-import { ReviewStatusIcon } from "@/components/Icons";
+import ReviewStatusIcon
+  from "@/components/Icons/ReviewStatusIcon.vue";
 import { useReviewStatus } from "@/composables/useReviewStatus";
 import { computed } from "vue";
 

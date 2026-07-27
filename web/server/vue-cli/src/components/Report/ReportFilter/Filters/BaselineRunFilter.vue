@@ -145,20 +145,21 @@ import { useRoute } from "vue-router";
 import { ccService, extractTagWithRunName, handleThriftError } from "@cc-api";
 import { ReportFilter } from "@cc/report-server-types";
 
-import BulbMessage from "@/components/BulbMessage";
-import {
-  useBaseSelectOptionFilter
-} from "@/composables/useBaseSelectOptionFilter";
+import { useBaseSelectOptionFilter }
+  from "@/composables/useBaseSelectOptionFilter";
 import { useDateUtils } from "@/composables/useDateUtils";
 import { useRunFilter } from "@/composables/useRunFilter";
-import BaselineTagItems from "./BaselineTagItems";
-import {
-  Items,
-  ItemsSelected,
-  SelectOption,
-  SelectedToolbarTitleItems,
-  filterIsChanged
-} from "./SelectOption";
+
+import BaselineTagItems
+  from "@/components/Report/ReportFilter/Filters/BaselineTagItems.vue";
+
+import BulbMessage from "@/components/BulbMessage.vue";
+import Items from "./SelectOption/Items.vue";
+import ItemsSelected from "./SelectOption/ItemsSelected.vue";
+import SelectOption from "./SelectOption/SelectOption.vue";
+import SelectedToolbarTitleItems
+  from "./SelectOption/SelectedToolbarTitleItems.vue";
+import { filterIsChanged } from "./SelectOption";
 
 const emit = defineEmits([
   "update:url",

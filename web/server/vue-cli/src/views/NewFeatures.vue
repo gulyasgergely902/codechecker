@@ -3058,7 +3058,10 @@ analyzer:
 </template>
 
 <script setup>
-import { NewFeatureItem, NewReleaseItem } from "@/components/NewFeatures";
+import NewFeatureItem
+  from "@/components/NewFeatures/NewFeatureItem.vue";
+import NewReleaseItem
+  from "@/components/NewFeatures/NewReleaseItem.vue";
 </script>
 
 <style scoped>

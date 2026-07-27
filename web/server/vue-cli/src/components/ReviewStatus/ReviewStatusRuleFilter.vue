@@ -64,7 +64,7 @@ import { useRoute, useRouter } from "vue-router";
 
 import { ReviewStatusRuleFilter } from "@cc/report-server-types";
 
-import TooltipHelpIcon from "@/components/TooltipHelpIcon";
+import TooltipHelpIcon from "@/components/TooltipHelpIcon.vue";
 import { useReviewStatus } from "@/composables/useReviewStatus";
 import SelectReviewStatus from "./SelectReviewStatus";
 
