@@ -13,10 +13,10 @@ import tokenService from "./token.service";
 // Host should be set explicitly to `hostname` because thrift will use
 // the value of `window.location.host` which will contain port number by
 // default on local host which cause invalid url format.
-const host = process.env.CC_SERVER_HOST || window.location.hostname;
-const port = parseInt(process.env.CC_SERVER_PORT, 10) ||
+const host = __CC_SERVER_HOST__ || window.location.hostname;
+const port = parseInt(__CC_SERVER_PORT__, 10) ||
   parseInt(window.location.port, 10);
-const api = process.env.CC_API_VERSION;
+const api = __CC_API_VERSION__;
 
 // Use native EventTarget for Vue 3 compliance
 const eventHub = new EventTarget();
