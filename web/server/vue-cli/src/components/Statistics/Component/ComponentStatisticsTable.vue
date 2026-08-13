@@ -49,46 +49,46 @@ const expanded = ref([]);
 const headers = [
   {
     text: "",
-    value: "data-table-expand"
+    key: "data-table-expand"
   },
   {
     text: "Component",
-    value: "component",
+    key: "component",
     align: "center"
   },
   {
     text: "Unreviewed",
-    value: "unreviewed.count",
+    key: "unreviewed.count",
     align: "center"
   },
   {
     text: "Confirmed bug",
-    value: "confirmed.count",
+    key: "confirmed.count",
     align: "center"
   },
   {
     text: "Outstanding reports",
-    value: "outstanding.count",
+    key: "outstanding.count",
     align: "center"
   },
   {
     text: "False positive",
-    value: "falsePositive.count",
+    key: "falsePositive.count",
     align: "center"
   },
   {
     text: "Intentional",
-    value: "intentional.count",
+    key: "intentional.count",
     align: "center"
   },
   {
     text: "Suppressed reports",
-    value: "suppressed.count",
+    key: "suppressed.count",
     align: "center"
   },
   {
     text: "All reports",
-    value: "reports.count",
+    key: "reports.count",
     align: "center"
   }
 ];

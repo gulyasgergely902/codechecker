@@ -40,7 +40,7 @@
       </v-toolbar>
     </template>
 
-    <template #item.value="{ item }">
+    <template #item.key="{ item }">
       <ul class="component-value">
         <li
           v-for="value in item.$values"
@@ -101,22 +101,22 @@ const itemsPerPageOptions = [
 const headers = [
   {
     title: "Name",
-    value: "name",
+    key: "name",
     sortable: true
   },
   {
     title: "Value",
-    value: "value",
+    key: "value",
     sortable: true
   },
   {
     title: "Description",
-    value: "description",
+    key: "description",
     sortable: true
   },
   {
     title: "Actions",
-    value: "actions",
+    key: "actions",
     sortable: false
   },
 ];

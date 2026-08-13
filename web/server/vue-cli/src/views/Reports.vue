@@ -499,72 +499,72 @@ const sortBy = ref(
 const headers = [
   {
     title: "",
-    value: "data-table-expand"
+    key: "data-table-expand"
   },
   {
     title: "Report hash",
-    value: "bugHash",
+    key: "bugHash",
     sortable: false
   },
   {
     title: "File",
-    value: "checkedFile",
+    key: "checkedFile",
     sortable: true
   },
   {
     title: "Message",
-    value: "checkerMsg",
+    vakeylue: "checkerMsg",
     sortable: false
   },
   {
     title: "Checker name",
-    value: "checkerId",
+    key: "checkerId",
     sortable: true
   },
   {
     title: "Analyzer",
-    value: "analyzerName",
+    key: "analyzerName",
     align: "center",
     sortable: false
   },
   {
     title: "Severity",
-    value: "severity",
+    key: "severity",
     sortable: true
   },
   {
     title: "Bug path length",
-    value: "bugPathLength",
+    key: "bugPathLength",
     align: "center",
     sortable: true
   },
   {
     title: "Latest review status",
-    value: "reviewData",
+    key: "reviewData",
     align: "center",
     sortable: true
   },
   {
     title: "Latest detection status",
-    value: "detectionStatus",
+    key: "detectionStatus",
     align: "center",
     sortable: true
   },
   {
     title: "Timestamp",
-    value: "timestamp",
+    key: "timestamp",
     align: "center",
     sortable: true
   },
   {
     title: "Chronological order",
-    value: "chronological_order",
+    key: "chronological_order",
     align: "center",
     sortable: true
   },
   {
     title: "Testcase",
-    value: "testcase",
+    key: "testcase",
     align: "center",
     sortable: true
   }
