@@ -747,7 +747,10 @@ function resetJsPlumb() {
     Container : _jsPlumbParentElement,
     Anchor : [ "Perimeter", { shape : "Ellipse" } ],
     Endpoint : [ "Dot", { radius: 1 } ],
-    PaintStyle : { stroke : "#a94442", strokeWidth: 2 },
+    PaintStyle : {
+      stroke : "var(--color-report-step-message-error)",
+      strokeWidth: 2
+    },
     Connector: [ "Bezier", { curviness: 10 } ],
     ConnectionsDetachable : false,
     ConnectionOverlays : [
