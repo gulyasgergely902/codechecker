@@ -1168,8 +1168,8 @@ onDeactivated(unlockBodyScroll);
 }
 
 .v-btn-toggle .v-btn--active {
-  background-color: #2280c3 !important;
-  color: #fff !important;
+  background-color: var(--color-soft-blue) !important;
+  color: #ffffff !important;
 }
 
 .tree-view-container {

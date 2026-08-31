@@ -751,7 +751,7 @@ function getNestedTableContent(checkers, prop, descending) {
 
 .guideline-statistics table td {
   padding: 2px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #dddddd;
 }
 
 .guideline-statistics table tr:last-child td {
