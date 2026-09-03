@@ -26,9 +26,11 @@
                 class="ml-4"
                 label="Search for products..."
                 hide-details
-                variant="outlined"
                 clearable
                 density="compact"
+                color="primary"
+                variant="outlined"
+                prepend-inner-icon="mdi-magnify"
               />
             </v-col>
 
@@ -76,7 +78,7 @@
           <v-chip
             color="primary"
             class="mr-2 my-1"
-            variant="outlined"
+            variant="tonal"
             :title="admin"
           >
             <template v-slot:prepend>
@@ -93,8 +95,10 @@
 
       <template #item.runCount="{ item }">
         <v-chip
-          class="text-black"
-          :color="gradientColor.getGradientColor(item.runCount, 500)"
+          :style="{
+            color: gradientColor.getGradientTextColor(item.runCount, 500) 
+          }"
+          :color="gradientColor.getTonalGradientColor(item.runCount, 500)"
           size="small"
           variant="flat"
         >

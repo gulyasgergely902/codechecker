@@ -95,9 +95,9 @@
         <v-chip
           class="ma-2"
           color="primary"
-          variant="outlined"
+          variant="tonal"
         >
-          <v-icon left>
+          <v-icon start>
             mdi-calendar-range
           </v-icon>
           {{ prettifyDate(item.runDate) }}
@@ -108,7 +108,7 @@
         <v-chip
           class="ma-2"
           color="success"
-          variant="outlined"
+          variant="tonal"
         >
           <v-icon start>
             mdi-clock-outline
@@ -118,9 +118,19 @@
       </template>
 
       <template #item.codeCheckerVersion="{ item }">
-        <span :title="item.codeCheckerVersion">
+        <v-chip
+          class="ma-2"
+          :color="
+            item.$codeCheckerVersion === packageVersion ? 
+              'primary' : 'var(--color-cool-gray-dark)'
+          "
+          variant="tonal"
+        >
+          <v-icon start>
+            mdi-label-outline
+          </v-icon>
           {{ item.$codeCheckerVersion }}
-        </span>
+        </v-chip>
       </template>
 
       <template #item.diff="{ item }">
@@ -260,6 +270,7 @@ const headers = ref([
 
 const runFilter = computed(() => store.getters["run/runFilter"]);
 const runHistoryFilter = computed(() => store.getters["run/runHistoryFilter"]);
+const packageVersion = computed(() => store.getters.packageVersion);
 
 watch(
   [ page, itemsPerPage, sortBy ],

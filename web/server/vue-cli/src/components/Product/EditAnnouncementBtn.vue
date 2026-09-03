@@ -3,6 +3,7 @@
     v-model="dialog"
     confirm-btn-label="Change"
     title="Change announcement"
+    icon="mdi-bullhorn-outline"
     @confirm="confirmAnnouncementChange"
     @cancel="resetValue"
   >
@@ -12,7 +13,7 @@
         id="edit-announcement-btn"
         color="primary"
         class="mr-2"
-        variant="outlined"
+        variant="tonal"
       >
         <template v-slot:prepend>
           <v-icon>mdi-bullhorn-outline</v-icon>
@@ -22,14 +23,16 @@
     </template>
 
     <template v-slot:content>
+      <div class="text-body-large text-medium-emphasis mb-2">
+        Announcement Text
+      </div>
       <v-text-field
         v-model="value"
-        append-icon="mdi-bullhorn-outline"
-        label="Announcement text"
         hide-details
         variant="outlined"
         clearable
         density="compact"
+        placeholder="Accouncement Text"
       />
     </template>
   </ConfirmDialog>
