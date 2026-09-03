@@ -3,6 +3,7 @@
     v-model="dialog"
     max-width="1000px"
     title="Global Permissions"
+    icon="mdi-shield-key"
     @confirm="confirmPermissionChange"
   >
     <template v-slot:activator="{ props: activatorProps }">
@@ -11,7 +12,7 @@
         id="edit-global-permissions-btn"
         color="primary"
         class="mr-2"
-        variant="outlined"
+        variant="tonal"
       >
         <template v-slot:prepend>
           <v-icon>mdi-shield-key</v-icon>

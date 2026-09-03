@@ -105,7 +105,7 @@
         />
         <DeleteRunBtn
           :selected="selected"
-          variant="outlined"
+          variant="tonal"
           @on-confirm="update"
           @delete-complete="emit('delete-complete')"
         />
@@ -113,7 +113,7 @@
         <v-spacer />
 
         <v-btn
-          variant="outlined"
+          variant="tonal"
           color="primary"
           class="diff-runs-btn mr-2"
           :to="diffTargetRoute"

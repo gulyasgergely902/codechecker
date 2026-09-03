@@ -3,6 +3,7 @@
     v-model="dialog"
     max-width="50%"
     title="New product"
+    icon="mdi-plus"
     @confirm="save"
   >
     <template v-slot:activator="{ props: activatorProps }">
@@ -11,7 +12,7 @@
         id="new-product-btn"
         color="primary"
         class="mr-2"
-        variant="tonal"
+        variant="flat"
       >
         <template v-slot:prepend>
           <v-icon>mdi-plus</v-icon>
