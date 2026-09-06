@@ -811,9 +811,8 @@ def handle_list_results(args):
 
     report_filter = parse_report_filter(client, args)
 
-    # TODO: JSON format contains detailed information either way. --details
-    # flag is deprecated in 6.28.0 and should be removed in 6.29.0.
-    query_report_details = 'details' in args or args.output_format == 'json'
+    query_report_details = 'details' in args and args.details and \
+        args.output_format == 'json'
 
     all_results = get_run_results(client,
                                   run_ids,
