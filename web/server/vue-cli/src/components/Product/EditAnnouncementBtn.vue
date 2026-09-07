@@ -9,10 +9,11 @@
   >
     <template v-slot:activator="{ props }">
       <v-btn
-        v-bind="props"
         id="edit-announcement-btn"
-        color="primary"
         class="mr-2"
+        v-bind="props"
+        height="40"
+        color="primary"
         variant="tonal"
       >
         <template v-slot:prepend>

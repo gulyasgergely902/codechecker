@@ -8,10 +8,11 @@
   >
     <template v-slot:activator="{ props: activatorProps }">
       <v-btn
-        v-bind="activatorProps"
         id="new-product-btn"
-        color="primary"
         class="mr-2"
+        v-bind="activatorProps"
+        height="40"
+        color="primary"
         variant="flat"
       >
         <template v-slot:prepend>

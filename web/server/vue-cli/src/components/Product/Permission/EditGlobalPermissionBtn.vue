@@ -8,10 +8,11 @@
   >
     <template v-slot:activator="{ props: activatorProps }">
       <v-btn
-        v-bind="activatorProps"
         id="edit-global-permissions-btn"
-        color="primary"
         class="mr-2"
+        v-bind="activatorProps"
+        color="primary"
+        height="40"
         variant="tonal"
       >
         <template v-slot:prepend>
