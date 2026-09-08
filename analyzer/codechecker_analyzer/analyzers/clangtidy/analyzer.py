@@ -504,6 +504,12 @@ class ClangTidy(analyzer_base.SourceAnalyzer):
                 # so no globbing should occur even if the checks argument
                 # contains characters that would trigger globbing in the shell.
                 analyzer_cmd.append(f"-checks={','.join(checks)}")
+            else:
+                # clang-tidy 19+ treats an empty resolved check set as a fatal
+                # error; here the checks come from the config instead.
+                version = ClangTidy.get_binary_version()
+                if version and version.major >= 19:
+                    analyzer_cmd.append("--allow-no-checks")
 
             analyzer_cmd.extend(config.analyzer_extra_arguments)
 
