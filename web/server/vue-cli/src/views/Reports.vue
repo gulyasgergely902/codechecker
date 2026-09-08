@@ -493,26 +493,26 @@ const sortBy = ref(
 const headers = [
   {
     title: "",
-    value: "data-table-expand"
+    key: "data-table-expand"
   },
   {
     title: "Report hash",
-    value: "bugHash",
+    key: "bugHash",
     sortable: false
   },
   {
     title: "File",
-    value: "checkedFile",
+    key: "checkedFile",
     sortable: true
   },
   {
     title: "Message",
-    value: "checkerMsg",
+    key: "checkerMsg",
     sortable: false
   },
   {
     title: "Checker name",
-    value: "checkerId",
+    key: "checkerId",
     sortable: true
   },
   {
@@ -528,37 +528,37 @@ const headers = [
   },
   {
     title: "Bug path length",
-    value: "bugPathLength",
+    key: "bugPathLength",
     align: "center",
     sortable: true
   },
   {
     title: "Latest review status",
-    value: "reviewData",
+    key: "reviewData",
     align: "center",
     sortable: true
   },
   {
     title: "Latest detection status",
-    value: "detectionStatus",
+    key: "detectionStatus",
     align: "center",
     sortable: true
   },
   {
     title: "Timestamp",
-    value: "timestamp",
+    key: "timestamp",
     align: "center",
     sortable: true
   },
   {
     title: "Chronological order",
-    value: "chronological_order",
+    key: "chronological_order",
     align: "center",
     sortable: true
   },
   {
     title: "Testcase",
-    value: "testcase",
+    key: "testcase",
     align: "center",
     sortable: true
   }
@@ -601,25 +601,25 @@ const tableHeaders = computed(function() {
   if (!headers || !reportFilter.value) return [];
 
   return headers.filter(_header => {
-    if (_header.value === "detectionStatus") {
+    if (_header.key === "detectionStatus") {
       return !reportFilter.value.isUnique;
     }
 
-    if (_header.value === "data-table-expand") {
+    if (_header.key === "data-table-expand") {
       return reportFilter.value.isUnique;
     }
 
-    if (_header.value === "timestamp") {
+    if (_header.key === "timestamp") {
       return hasTimeStamp.value &&
         !reportFilter.value.isUnique;
     }
 
-    if (_header.value === "testcase") {
+    if (_header.key === "testcase") {
       return hasTestCase.value &&
         !reportFilter.value.isUnique;
     }
 
-    if (_header.value === "chronological_order") {
+    if (_header.key === "chronological_order") {
       return hasChronologicalOrder.value &&
         !reportFilter.value.isUnique;
     }
