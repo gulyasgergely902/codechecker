@@ -23,11 +23,13 @@ $darken: 2;
 
 $tr: "tr:not(.v-data-table__expanded__content):not(.total-row)";
 
+$table: "#{$class-name} > .v-table__wrapper > table";
+
 @mixin set-cells-color($cols...) {
-  #{$class-name} table {
+  #{$table} {
     @each $col in $cols {
-      th:nth-child(#{$col}),
-      tbody #{$tr} td:nth-child(#{$col}) {
+      & > thead > tr > th:nth-child(#{$col}),
+      & > tbody > #{$tr} > td:nth-child(#{$col}) {
         @content;
       }
     }
@@ -35,9 +37,9 @@ $tr: "tr:not(.v-data-table__expanded__content):not(.total-row)";
 }
 
 @mixin set-total-row-color($cols...) {
-  #{$class-name} table tbody tr.total-row {
+  #{$table} > tbody > tr.total-row {
     @each $col in $cols {
-      td:nth-child(#{$col - $total-row-offset}) {
+      & > td:nth-child(#{$col - $total-row-offset}) {
         @content;
       }
     }
@@ -56,9 +58,9 @@ $tr: "tr:not(.v-data-table__expanded__content):not(.total-row)";
   }
 
   // Hover state for regular rows
-  #{$class-name} table tbody #{$tr}:hover {
+  #{$table} > tbody > #{$tr}:hover {
     @each $col in $cols {
-      td:nth-child(#{$col}) {
+      & > td:nth-child(#{$col}) {
         background-color: darken($bg-color, 5%);
       }
     }
@@ -86,7 +88,7 @@ $tr: "tr:not(.v-data-table__expanded__content):not(.total-row)";
   }
 }
 
-#{$class-name} > table {
+#{$table} {
   & > thead > tr:not(:last-child) > th:not(.v-data-table__mobile-row),
   & > tbody > tr:not(:last-child) > td:not(.v-data-table__mobile-row) {
     border-bottom: thin solid rgba(0, 0, 0, 0.12);
