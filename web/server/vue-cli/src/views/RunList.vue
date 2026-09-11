@@ -98,7 +98,6 @@
         <analyzer-statistics-btn
           v-if="Object.keys(item.analyzerStatistics).length"
           :value="item.analyzerStatistics"
-          :show-dividers="false"
           tag="div"
           @click.stop="openAnalyzerStatisticsDialog(item)"
         />
