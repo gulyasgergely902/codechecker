@@ -8,32 +8,21 @@
 
 # --- COMMIT END ---
 # Tag can be
-#    analyzer      (Analyzer related changes)
-#    cfg           (Config file changes)
 #    ci            (CI/CD related changes)
-#    clang         (Clang Static Analyzer related changes)
-#    clang-tidy    (Clang Tidy related changes)
-#    cmd           (Command line changes)
-#    db            (Issues related to the database schema)
 #    doc           (Changes to documentation)
 #    feat          (New feature)
 #    fix           (Bug fix)
-#    git           (Changes in the git relates files)
-#    gui           (Changes in the web GUI)
-#    llm           (LLM rules file changes)
-#    refactor      (Refactoring code)
-#    server        (Server related changes)
-#    style         (Formatting, missing semi colons, etc; no code change)
+#    nfc           (Refactoring code)
 #    test          (Adding or refactoring tests; no production code change)
-#    tu-collector  (Changes in the tu-collector tool)
 #    version       (Version bump/new release; no production code change)
-#    web           (Changes in the web module)
 #
 # Note: Multiple tags can be combined, e.g. [feat][server] Save and load filters in the GUI
 # --------------------
 # Remember to:
+#   * The commit message description should contain the issue number (Either GitHub or Jira) and a short
+#     description of the problem. Follow the GitHub conventions e.g. fixes #<issue_number>.
 #   * Capitalize the subject line.
-#   * Use the imperative mood in the subject line.
+#   * Use the imperative mode in the subject line.
 #   * Do not end the subject line with a period.
 #   * Separate subject from body with a blank line.
 #   * Use the body to explain what and why vs how.
